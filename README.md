@@ -144,21 +144,38 @@ console.log(typeof NaN); // "number"
 ```
 👉 Even though `NaN` means <i>Not-a-Number</i>, its type is `number`.
 
-3. **`NaN` is not equal to itself**
+3. **`==` vs `===` (Type Coercion)**
 ```js
-console.log(NaN === NaN); // false
+console.log(0 == "0");    // true
+console.log(0 === "0");   // false
 ```
-👉 Only value in JS that is not equal to itself.
+👉 `==` does type coercion, `===` checks strictly.
 
-4. **`NaN` is not equal to itself**
+4. **Automatic Semicolon Insertion (ASI)**
 ```js
-console.log(NaN === NaN); // false
+function test() {
+  return
+    42;
+}
+console.log(test()); // undefined
+
 ```
-👉 Only value in JS that is not equal to itself.
+👉 Returns `undefined` instead of `42` because JS inserts a semicolon after `return`.
+
+5. **Array + Object Weirdness**
+```js
+console.log([] + {}); // "[object Object]"
+console.log({} + []); // 0
+```
+👉 Returns `undefined` instead of `42` because JS inserts a semicolon after `return`.
+
+**🔸 Key Takeaway**
+JavaScript quirks come from:
+- Loose typing system
+- Automatic type coercion
+- Backward compatibility with old code
+- Some design decisions made quickly in its early history.
 </details>
-
-
-
 
 
 <details>
@@ -181,4 +198,40 @@ console.log("hello" * 10);   // NaN
 console.log(Math.sqrt(-1));  // NaN
 console.log(parseInt("abc")); // NaN
 ```
+
+### 🔹 Checking `NaN`
+
+The tricky part:
+```js
+console.log(NaN === NaN); // false
+```
+👉 `NaN` is <b>not equal to itself.</b>
+
+So, to check for `NaN`, use:
+```js
+isNaN("hello");       // true (loose check)
+Number.isNaN("hello"); // false (better strict check)
+Number.isNaN(NaN);     // true
+```
+
+### 🔸 Key Points
+
+- `NaN` is of type <b>number.</b>
+- It represents an invalid numeric operation.
+- It is <b>the only JavaScript value not equal to itself.</b>
+- Use `Number.isNaN()` for reliable checking.
+
 </details>
+
+<details>
+<summary><h3>Q. What is the difference between <code>==</code> and <code>===</code> in JavaScript?</h3></summary>
+
+### 🔹 `==` (Equality Operator)
+- Compares **values only**.  
+- Performs **type coercion** (converts operands to the same type before comparison).  
+
+```js
+console.log(5 == "5");     // true  (string "5" converted to number 5)
+console.log(0 == false);   // true  (false converted to 0)
+console.log(null == undefined); // true (special case)
+```
