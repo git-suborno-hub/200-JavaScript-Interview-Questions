@@ -580,37 +580,200 @@ Think of your code as a house:
 
 ### 🔹 Types of Scope in JavaScript
 
-- Returns a **string** describing the type.
-- Works best for **primitive types**: `number`, `string`, `boolean`, `undefined`, `symbol`, `bigint`.
-- For objects, arrays, or `null`, it may return `"object"` (quirk).
+<b>📘 Global Scope:</b>
+
+A variable declared **outside of any function or block** becomes global. Global variables can be accessed **anywhere in your program.**
 
 ```js
-console.log(typeof 42);        // "number"
-console.log(typeof "hello");   // "string"
-console.log(typeof true);      // "boolean"
-console.log(typeof undefined); // "undefined"
-console.log(typeof null);      // "object"  (quirk!)
-console.log(typeof [1,2,3]);   // "object"
-console.log(typeof {});        // "object"
+let username = "Suborno"; // Global variable
+function greet() {
+  console.log("Hello " + username); //  Accessible here
+}
+greet();
+console.log(username); //  Accessible here too
 ```
-### 🔹 `instanceof`
+⚠️ **Risk:** Too many global variables can cause conflicts, since any function can modify them.
 
-- Checks if an **object** is an **instance of a constructor** (class or function).
-- Returns **boolean** (`true / false`).
-- Works **only on objects**, not primitives.
-  
+<b>📘 Function Scope (Local Scope): </b>
+
+Variables declared inside a **function** are only accessible **inside that function.** They cannot be used outside.
+
 ```js
-console.log([1,2,3] instanceof Array);          // true
-console.log([1,2,3] instanceof Object);         // true (Array inherits from Object)
-console.log({} instanceof Object);              // true
-console.log("hello" instanceof String);         // false (primitive)
-console.log(new String("hello") instanceof String); // true
+function sayHi() {
+  let message = "Hi, I am inside function"; // Local variable
+  console.log(message); //  Accessible
+}
+sayHi();
+console.log(message); //  ReferenceError: message is not defined
 ```
+👉 Function scope keeps variables **private** to that function.
+
+<b>📘 Block Scope (introduced in ES6 with let and const):</b>
+
+Variables declared inside a `{ }` block are only accessible **inside that block.** Works with `if`, `for`, `while`, etc.
+
+```js
+if (true) {
+  let age = 21; // Block scoped
+  const country = "Bangladesh"; // Block scoped
+  console.log(age, country); //  Accessible
+}
+console.log(age);     //  Not accessible
+console.log(country); //  Not accessible
+```
+👉 But if you use `var`, it ignores block scope:
+
+```js
+if (true) {
+  var number = 100; // var is not block scoped
+}
+console.log(number); // Accessible outside (unexpected behavior)
+```
+<b>📘 Lexical Scope / Closures:</b>
+
+Inner functions can **access variables from their outer function**. This is called **lexical scoping** (scope is determined by code position, not where it’s executed).
+
+```js
+function outer() {
+  let outerVar = "I am from outer scope";
+  function inner() {
+    console.log(outerVar); //  Can access outer variable
+  }
+  inner();
+}
+outer();
+```
+👉 This feature allows **closures**, where a function "remembers" its surrounding scope even after the outer function has finished executing.
+
 </details>
 ---
 
+<details>
+<summary><b>Q13. What is hoisting in JavaScript?</b></summary>
+<p>
 
+### 🔹 Definition
 
+**Hoisting** is JavaScript’s default behavior of **moving declarations (not initializations) to the top of their scope** (either the global scope or the function scope) **before code execution.**
+This means you can **use variables and functions before they are actually declared** in the code.
+
+### 🔹 How Hoisting Works
+
+1. During the compilation phase, JavaScript scans the code.
+2. It registers all variable and function declarations.
+3. The declarations are “hoisted” to the top of their scope.
+4. But:
+  - **Variables declared with** `var` are hoisted and **initialized to** `undefined`.
+  - **Variables declared with** `let` and `const` are hoisted but not **initialized** (they stay in the **Temporal Dead Zone** until the declaration line).
+  - **Function declarations** are hoisted with their **entire body.**
+  - **Function expressions** (with `var`, `let`, or `const`) behave like **variables** (only the variable is hoisted, not the function value).
+
+### 🔹 Examples
+
+<b>📘 Hoisting with `var`:</b>
+
+```js
+console.log(a); //  undefined (not ReferenceError)
+var a = 5;
+console.log(a); //  5
+```
+➡️ Behind the scenes:
+```js
+var a;          // Hoisted
+console.log(a); // undefined
+a = 5;          // Initialization
+console.log(a); // 5
+```
+
+<b>📘 Hoisting with `let` and `const`:</b>
+
+```js
+console.log(b); //  ReferenceError (TDZ)
+let b = 10;
+
+console.log(c); //  ReferenceError (TDZ)
+const c = 20;
+```
+👉 These are **hoisted** but not **initialized**, so they cannot be accessed before declaration.
+
+<b>📘 Hoisting with Function Declarations:</b>
+
+```js
+greet(); //  Works fine
+
+function greet() {
+  console.log("Hello!");
+}
+```
+👉 The entire function is hoisted, so you can call it before the declaration.
+
+<b>📘 Hoisting with Function Expressions:</b>
+
+```js
+sayHi(); //  TypeError: sayHi is not a function
+
+var sayHi = function () {
+  console.log("Hi!");
+};
+```
+👉 Here only the variable sayHi is **hoisted (initialized to undefined)**, but the **function assignment** happens later, so calling it before throws an error.
+
+<b>📘 Arrow Functions:</b>
+
+Arrow functions are just like function expressions:
+```js
+hello(); //  ReferenceError or TypeError (depends on var/let/const)
+
+const hello = () => {
+  console.log("Hello from arrow!");
+};
+```
+
+</details>
+---
+
+<details>
+<summary><b>Q14. Temporal Dead Zone (TDZ) in JavaScript?</b></summary>
+<p>
+
+### 🔹 Definition
+
+The **Temporal Dead Zone** refers to the period between the **time** a variable is **hoisted** to the top of its scope and the time it is **initialized** with a value. During this period, if you try to **access the variable**, JavaScript will throw a **ReferenceError.**
+
+### 🔹 Why does it happen?
+
+- Variables declared with `let` and `const` are hoisted to the top of their scope (just like var), BUT they are not **initialized** until the actual declaration line is executed.
+- This "gap" between hoisting and initialization is called the **Temporal Dead Zone.**
+
+### 🔹 Example 1: Using let before declaration
+```js
+console.log(a); // ReferenceError: Cannot access 'a' before initialization
+let a = 10;
+console.log(a); //  10
+```
+Here, `a` is hoisted but not initialized until the line `let a = 10`; executes.
+So, before that line, it’s in the **TDZ.**
+
+### 🔹 Example 2: With `var`
+
+```js
+console.log(b); // undefined (no TDZ for var)
+var b = 20;
+console.log(b); //  20
+```
+For `var`, the variable is **hoisted and initialized** to undefined, so there’s no **TDZ.**
+
+### 🔹 Example 3: With `const`
+
+```js
+console.log(c); //  ReferenceError
+const c = 30;
+```
+`const` also has a TDZ.
+Additionally, it must be initialized at the time of declaration.
+
+</details>
+---
 
 
 
