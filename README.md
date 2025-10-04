@@ -60,7 +60,7 @@ This prints a message to the console.
 </details>
 
 <details>
-<summary><b>Q. What are the different data types in JavaScript?</b></summary>
+<summary><b>Q2. What are the different data types in JavaScript?</b></summary>
 
 JavaScript has **two categories** of data types:  
 
@@ -95,7 +95,7 @@ function greet() { return "Hello!"; }    // Function
 </details>
 
 <details>
-<summary><b>Q. What is the difference between <code>null</code> and <code>undefined</code> in JavaScript?</b></summary>
+<summary><b>Q3. What is the difference between <code>null</code> and <code>undefined</code> in JavaScript?</b></summary>
 
 ### `undefined`
 - A variable that has been declared but **not assigned a value**.  
@@ -122,7 +122,7 @@ console.log(y); // null
 </details>
 
 <details>
-<summary><b>Q. What is a "quirk" of JavaScript? Can you give examples?</b></summary>
+<summary><b>Q4. What is a "quirk" of JavaScript? Can you give examples?</b></summary>
 
 ###  Definition
 A **quirk** in JavaScript refers to a behavior that feels **unexpected, confusing, or inconsistent** compared to most programming languages.  
@@ -179,7 +179,7 @@ JavaScript quirks come from:
 
 
 <details>
-<summary><b>Q. What is <code>NaN</code> in JavaScript?</b></summary>
+<summary><b>Q5. What is <code>NaN</code> in JavaScript?</b></summary>
 
 ### 🔹 Definition
 `NaN` stands for **Not-a-Number**.  
@@ -224,7 +224,7 @@ Number.isNaN(NaN);     // true
 </details>
 
 <details>
-<summary><b>Q. What is the difference between <code>==</code> and <code>===</code> in JavaScript?</b></summary>
+<summary><b>Q6. What is the difference between <code>==</code> and <code>===</code> in JavaScript?</b></summary>
 
 ### 🔹 `==` (Equality Operator)
 - Compares **values only**.  
@@ -248,7 +248,7 @@ console.log(5 === 5);      // true
 </details>
 
 <details>
-<summary><b>Q. What are "truthy" and "falsy" values in JavaScript?</b></summary>
+<summary><b>Q7. What are "truthy" and "falsy" values in JavaScript?</b></summary>
 
 ### 🔹 Definition
 In JavaScript, every value is either considered **truthy** or **falsy** when evaluated in a **Boolean context** (like inside an `if` statement).
@@ -299,7 +299,7 @@ if (null) {
 </details>
 
 <details>
-<summary><b>Q. What is type coercion in JavaScript? </b></summary>
+<summary><b>Q8. What is type coercion in JavaScript? </b></summary>
 
 ### 🔹 Definition
 **Type coercion** in JavaScript is the process of **automatically or implicitly converting values from one data type to another** (such as converting a string to a number, or a number to a boolean).
@@ -385,9 +385,120 @@ console.log({} + "test");      // "[object Object]test"
 
 </details>
 
+<details>
+<summary><b>Q9. What is Prototype? </b></summary>
+<p>
+
+### 🔹 Definition
+
+- A **prototype** is simply **an object** that **another object inherits properties and methods from.**
+
+- Every function in JavaScript (that is used as a constructor) has a `prototype` **property.**
+
+- When an object is created from that function, the object’s internal link (`[[Prototype]]` or __proto__) points to the function’s `prototype.`
+Think of a prototype like a **blueprint or template** for objects.
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+// Add a method to the prototype
+Person.prototype.greet = function() {
+  console.log(`Hello, I am ${this.name}`);
+};
+
+// Create an object
+let alice = new Person("Alice");
+
+alice.greet();  // "Hello, I am Alice"
+```
+What’s happening:
+
+- `alice` doesn’t have `greet` directly.
+
+- JS looks at `alice.__proto__` → which points to `Person.prototype`.
+
+- Finds `greet()` there → executes it.
+So **prototype is where objects “inherit” properties and methods from.**
+---
+
+### 🔹 Prototype in Arrays and Objects
+```js
+let arr = [1,2,3];
+console.log(arr.__proto__ === Array.prototype); // true
+console.log(arr.__proto__.__proto__ === Object.prototype); // true
+
+let obj = {name: "Bob"};
+console.log(obj.__proto__ === Object.prototype); // true
+```
+- `Array.prototype` contains array methods like `.push(), .pop().`
+- `Object.prototype` contains general object methods like `.toString()`.
+- Objects inherit from their prototype via the **prototype chain**.
+
+Imagine prototypes like linked **“backpacks”**:
+
+```js
+obj ---> Object.prototype ---> null
+arr ---> Array.prototype ---> Object.prototype ---> null
+alice ---> Person.prototype ---> Object.prototype ---> null
+```
 
 
 
+- Each object carries its own properties.
+- If a property is missing, it **looks up the backpack chain** (prototype chain) to find it.
+
+### 🔹 Key Points
+- **Every object has a prototype** (except `Object.create(null)`).
+- **Prototype itself is an object,** so it can have its own prototype (creating the chain).
+- **Methods and properties on the prototype are shared** across all objects created from the constructor.
+- `instanceof` checks **if a prototype exists in the chain.**
+
+</details>
+
+<details>
+<summary><b>Q10. What is the difference between `typeof` and `instanceof` in JavaScript?</b></summary>
+<p>
+
+### 🔹 Definition
+
+**`typeof`** and **`instanceof`** are both operators used to check types in JavaScript, but they work differently:
+
+- **`typeof`** returns a string indicating the type of a **value or variable**.  
+- **`instanceof`** checks whether an **object** belongs to a specific **constructor or class** (i.e., exists in its prototype chain).
+
+---
+
+### 🔹 `typeof`
+
+- Returns a **string** describing the type.
+- Works best for **primitive types**: `number`, `string`, `boolean`, `undefined`, `symbol`, `bigint`.
+- For objects, arrays, or `null`, it may return `"object"` (quirk).
+
+```js
+console.log(typeof 42);        // "number"
+console.log(typeof "hello");   // "string"
+console.log(typeof true);      // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof null);      // "object"  (quirk!)
+console.log(typeof [1,2,3]);   // "object"
+console.log(typeof {});        // "object"
+```
+### 🔹 `instanceof`
+
+- Checks if an **object** is an **instance of a constructor** (class or function).
+- Returns **boolean** (`true / false`).
+- Works **only on objects**, not primitives.
+  
+```js
+console.log([1,2,3] instanceof Array);          // true
+console.log([1,2,3] instanceof Object);         // true (Array inherits from Object)
+console.log({} instanceof Object);              // true
+console.log("hello" instanceof String);         // false (primitive)
+console.log(new String("hello") instanceof String); // true
+```
+</details>
 
 
 
