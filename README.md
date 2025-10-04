@@ -5,8 +5,8 @@ This repository contains categorized JavaScript questions with answers.
 
 | Category              | Number of Questions | Link to Questions |
 |-----------------------|---------------------|------------------|
-| 🔴 Basics             | 10                  | [View](#-basics) |
-| 🟠 vartiables & Scope  | 10                  | [View](#-variables--scope) |
+| 🔴 Basics             | 11                  | [View](#-basics) |
+| 🟠 variables & scope  | 10                  | [View](#-variables--scope) |
 | 🟡 Functions      | 10                  | [View](#--functions) |
 | 🟢 Object & Arrays      | 20                  | [View](#--object--arrays) |
 | 🔵 Strings & Numbers      | 10                  | [View](#--strings--numbers) |
@@ -58,7 +58,7 @@ public class Hello {
 ```
 This prints a message to the console.
 </details>
-
+---
 <details>
 <summary><b>Q2. What are the different data types in JavaScript?</b></summary>
 
@@ -93,7 +93,7 @@ let skills = ["JS", "React", "Node"];    // Array
 function greet() { return "Hello!"; }    // Function
 ```
 </details>
-
+---
 <details>
 <summary><b>Q3. What is the difference between <code>null</code> and <code>undefined</code> in JavaScript?</b></summary>
 
@@ -120,7 +120,7 @@ let y = null;
 console.log(y); // null
 ```
 </details>
-
+---
 <details>
 <summary><b>Q4. What is a "quirk" of JavaScript? Can you give examples?</b></summary>
 
@@ -176,8 +176,7 @@ JavaScript quirks come from:
 - Backward compatibility with old code
 - Some design decisions made quickly in its early history.
 </details>
-
-
+---
 <details>
 <summary><b>Q5. What is <code>NaN</code> in JavaScript?</b></summary>
 
@@ -222,7 +221,7 @@ Number.isNaN(NaN);     // true
 - Use `Number.isNaN()` for reliable checking.
 
 </details>
-
+---
 <details>
 <summary><b>Q6. What is the difference between <code>==</code> and <code>===</code> in JavaScript?</b></summary>
 
@@ -246,7 +245,7 @@ console.log(null === undefined); // false (different types)
 console.log(5 === 5);      // true
 ```
 </details>
-
+---
 <details>
 <summary><b>Q7. What are "truthy" and "falsy" values in JavaScript?</b></summary>
 
@@ -255,8 +254,6 @@ In JavaScript, every value is either considered **truthy** or **falsy** when eva
 
 - **Truthy values** → Treated as `true`
 - **Falsy values** → Treated as `false`
-
----
 
 ### 🔹 Falsy Values
 There are only **7 falsy values** in JavaScript:
@@ -271,8 +268,6 @@ There are only **7 falsy values** in JavaScript:
 8. `NaN`
 
 👉 Everything else is **truthy**.
-
----
 
 ### 🔹 Examples
 
@@ -297,7 +292,7 @@ if (null) {
 👉 Knowing truthy and falsy values helps avoid unexpected bugs, especially when using conditions or logical operators (&&, ||, !).
 
 </details>
-
+---
 <details>
 <summary><b>Q8. What is type coercion in JavaScript? </b></summary>
 
@@ -384,7 +379,7 @@ console.log({} + "test");      // "[object Object]test"
 ```
 
 </details>
-
+---
 <details>
 <summary><b>Q9. What is Prototype? </b></summary>
 <p>
@@ -456,7 +451,7 @@ alice ---> Person.prototype ---> Object.prototype ---> null
 - `instanceof` checks **if a prototype exists in the chain.**
 
 </details>
-
+---
 <details>
 <summary><b>Q10. What is the difference between <code>typeof</code> and <code>instanceof</code> in JavaScript?</b></summary>
 <p>
@@ -468,7 +463,6 @@ alice ---> Person.prototype ---> Object.prototype ---> null
 - **`typeof`** returns a string indicating the type of a **value or variable**.  
 - **`instanceof`** checks whether an **object** belongs to a specific **constructor or class** (i.e., exists in its prototype chain).
 
----
 
 ### 🔹 `typeof`
 
@@ -499,12 +493,121 @@ console.log("hello" instanceof String);         // false (primitive)
 console.log(new String("hello") instanceof String); // true
 ```
 </details>
+---
+<details>
+<summary><b>Q11. What is the difference between <code>var</code>, <code>let</code>, and <code>const</code></b></summary>
+<p>
+
+### 🔹 `var`
+
+- **Scope:** Function-scoped (or globally scoped if declared outside a function).
+- **Hoisting:** Gets hoisted to the top and initialized with undefined.
+- **Re-declaration:** Allowed within the same scope.
+- **Re-assignment:** Allowed.
+
+```js
+var x = 10;
+var x = 20; // re-declaration allowed
+console.log(x); // 20
+
+function test() {
+  if (true) {
+    var y = 5;
+  }
+  console.log(y); // 5 (function-scoped, not block-scoped)
+}
+test();
+```
+### 🔹 `let`
+
+- **Scope:** Block-scoped (only exists inside `{ }`).
+- **Hoisting:** Hoisted but **not initialized** (exists in the "temporal dead zone" until declared).
+- **Re-declaration:** Not allowed in the same scope.
+- **Re-assignment:** Allowed.
+
+```js
+let a = 10;
+// let a = 20;  Error (cannot re-declare in same scope)
+a = 20; //  can re-assign
+console.log(a); // 20
+
+{
+  let b = 5;
+  console.log(b); // 5
+}
+// console.log(b);  Error (block-scoped)
+```
+### 🔹 `const`
+
+- **Scope:** Block-scoped (like `let`).
+- **Hoisting:** Also in the temporal dead zone until declared.
+- **Re-declaration:** Not allowed.
+- **Re-assignment:** Not allowed (constant value).
+
+```js
+const pi = 3.14;
+// pi = 3.1416;  Error (cannot re-assign)
+
+{
+  const c = 100;
+  console.log(c); // 100
+}
+// console.log(c);  Error (block-scoped)
+```
+- Use `let` when the variable will change.
+- Use `const` when the variable should not be reassigned.
+- Avoid `var` (it’s old and can cause bugs due to function-scoping & hoisting).
+
+</details>
+
+---
 
 
+## 🟠 variables & scope
 
+<details>
+<summary><b>Q12. What is Scope in JavaScript?</b></summary>
+<p>
 
+### 🔹 Definition
 
+**Scope** in JavaScript determines where variables, functions, and objects are accessible in our code during execution. It defines the **lifetime and visibility** of variables.
 
+Think of your code as a house:
+
+- Some rooms (functions/blocks) have their own keys (variables).
+- Variables can only be used inside the room they belong to, unless they are global keys.
+
+### 🔹 Types of Scope in JavaScript
+
+- Returns a **string** describing the type.
+- Works best for **primitive types**: `number`, `string`, `boolean`, `undefined`, `symbol`, `bigint`.
+- For objects, arrays, or `null`, it may return `"object"` (quirk).
+
+```js
+console.log(typeof 42);        // "number"
+console.log(typeof "hello");   // "string"
+console.log(typeof true);      // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof null);      // "object"  (quirk!)
+console.log(typeof [1,2,3]);   // "object"
+console.log(typeof {});        // "object"
+```
+### 🔹 `instanceof`
+
+- Checks if an **object** is an **instance of a constructor** (class or function).
+- Returns **boolean** (`true / false`).
+- Works **only on objects**, not primitives.
+  
+```js
+console.log([1,2,3] instanceof Array);          // true
+console.log([1,2,3] instanceof Object);         // true (Array inherits from Object)
+console.log({} instanceof Object);              // true
+console.log("hello" instanceof String);         // false (primitive)
+console.log(new String("hello") instanceof String); // true
+```
+</details>
+---
 
 
 
