@@ -458,7 +458,7 @@ alice ---> Person.prototype ---> Object.prototype ---> null
 </details>
 
 <details>
-<summary><b>Q10. What is the difference between `typeof` and `instanceof` in JavaScript?</b></summary>
+<summary><b>Q10. What is the difference between <code>typeof</code> and <code>instanceof</code> in JavaScript?</b></summary>
 <p>
 
 ### 🔹 Definition
