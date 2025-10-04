@@ -28,7 +28,7 @@ This repository contains categorized JavaScript questions with answers.
 ## 🔴 Basics
 
 <details>
-<summary><h3>Q1. What is JavaScript and how is it different from Java?</h3></summary> 
+<summary><b>Q1. What is JavaScript and how is it different from Java?</b></summary> 
 
 👉 JavaScript is a <b>high-level, lightweight, interpreted programming language</b> mainly used for making web pages interactive.
 
@@ -60,7 +60,7 @@ This prints a message to the console.
 </details>
 
 <details>
-<summary><h3>Q. What are the different data types in JavaScript?</h3></summary>
+<summary><b>Q. What are the different data types in JavaScript?</b></summary>
 
 JavaScript has **two categories** of data types:  
 
@@ -95,7 +95,7 @@ function greet() { return "Hello!"; }    // Function
 </details>
 
 <details>
-<summary><h3>Q. What is the difference between <code>null</code> and <code>undefined</code> in JavaScript?</h3></summary>
+<summary><b>Q. What is the difference between <code>null</code> and <code>undefined</code> in JavaScript?</b></summary>
 
 ### `undefined`
 - A variable that has been declared but **not assigned a value**.  
@@ -122,7 +122,7 @@ console.log(y); // null
 </details>
 
 <details>
-<summary><h3>Q. What is a "quirk" of JavaScript? Can you give examples?</h3></summary>
+<summary><b>Q. What is a "quirk" of JavaScript? Can you give examples?</b></summary>
 
 ###  Definition
 A **quirk** in JavaScript refers to a behavior that feels **unexpected, confusing, or inconsistent** compared to most programming languages.  
@@ -179,7 +179,7 @@ JavaScript quirks come from:
 
 
 <details>
-<summary><h3>Q. What is <code>NaN</code> in JavaScript?</h3></summary>
+<summary><b>Q. What is <code>NaN</code> in JavaScript?</b></summary>
 
 ### 🔹 Definition
 `NaN` stands for **Not-a-Number**.  
@@ -224,7 +224,7 @@ Number.isNaN(NaN);     // true
 </details>
 
 <details>
-<summary><h3>Q. What is the difference between <code>==</code> and <code>===</code> in JavaScript?</h3></summary>
+<summary><b>Q. What is the difference between <code>==</code> and <code>===</code> in JavaScript?</b></summary>
 
 ### 🔹 `==` (Equality Operator)
 - Compares **values only**.  
@@ -235,3 +235,174 @@ console.log(5 == "5");     // true  (string "5" converted to number 5)
 console.log(0 == false);   // true  (false converted to 0)
 console.log(null == undefined); // true (special case)
 ```
+### 🔹 `===` (Strict Equality Operator)
+- Compares values and types. **values and types.**.  
+- No type coercion — both must be the same type to be equal.
+
+```js
+console.log(5 === "5");    // false (number vs string)
+console.log(0 === false);  // false (number vs boolean)
+console.log(null === undefined); // false (different types)
+console.log(5 === 5);      // true
+```
+</details>
+
+<details>
+<summary><b>Q. What are "truthy" and "falsy" values in JavaScript?</b></summary>
+
+### 🔹 Definition
+In JavaScript, every value is either considered **truthy** or **falsy** when evaluated in a **Boolean context** (like inside an `if` statement).
+
+- **Truthy values** → Treated as `true`
+- **Falsy values** → Treated as `false`
+
+---
+
+### 🔹 Falsy Values
+There are only **7 falsy values** in JavaScript:
+
+1. `false`
+2. `0`  (zero)
+3. `-0` (negative zero)
+4. `0n` (BigInt zero)
+5. `""` (empty string)
+6. `null`
+7. `undefined`
+8. `NaN`
+
+👉 Everything else is **truthy**.
+
+---
+
+### 🔹 Examples
+
+```js
+if ("hello") {
+  console.log("Truthy!"); //  Runs because non-empty string is truthy
+}
+
+if (0) {
+  console.log("Falsy!");
+} else {
+  console.log("0 is falsy"); //  Runs
+}
+
+if (null) {
+  console.log("Falsy!");
+} else {
+  console.log("null is falsy"); //  Runs
+}
+
+```
+👉 Knowing truthy and falsy values helps avoid unexpected bugs, especially when using conditions or logical operators (&&, ||, !).
+
+</details>
+
+<details>
+<summary><b>Q. What is type coercion in JavaScript? </b></summary>
+
+### 🔹 Definition
+**Type coercion** in JavaScript is the process of **automatically or implicitly converting values from one data type to another** (such as converting a string to a number, or a number to a boolean).
+
+JavaScript is a **loosely typed language**, so variables are not bound to a specific type, and coercion happens frequently.
+
+
+### 🔹 Types of Type Coercion
+
+1. **Implicit Coercion (automatic)**  
+Happens when JavaScript automatically converts one type to another during operations.  
+
+  ```js
+  console.log("5" - 2);   // 3   ("5" converted to number)
+  console.log("5" + 2);   // "52" (2 converted to string, concatenation)
+  console.log(1 == "1");  // true (string "1" converted to number)
+  ```
+
+2. **Explicit Coercion (manual)**  
+   When the developer explicitly converts a type using functions or constructors.
+
+   ```js
+   console.log(Number("42"));    // 42
+   console.log(String(100));     // "100"
+   console.log(Boolean(0));      // false
+   ```
+### 🔹 Rule 1: Boolean Context (Truthy / Falsy)
+When a value is used in a **conditional (`if`, `while`, `!`, `||`, `&&`)**, JS converts it to **boolean**.
+
+- Falsy values: `false, 0, -0, 0n, "", null, undefined, NaN`
+- Everything else is truthy
+
+```js
+if ("hello") console.log("Truthy"); // runs
+if (0) console.log("Falsy");        // doesn’t run
+```
+
+### 🔹 Rule 2: Numeric Operators `(- * / % **)`
+
+- All operands are converted to **numbers.**
+
+```js
+console.log("5" - 2);   // 3   ("5" → 5)
+console.log("10" * "2"); // 20
+console.log(true - 1);  // 0   (true → 1)
+console.log("abc" / 2); // NaN ("abc" → NaN)
+```
+### 🔹 Rule 3: The `+` Operator (Special Case)
+- If **both operands are numbers** → numeric addition
+- If **either operand is a string** → string concatenation
+
+```js
+console.log(5 + 2);     // 7   (number + number)
+console.log("5" + 2);   // "52" (string + number → concatenation)
+console.log(2 + "5");   // "25"
+console.log("5" + true); // "5true"
+console.log([] + 1);    // "1"   ([] → "" then "" + "1")
+console.log([1,2] + [3,4]); // "1,23,4"
+```
+### 🔹 Rule 4: Comparisons `(==)`
+- The **loose equality `(==)` operator** does type coercion.
+
+```js
+console.log(5 == "5");      // true   ("5" → 5)
+console.log(0 == false);    // true   (false → 0)
+console.log(null == undefined); // true (special case)
+console.log([] == "");      // true   ([] → "")
+console.log([1] == 1);      // true   ([1] → "1" → 1)
+```
+👉 Always prefer `===` to avoid these pitfalls.
+
+
+### 🔹 Rule 5: Objects to Primitives
+When an object/array is used where a primitive is expected, JS calls:
+- `valueOf()`
+- If not primitive, then `toString()`
+
+```js
+console.log([1,2].toString()); // "1,2"
+console.log([1,2] + 3);        // "1,23"
+console.log({} + "test");      // "[object Object]test"
+```
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
