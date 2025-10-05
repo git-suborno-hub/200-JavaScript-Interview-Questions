@@ -775,8 +775,139 @@ Additionally, it must be initialized at the time of declaration.
 </details>
 ---
 
+<details>
+<summary><b>Q15. Why You Should Avoid <code>var</code> in JavaScript? </b></summary>
+<p>
 
+Modern JavaScript provides `let` and `const`, which fix many of the long-standing issues with `var`. While `var` still works, using it can easily lead to bugs and unexpected behavior.
 
+### 🔹 Why does it happen?
+
+- Variables declared with `let` and `const` are hoisted to the top of their scope (just like var), BUT they are not **initialized** until the actual declaration line is executed.
+- This "gap" between hoisting and initialization is called the **Temporal Dead Zone.**
+
+### 🔹 Example 1: `var` Has `Function Scope`, Not `Block Scope` *This is the biggest problem.*
+```js
+if (true) {
+  var x = 10;
+}
+console.log(x); //  10 (still accessible outside the block)
+```
+- Compare this to let or const:
+```js
+if (true) {
+  let y = 20;
+}
+console.log(y); //  ReferenceError: y is not defined
+```
+👉 `var` ignores block boundaries (`if`, `for`, etc.), *which can cause variable leaks and overwrite values accidentally.*
+
+### 🔹 Example 2: `var` Allows Re-declaration *You can declare the same variable multiple times without error:*
+```js
+var name = "Suborno";
+var name = "Maksuda"; //  No error
+console.log(name); // "Maksuda"
+```
+- With `let` or `const`, this would throw an error:
+```js
+let name = "Suborno";
+let name = "Maksuda"; //  SyntaxError
+```
+👉 This helps prevent accidental overwriting.
+
+### 🔹 Example 3: `var` Variables Are Hoisted (in a confusing way)
+All var declarations are hoisted to the top of their function or script, but not their **values** — leading to unexpected behavior:
+```js
+console.log(num); // undefined (not ReferenceError!)
+var num = 5;
+```
+- What really happens:
+```js
+var num; // hoisted
+console.log(num); // undefined
+num = 5;
+```
+👉 With `let` and `cons`t, you get a **Temporal Dead Zone (TDZ)** error instead, which prevents you from using variables before they’re initialized.
+
+```js
+console.log(num); //  ReferenceError
+let num = 5;
+```
+### 🔹 Example 4: `var` Pollutes the `Global Scope`
+
+If you use `var` outside any function, it becomes a property of the `window` object in browsers:
+```js
+var message = "Hello";
+console.log(window.message); // "Hello"
+```
+
+👉 This can cause naming conflicts with existing global variables or libraries. `let` and `const` don’t do this — they stay within the block/module scope.
+
+### 🔹 Example 5: `let` and `const` Are the Modern Standard
+
+Since ES6 (2015), almost all modern JS code uses let and const.
+👉 They make code:
+  - More predictable
+  - Easier to debug
+  - Safer from accidental bugs
+  - Easier for others to understand
+    
+</details>
+---
+
+<details>
+<summary><b>Q16. Difference between <code>shallow copy</code> and <code>deep copy</code> in js. </b></summary>
+<p>
+
+### 🔹 1. Shallow Copy — “Copied from the outside only”
+
+Imagine you have a **box** (your object). Inside that box, there are **smaller boxes** (nested objects). A shallow copy makes a new outer box,
+but **the smaller boxes inside are still shared between the old and new one.**
+
+### 🔹 Example : 
+```js
+const original = {
+  name: "Suborno",
+  details: { city: "Dhaka", age: 22 }
+};
+
+// make a shallow copy
+const copy = { ...original };
+
+// change something inside 'details'
+copy.details.city = "Chittagong";
+
+console.log(original.details.city); //  "Chittagong"
+
+```
+👉 Think of it like:
+  - You bought a new box, but you took the same little box from the old one and placed it inside — so both boxes share the same inner item. So when you change the inner box, both are affected.
+
+### 🔹 2. Deep Copy — “Copied completely inside and out”
+
+A deep copy makes **a brand new box and also makes new copies of every small box inside it**. That means it’s completely **separate from the original.**
+
+### 🔹 Example : 
+```js
+const original = {
+  name: "Suborno",
+  details: { city: "Dhaka", age: 22 }
+};
+
+// make a deep copy
+const deepCopy = structuredClone(original);
+
+// change the city in deepCopy
+deepCopy.details.city = "Chittagong";
+
+console.log(original.details.city); // "Dhaka"
+
+```
+👉 This time:
+  - You bought a **new box**, and you also made **new little boxes inside it** — so changing one doesn’t affect the other.
+        
+</details>
+---
 
 
 
