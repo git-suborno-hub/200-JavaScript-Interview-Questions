@@ -909,7 +909,135 @@ console.log(original.details.city); // "Dhaka"
 </details>
 ---
 
+<details>
+<summary><b>Q17. Difference between <code>reference types</code> and <code>primitive types</code> in js. </b></summary>
+<p>
 
+### 🔹 1. Definition
+
+| Type              | Description |
+|-----------------------|----------------------|
+| **Primitive Types**             | Store **single, immutable values** (cannot be changed directly). |
+| **Reference Types**             | Store **references (addresses)** to objects in memory, not the actual data. |
+
+### 🔹 Primitive Types : 
+
+There are 7 primitive data types:
+- `String` – e.g. `"Hello"`
+- `Number` – e.g. `42`
+- `Boolean` – e.g. `true`
+- `Undefined` – variable declared but not assigned
+- `Null` – intentional empty value
+- `Symbol` – unique and immutable value
+- `BigInt` – large integer value
+
+
+```js
+let x = 10;
+let y = x;   // y gets a COPY of x
+y = 20;
+console.log(x); // 10 (not affected)
+```
+**→ Each variable holds its own copy of the value.**
+
+### 🔹 Reference Types : 
+
+Common **reference types:**
+- `Object`
+- `Array` 
+- `function` 
+- `Date`, `Map`,`Set`, etc.
+
+```js
+let obj1 = { name: "Suborno" };
+let obj2 = obj1;   // obj2 gets a REFERENCE to obj1
+obj2.name = "Maksuda";
+
+console.log(obj1.name); // Maksuda
+```
+**→ Both variables point to the same memory address.**
+
+### 🔹 Comparison Behaviour : 
+
+```js
+// Primitive comparison
+let a = 5;
+let b = 5;
+console.log(a === b); // true  (same value)
+
+// Reference comparison
+let arr1 = [1, 2];
+let arr2 = [1, 2];
+console.log(arr1 === arr2); // false (different memory reference)
+```
+
+| Features              | Primitive Types | Reference Types |
+|-----------------------|-----------------|-----------------------------|
+| Stored in             | Stack           | Heap (with stack reference) |
+| What’s Stored            | Actual value           | Memory address (reference) |
+| Mutable?            | No. Changing `x` creates a new value           | Mutable. Can change properties or elements directly |
+| Copied by           | Value           | Reference |
+| Comparison           | By Value           | By Reference |
+
+</details>
+---
+
+<details>
+<summary><b>Q18. Why are objects assigned by <code>reference</code> in JavaScript? </b></summary>
+<p>
+
+### 🔹 1. Definition
+
+In JavaScript, **objects are assigned by reference** because they are **complex data structures** that can contain many properties, arrays, and nested objects.
+
+If JavaScript tried to **copy the whole object** each time you assigned it to another variable, it would:
+
+- Consume a lot of **memory**, and
+
+Take extra **processing time.** 
+So instead of copying the entire structure, JS simply copies the **memory address (reference)** where the object is stored.
+
+### 🔹 Stack vs Heap memory : 
+JavaScript divides memory into two main areas:
+
+| Memory Area              | Used For | Characteristics |
+|-----------------------|-----------------|-----------------------------|
+| Stack             | Primitive values           | Small, fast access, fixed-size data |
+| Heap            | Objects & functions           | Large, dynamic memory storage |
+
+➡️ When you create an object:
+```js
+let person = { name: "Suborno" };
+```
+- The **actual object** `{ name: "Suborno" }` is stored in the heap.
+- The variable `person` stores only a **reference (memory address)** in the **stack.**
+
+When you do this:
+
+```js
+let person2 = person;
+```
+👉 JavaScript does **not** create a new object. Instead, it copies only the **reference (pointer)** to the same object in memory.
+
+So now:
+- `person` → points to the object in heap
+- `person2` → points to the **same** object in heap
+
+that's why: 
+```js
+person2.name = "Maksuda";
+console.log(person.name); // "Maksuda"
+```
+Both variables reflect the same data — they share the same memory reference.
+
+### 🔹 Why this design makes sense : 
+There are **two main reasons:**
+
+1. **Efficiency** → Copying large objects by value would be slow and memory-heavy.
+2. **Consistency** → Objects can be nested and dynamic, so referencing them allows real-time updates across variables and functions.
+
+</details>
+---
 
 
 
