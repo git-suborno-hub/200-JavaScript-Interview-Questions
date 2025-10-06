@@ -1039,6 +1039,236 @@ There are **two main reasons:**
 </details>
 ---
 
+<details>
+<summary><b>Q18.  What are global variables and why should you avoid them? </b></summary>
+<p>
 
+### 🔹 1. Definition
+
+In JavaScript, a **global variable** is a variable that is declared **outside of any function, block, or module**, and therefore it is **accessible from anywhere in your code** — inside **functions, loops, or even other scripts.**
+
+```js
+let count = 0; // global variable
+
+function increment() {
+  count++; // accessible inside the function
+  console.log(count);
+}
+
+increment(); // 1
+increment(); // 2
+```
+Here, `count` is a **global variable** — it exists in the **global scope**, which means it can be accessed or modified from any part of the script.
+
+### 🔹 Why You Should Avoid Global Variables: 
+
+Using too many **global variables** is considered **bad practice**. Here’s why:
+
+1. ***Risk of Name Conflicts (Collisions):***
+
+  - If two scripts (e.g., your code and a third-party library) use the same global variable name, one can overwrite the other.
+```js
+var user = "Alice";  // your variable
+// Some library also defines 'user'
+var user = "Bob";    // now your 'user' got overwritten!
+```
+
+2. ***Harder to Debug and Maintain:***
+
+  - When many functions modify the same global variable, it’s difficult to track where and when changes happen.
+
+- Bugs can appear unexpectedly.
+
+3. ***Memory Usage and Lifetime Issues:***
+
+  - Global variables stay in memory as long as the page or program is running, which can lead to unnecessary memory consumption.
+
+4. ***Tight Coupling:***
+
+  - Code becomes less modular and reusable because functions rely on global state instead of their own data.
+
+5. ***Security Concerns:***
+
+  - In browsers, global variables become properties of the `window` object. This means other scripts can easily read or change them:
+
+```js
+window.myGlobal = "secret";
+// Any script can access or modify it
+```
+### 🔹 How to Avoid Global Variables: 
+
+1. **Use `let`, `const`, or `var` inside functions or blocks**
+```js
+function run() {
+  let result = 5; // local variable
+  console.log(result);
+}
+```
+
+2. **Use modules (ES6 Modules):**
+```js
+// file.js
+export const name = "Suborno";
+
+// main.js
+import { name } from "./file.js";
+```
+
+3. **Use closures to encapsulate variables:**
+```js
+(function() {
+  let counter = 0;
+  function add() { counter++; }
+  window.add = add; // only expose what’s needed
+})();
+```
+</details>
+---
+
+## 🟡 Functions 
+
+<details>
+<summary><b>Q19.  What are <code>function declarations</code> vs <code>function expressions?</code> </b></summary>
+<p>
+
+### 🔹 Function Declaration: 
+
+A **function declaration** defines a named function using the `function` keyword.
+
+```js
+function greet() {
+  console.log("Hello!");
+}
+```
+
+<b>Key Features:</b>
+
+- Hoisted: You can call the function before it’s declared in the code.
+- Has its own name (`greet`).
+- Defined in the global or local scope (depending on where it’s written).
+
+<b>Example: </b>
+
+```js
+sayHi(); // Works, because function declarations are hoisted
+
+function sayHi() {
+  console.log("Hi there!");
+}
+```
+
+### 🔹 Function Expression: 
+
+A **function expression** involves creating a function and assigning it to a variable.
+
+```js
+const greet = function() {
+  console.log("Hello!");
+};
+```
+
+<b>Key Features:</b>
+
+- Not hoisted: You **cannot** call it before the line where it’s defined.
+- Can be **anonymous** (no name) or **named.**
+- Treated like a **value** — it can be passed around, assigned, or returned from another function.
+
+<b>Example: </b>
+
+```js
+sayHi(); //  Error: Cannot access 'sayHi' before initialization
+
+const sayHi = function() {
+  console.log("Hi there!");
+};
+
+```
+
+### 🔹 Bonus:: 
+
+```js
+const greet = () => console.log("Hello!");
+```
+It’s a **type of function expression** — concise, not hoisted, and does not bind its own `this.`
+
+</details>
+---
+
+<details>
+<summary><b>Q20.  What are <code>arrow functions</code> and how are they different? </b></summary>
+<p>
+
+An **arrow function** is a shorter, cleaner way to write a function expression in JavaScript. It uses the `=>` (arrow) syntax.
+
+```js
+// Regular function expression
+const greet = function(name) {
+  return "Hello, " + name;
+};
+
+// Arrow function version
+const greet = (name) => {
+  return "Hello, " + name;
+};
+```
+Or even shorter (if there’s only one line of code and one parameter):
+```js
+const greet = name => "Hello, " + name;
+```
+
+### 🔹 Syntax Summary: 
+
+|      Type      |     Example   |     Notes     |
+|----------------|---------------|---------------|
+| **No parameters** | `() => console.log("Hi")` | Must include parentheses |
+| **One parameter** | `name => console.log(name)` | Parentheses optional |
+| **Multiple parameters** | `(a, b) => a + b` | Parentheses required |
+| **Multiple statements** | `(x, y) => { let sum = x + y; return sum; }` | Use `{}` and `return` |
+
+### 🔹 How Are Arrow Functions Different? 
+
+|      Feature      |     Arrow Function   |     Regular Function (Expression or Declaration)     |
+|----------------|---------------|---------------|
+| **Syntax**   | Short & concise (`=>`)  | Longer (`function`)
+| `this` **binding** | Lexically bound – uses `this` from the surrounding scope | Has its own `this` (depends on how it’s called) |
+| `arguments` **object** | Not available | Available |
+| `new` **keyword** | Cannot be used as a constructor | Can be used with `new` |
+| **Hoisting** | Not hoisted | Function declarations are hoisted |
+| **Readability** | Cleaner for small callbacks | Can be verbose |
+
+
+### 🔹 Example of `this` Difference
+
+```js
+// Regular function
+const user = {
+  name: "Suborno",
+  sayHi: function() {
+    console.log("Hi, I’m " + this.name);
+  }
+};
+user.sayHi(); // "Hi, I’m Suborno"
+```
+Now with an arrow function:
+```js
+const user = {
+  name: "Suborno",
+  sayHi: () => {
+    console.log("Hi, I’m " + this.name);
+  }
+};
+user.sayHi(); //  "Hi, I’m undefined"
+```
+
+👉 Because arrow functions **don’t have their own** `this`, they use `this` from the **outer scope**, which in this case isn’t `user`.
+
+### 🔹 When to Use Arrow Functions: 
+
+- Short, inline functions
+- Callbacks (like in `map`, `filter`, `forEach`)
+- Event handlers that don’t rely on `this`
+
+</details>
+---
 
 
