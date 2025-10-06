@@ -993,8 +993,8 @@ In JavaScript, **objects are assigned by reference** because they are **complex 
 If JavaScript tried to **copy the whole object** each time you assigned it to another variable, it would:
 
 - Consume a lot of **memory**, and
-
-Take extra **processing time.** 
+- Take extra **processing time.**
+  
 So instead of copying the entire structure, JS simply copies the **memory address (reference)** where the object is stored.
 
 ### 🔹 Stack vs Heap memory : 
