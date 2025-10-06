@@ -1271,4 +1271,71 @@ user.sayHi(); //  "Hi, I’m undefined"
 </details>
 ---
 
+<details>
+<summary><b>Q21.  What are <code>higher-order</code> functions? </b></summary>
+<p>
 
+A **higher-order function** is a function that operates on other functions, either by **taking them as parameters** or **returning them**.
+
+### 🔹 Function taking another function as an argument
+
+```js
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+function processUserInput(callback) {
+  const name = "Suborno";
+  return callback(name);
+}
+
+console.log(processUserInput(greet)); 
+// Output: Hello, Suborno!
+```
+
+👉 `processUserInput()` is a **higher-order function** because it **takes another function** (`greet`) **as an argument.**
+
+### 🔹 Function returning another function
+
+```js
+function multiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = multiplier(2);
+console.log(double(5)); // Output: 10
+```
+👉 `multiplier()` is a **higher-order function** because it **returns another function.**
+
+### 🔹 Common Built-in Higher-Order Functions
+These are **array methods** that use callbacks:
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+
+// map() → transforms each element
+const doubled = numbers.map(n => n * 2);
+
+// filter() → selects elements based on condition
+const evens = numbers.filter(n => n % 2 === 0);
+
+// reduce() → combines all elements into a single value
+const sum = numbers.reduce((acc, n) => acc + n, 0);
+
+console.log(doubled); // [2, 4, 6, 8, 10]
+console.log(evens);   // [2, 4]
+console.log(sum);     // 15
+}
+```
+👉 Each of these functions (`map`, `filter`, `reduce`) **takes another function as an argument**, so they are **higher-order functions**.
+
+### 🔹 Why Use Higher-Order Functions?
+- Make code **more modular and reusable**
+- Allow **functional programming** style
+- Simplify **data transformations**
+- Enable **composition** of behavior
+
+</details>
+---
