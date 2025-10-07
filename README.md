@@ -1339,3 +1339,203 @@ console.log(sum);     // 15
 
 </details>
 ---
+
+
+<details>
+<summary><b>Q22.  What are <code>first-class functions</code>?</b></summary>
+<p>
+
+In **JavaScript, functions are first-class citizens (or first-class functions)** — meaning **functions are treated like any other value** in the language.
+
+### 🔹 Definition
+
+A **first-class function** means that functions in JavaScript can:
+- Be **assigned** to variables,
+- Be **passed** as arguments to other functions,
+- Be **returned** from other functions,
+- Be **stored** in data structures (like arrays, objects, etc).
+
+### 🔹 Example 1 : Assigning a function to a variable
+
+```js
+const greet = function() {
+  console.log("Hello!");
+};
+
+greet(); // Output: Hello!
+}
+```
+👉 Here, the function is stored in a variable — just like a number or string.
+
+### 🔹 Example 2 : Passing a function as an argument
+
+```js
+function sayHello() {
+  return "Hello!";
+}
+
+function greetUser(callback) {
+  console.log(callback());
+}
+
+greetUser(sayHello); // Output: Hello!
+```
+👉 `sayHello` is passed as an argument (a callback) to `greetUser.`
+
+### 🔹 Example 3 : Returning a function from another function
+
+```js
+function multiplyBy(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = multiplyBy(2);
+console.log(double(5)); // Output: 10
+
+```
+👉 Here, `multiplyBy` returns a new function — this is possible because functions are first-class.
+
+### 🔹 Example 4 : Storing functions in arrays or objects
+
+```js
+const actions = [
+  () => console.log("Start"),
+  () => console.log("Stop")
+];
+
+actions[0](); // Output: Start
+actions[1](); // Output: Stop
+```
+</details>
+---
+
+
+<details>
+<summary><b>Q24. Difference between <code>synchronous</code> and <code>asynchronous</code> callbacks.</b></summary>
+<p>
+
+A **callback function is a function that is passed as an argument** to another function **and is executed later** (or “called back”) inside that other function. So, A **callback** is a function that gets **called back** after something happens.
+
+### 🔹 Why use callbacks?
+
+Callbacks are used when:
+
+- You want to **control the order** of function execution.
+- You want to **run code after** something else finishes (like loading data, waiting for a user’s input, etc).
+- You want **reusable functions** that can behave differently depending on the callback.
+
+### 🔹 Example 
+
+```js
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+function processUserInput(callback) {
+  const name = "Suborno";
+  callback(name); // calling the callback
+}
+
+processUserInput(greet);
+
+```
+👉 Explanation:
+
+  - `greet` is a function.
+  - `processUserInput` takes another function as a parameter (`callback`).
+  - Inside `processUserInput`, we “call back” that function with the name `"Suborno"`.
+  - So the output is → `Hello, Suborno!`
+
+### 🔹 Example with Anonymous Callback:
+
+Instead of naming the callback, we can define it directly:
+
+```js
+processUserInput(function(name) {
+  console.log(`Welcome, ${name}!`); //Welcome, Suborno!
+});
+```
+</details>
+---
+
+<details>
+<summary><b>Q25. What is <code>function currying</code>?</b></summary>
+<p>
+
+### 🔹 Definition
+
+**Function currying** means **transforming a function that takes multiple arguments into a sequence of functions,**
+each taking **one argument at a time.**
+
+### 🔹 Why do this? 
+
+Currying helps you:
+- Reuse functions with **preset arguments** (partial application)
+- Make your code **more modular and flexible**
+- Delay execution until all arguments are provided
+
+### 🔹 Example 1: Normal Function (uncurried)
+
+```js
+function add(a, b, c) {
+  return a + b + c;
+}
+
+console.log(add(2, 3, 4)); // Output: 9
+
+```
+
+### 🔹 Example 2: Curried Function
+
+```js
+function add(a) {
+  return function(b) {
+    return function(c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(add(2)(3)(4)); // Output: 9
+
+```
+
+👉 Here, 
+- `add(2)` returns a new function that expects `b`.
+- `add(2)(3)` returns another function that expects `c`.
+- `add(2)(3)(4)` finally returns the result → `9`.
+
+### 🔹 Arrow Function Version
+
+You can make it shorter with arrow syntax:
+```js
+const add = a => b => c => a + b + c;
+
+console.log(add(2)(3)(4)); // Output: 9
+```
+
+### 🔹 Real-life Example
+Imagine you have a function that formats messages:
+
+```js
+function greet(greeting) {
+  return function(name) {
+    return `${greeting}, ${name}!`;
+  };
+}
+
+const sayHello = greet("Hello");
+console.log(sayHello("Suborno")); // Output: Hello, Suborno!
+console.log(sayHello("Maksuda")); // Output: Hello, Maksuda!
+
+```
+👉 Here, The first call `greet("Hello")` “locks in” the greeting word.
+Then you can reuse it for different names — `that’s the power of currying.`
+
+
+
+</details>
+---
+
