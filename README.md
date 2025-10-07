@@ -169,7 +169,7 @@ console.log({} + []); // 0
 ```
 👉 Returns `undefined` instead of `42` because JS inserts a semicolon after `return`.
 
-**🔸 Key Takeaway**
+** 🔴 Key Takeaway**
 JavaScript quirks come from:
 - Loose typing system
 - Automatic type coercion
@@ -180,7 +180,7 @@ JavaScript quirks come from:
 <details>
 <summary><b>Q5. What is <code>NaN</code> in JavaScript?</b></summary>
 
-### 🔹 Definition
+### 🔴 Definition
 `NaN` stands for **Not-a-Number**.  
 It is a special value in JavaScript that represents a result which is **not a valid number**.
 
@@ -189,7 +189,7 @@ It is a special value in JavaScript that represents a result which is **not a va
 
 ---
 
-### 🔹 Examples
+### 🔴 Examples
 
 ```js
 console.log(0 / 0);          // NaN
@@ -198,7 +198,7 @@ console.log(Math.sqrt(-1));  // NaN
 console.log(parseInt("abc")); // NaN
 ```
 
-### 🔹 Checking `NaN`
+### 🔴 Checking `NaN`
 
 The tricky part:
 ```js
@@ -213,7 +213,7 @@ Number.isNaN("hello"); // false (better strict check)
 Number.isNaN(NaN);     // true
 ```
 
-### 🔸 Key Points
+### 🔴 Key Points
 
 - `NaN` is of type <b>number.</b>
 - It represents an invalid numeric operation.
@@ -225,7 +225,7 @@ Number.isNaN(NaN);     // true
 <details>
 <summary><b>Q6. What is the difference between <code>==</code> and <code>===</code> in JavaScript?</b></summary>
 
-### 🔹 `==` (Equality Operator)
+### 🔴 `==` (Equality Operator)
 - Compares **values only**.  
 - Performs **type coercion** (converts operands to the same type before comparison).  
 
@@ -234,7 +234,7 @@ console.log(5 == "5");     // true  (string "5" converted to number 5)
 console.log(0 == false);   // true  (false converted to 0)
 console.log(null == undefined); // true (special case)
 ```
-### 🔹 `===` (Strict Equality Operator)
+### 🔴 `===` (Strict Equality Operator)
 - Compares values and types. **values and types.**.  
 - No type coercion — both must be the same type to be equal.
 
@@ -249,13 +249,13 @@ console.log(5 === 5);      // true
 <details>
 <summary><b>Q7. What are "truthy" and "falsy" values in JavaScript?</b></summary>
 
-### 🔹 Definition
+### 🔴 Definition
 In JavaScript, every value is either considered **truthy** or **falsy** when evaluated in a **Boolean context** (like inside an `if` statement).
 
 - **Truthy values** → Treated as `true`
 - **Falsy values** → Treated as `false`
 
-### 🔹 Falsy Values
+### 🔴 Falsy Values
 There are only **7 falsy values** in JavaScript:
 
 1. `false`
@@ -269,7 +269,7 @@ There are only **7 falsy values** in JavaScript:
 
 👉 Everything else is **truthy**.
 
-### 🔹 Examples
+### 🔴 Examples
 
 ```js
 if ("hello") {
@@ -296,13 +296,13 @@ if (null) {
 <details>
 <summary><b>Q8. What is type coercion in JavaScript? </b></summary>
 
-### 🔹 Definition
+### 🔴 Definition
 **Type coercion** in JavaScript is the process of **automatically or implicitly converting values from one data type to another** (such as converting a string to a number, or a number to a boolean).
 
 JavaScript is a **loosely typed language**, so variables are not bound to a specific type, and coercion happens frequently.
 
 
-### 🔹 Types of Type Coercion
+### 🔴 Types of Type Coercion
 
 1. **Implicit Coercion (automatic)**  
 Happens when JavaScript automatically converts one type to another during operations.  
@@ -321,7 +321,7 @@ Happens when JavaScript automatically converts one type to another during operat
    console.log(String(100));     // "100"
    console.log(Boolean(0));      // false
    ```
-### 🔹 Rule 1: Boolean Context (Truthy / Falsy)
+### 🔴 Rule 1: Boolean Context (Truthy / Falsy)
 When a value is used in a **conditional (`if`, `while`, `!`, `||`, `&&`)**, JS converts it to **boolean**.
 
 - Falsy values: `false, 0, -0, 0n, "", null, undefined, NaN`
@@ -332,7 +332,7 @@ if ("hello") console.log("Truthy"); // runs
 if (0) console.log("Falsy");        // doesn’t run
 ```
 
-### 🔹 Rule 2: Numeric Operators `(- * / % **)`
+### 🔴 Rule 2: Numeric Operators `(- * / % **)`
 
 - All operands are converted to **numbers.**
 
@@ -342,7 +342,7 @@ console.log("10" * "2"); // 20
 console.log(true - 1);  // 0   (true → 1)
 console.log("abc" / 2); // NaN ("abc" → NaN)
 ```
-### 🔹 Rule 3: The `+` Operator (Special Case)
+### 🔴 Rule 3: The `+` Operator (Special Case)
 - If **both operands are numbers** → numeric addition
 - If **either operand is a string** → string concatenation
 
@@ -354,7 +354,7 @@ console.log("5" + true); // "5true"
 console.log([] + 1);    // "1"   ([] → "" then "" + "1")
 console.log([1,2] + [3,4]); // "1,23,4"
 ```
-### 🔹 Rule 4: Comparisons `(==)`
+### 🔴 Rule 4: Comparisons `(==)`
 - The **loose equality `(==)` operator** does type coercion.
 
 ```js
@@ -367,7 +367,7 @@ console.log([1] == 1);      // true   ([1] → "1" → 1)
 👉 Always prefer `===` to avoid these pitfalls.
 
 
-### 🔹 Rule 5: Objects to Primitives
+### 🔴 Rule 5: Objects to Primitives
 When an object/array is used where a primitive is expected, JS calls:
 - `valueOf()`
 - If not primitive, then `toString()`
@@ -384,7 +384,7 @@ console.log({} + "test");      // "[object Object]test"
 <summary><b>Q9. What is Prototype? </b></summary>
 <p>
 
-### 🔹 Definition
+### 🔴 Definition
 
 - A **prototype** is simply **an object** that **another object inherits properties and methods from.**
 
@@ -418,7 +418,7 @@ What’s happening:
 So **prototype is where objects “inherit” properties and methods from.**
 ---
 
-### 🔹 Prototype in Arrays and Objects
+### 🔴 Prototype in Arrays and Objects
 ```js
 let arr = [1,2,3];
 console.log(arr.__proto__ === Array.prototype); // true
@@ -438,13 +438,10 @@ obj ---> Object.prototype ---> null
 arr ---> Array.prototype ---> Object.prototype ---> null
 alice ---> Person.prototype ---> Object.prototype ---> null
 ```
-
-
-
 - Each object carries its own properties.
 - If a property is missing, it **looks up the backpack chain** (prototype chain) to find it.
 
-### 🔹 Key Points
+### 🔴 Key Points
 - **Every object has a prototype** (except `Object.create(null)`).
 - **Prototype itself is an object,** so it can have its own prototype (creating the chain).
 - **Methods and properties on the prototype are shared** across all objects created from the constructor.
@@ -456,7 +453,7 @@ alice ---> Person.prototype ---> Object.prototype ---> null
 <summary><b>Q10. What is the difference between <code>typeof</code> and <code>instanceof</code> in JavaScript?</b></summary>
 <p>
 
-### 🔹 Definition
+### 🔴 Definition
 
 **`typeof`** and **`instanceof`** are both operators used to check types in JavaScript, but they work differently:
 
@@ -464,7 +461,7 @@ alice ---> Person.prototype ---> Object.prototype ---> null
 - **`instanceof`** checks whether an **object** belongs to a specific **constructor or class** (i.e., exists in its prototype chain).
 
 
-### 🔹 `typeof`
+### 🔴 `typeof`
 
 - Returns a **string** describing the type.
 - Works best for **primitive types**: `number`, `string`, `boolean`, `undefined`, `symbol`, `bigint`.
@@ -479,7 +476,7 @@ console.log(typeof null);      // "object"  (quirk!)
 console.log(typeof [1,2,3]);   // "object"
 console.log(typeof {});        // "object"
 ```
-### 🔹 `instanceof`
+### 🔴 `instanceof`
 
 - Checks if an **object** is an **instance of a constructor** (class or function).
 - Returns **boolean** (`true / false`).
@@ -498,7 +495,7 @@ console.log(new String("hello") instanceof String); // true
 <summary><b>Q11. What is the difference between <code>var</code>, <code>let</code>, and <code>const</code></b></summary>
 <p>
 
-### 🔹 `var`
+### 🔴 `var`
 
 - **Scope:** Function-scoped (or globally scoped if declared outside a function).
 - **Hoisting:** Gets hoisted to the top and initialized with undefined.
@@ -518,7 +515,7 @@ function test() {
 }
 test();
 ```
-### 🔹 `let`
+### 🔴 `let`
 
 - **Scope:** Block-scoped (only exists inside `{ }`).
 - **Hoisting:** Hoisted but **not initialized** (exists in the "temporal dead zone" until declared).
@@ -537,7 +534,7 @@ console.log(a); // 20
 }
 // console.log(b);  Error (block-scoped)
 ```
-### 🔹 `const`
+### 🔴 `const`
 
 - **Scope:** Block-scoped (like `let`).
 - **Hoisting:** Also in the temporal dead zone until declared.
@@ -569,7 +566,7 @@ const pi = 3.14;
 <summary><b>Q12. What is Scope in JavaScript?</b></summary>
 <p>
 
-### 🔹 Definition
+### 🟠 Definition
 
 **Scope** in JavaScript determines where variables, functions, and objects are accessible in our code during execution. It defines the **lifetime and visibility** of variables.
 
@@ -578,7 +575,7 @@ Think of your code as a house:
 - Some rooms (functions/blocks) have their own keys (variables).
 - Variables can only be used inside the room they belong to, unless they are global keys.
 
-### 🔹 Types of Scope in JavaScript
+### 🟠 Types of Scope in JavaScript
 
 <b>📘 Global Scope:</b>
 
@@ -652,12 +649,12 @@ outer();
 <summary><b>Q13. What is hoisting in JavaScript?</b></summary>
 <p>
 
-### 🔹 Definition
+### 🟠 Definition
 
 **Hoisting** is JavaScript’s default behavior of **moving declarations (not initializations) to the top of their scope** (either the global scope or the function scope) **before code execution.**
 This means you can **use variables and functions before they are actually declared** in the code.
 
-### 🔹 How Hoisting Works
+### 🟠 How Hoisting Works
 
 1. During the compilation phase, JavaScript scans the code.
 2. It registers all variable and function declarations.
@@ -668,7 +665,7 @@ This means you can **use variables and functions before they are actually declar
   - **Function declarations** are hoisted with their **entire body.**
   - **Function expressions** (with `var`, `let`, or `const`) behave like **variables** (only the variable is hoisted, not the function value).
 
-### 🔹 Examples
+### 🟠 Examples
 
 <b>📘 Hoisting with `var`:</b>
 
@@ -736,16 +733,16 @@ const hello = () => {
 <summary><b>Q14. Temporal Dead Zone (TDZ) in JavaScript?</b></summary>
 <p>
 
-### 🔹 Definition
+### 🟠 Definition
 
 The **Temporal Dead Zone** refers to the period between the **time** a variable is **hoisted** to the top of its scope and the time it is **initialized** with a value. During this period, if you try to **access the variable**, JavaScript will throw a **ReferenceError.**
 
-### 🔹 Why does it happen?
+### 🟠 Why does it happen?
 
 - Variables declared with `let` and `const` are hoisted to the top of their scope (just like var), BUT they are not **initialized** until the actual declaration line is executed.
 - This "gap" between hoisting and initialization is called the **Temporal Dead Zone.**
 
-### 🔹 Example 1: Using let before declaration
+### 🟠 Example 1: Using let before declaration
 ```js
 console.log(a); // ReferenceError: Cannot access 'a' before initialization
 let a = 10;
@@ -754,7 +751,7 @@ console.log(a); //  10
 Here, `a` is hoisted but not initialized until the line `let a = 10`; executes.
 So, before that line, it’s in the **TDZ.**
 
-### 🔹 Example 2: With `var`
+### 🟠 Example 2: With `var`
 
 ```js
 console.log(b); // undefined (no TDZ for var)
@@ -763,7 +760,7 @@ console.log(b); //  20
 ```
 For `var`, the variable is **hoisted and initialized** to undefined, so there’s no **TDZ.**
 
-### 🔹 Example 3: With `const`
+### 🟠 Example 3: With `const`
 
 ```js
 console.log(c); //  ReferenceError
@@ -781,12 +778,12 @@ Additionally, it must be initialized at the time of declaration.
 
 Modern JavaScript provides `let` and `const`, which fix many of the long-standing issues with `var`. While `var` still works, using it can easily lead to bugs and unexpected behavior.
 
-### 🔹 Why does it happen?
+### 🟠 Why does it happen?
 
 - Variables declared with `let` and `const` are hoisted to the top of their scope (just like var), BUT they are not **initialized** until the actual declaration line is executed.
 - This "gap" between hoisting and initialization is called the **Temporal Dead Zone.**
 
-### 🔹 Example 1: `var` Has `Function Scope`, Not `Block Scope` *This is the biggest problem.*
+### 🟠 Example 1: `var` Has `Function Scope`, Not `Block Scope` *This is the biggest problem.*
 ```js
 if (true) {
   var x = 10;
@@ -802,7 +799,7 @@ console.log(y); //  ReferenceError: y is not defined
 ```
 👉 `var` ignores block boundaries (`if`, `for`, etc.), *which can cause variable leaks and overwrite values accidentally.*
 
-### 🔹 Example 2: `var` Allows Re-declaration *You can declare the same variable multiple times without error:*
+### 🟠 Example 2: `var` Allows Re-declaration *You can declare the same variable multiple times without error:*
 ```js
 var name = "Suborno";
 var name = "Maksuda"; //  No error
@@ -815,7 +812,7 @@ let name = "Maksuda"; //  SyntaxError
 ```
 👉 This helps prevent accidental overwriting.
 
-### 🔹 Example 3: `var` Variables Are Hoisted (in a confusing way)
+### 🟠 Example 3: `var` Variables Are Hoisted (in a confusing way)
 All var declarations are hoisted to the top of their function or script, but not their **values** — leading to unexpected behavior:
 ```js
 console.log(num); // undefined (not ReferenceError!)
@@ -833,7 +830,7 @@ num = 5;
 console.log(num); //  ReferenceError
 let num = 5;
 ```
-### 🔹 Example 4: `var` Pollutes the `Global Scope`
+### 🟠 Example 4: `var` Pollutes the `Global Scope`
 
 If you use `var` outside any function, it becomes a property of the `window` object in browsers:
 ```js
@@ -843,7 +840,7 @@ console.log(window.message); // "Hello"
 
 👉 This can cause naming conflicts with existing global variables or libraries. `let` and `const` don’t do this — they stay within the block/module scope.
 
-### 🔹 Example 5: `let` and `const` Are the Modern Standard
+### 🟠 Example 5: `let` and `const` Are the Modern Standard
 
 Since ES6 (2015), almost all modern JS code uses let and const.
 👉 They make code:
@@ -859,12 +856,12 @@ Since ES6 (2015), almost all modern JS code uses let and const.
 <summary><b>Q16. Difference between <code>shallow copy</code> and <code>deep copy</code> in js. </b></summary>
 <p>
 
-### 🔹 1. Shallow Copy — “Copied from the outside only”
+### 🟠 1. Shallow Copy — “Copied from the outside only”
 
 Imagine you have a **box** (your object). Inside that box, there are **smaller boxes** (nested objects). A shallow copy makes a new outer box,
 but **the smaller boxes inside are still shared between the old and new one.**
 
-### 🔹 Example : 
+### 🟠 Example : 
 ```js
 const original = {
   name: "Suborno",
@@ -883,11 +880,11 @@ console.log(original.details.city); //  "Chittagong"
 👉 Think of it like:
   - You bought a new box, but you took the same little box from the old one and placed it inside — so both boxes share the same inner item. So when you change the inner box, both are affected.
 
-### 🔹 2. Deep Copy — “Copied completely inside and out”
+### 🟠 2. Deep Copy — “Copied completely inside and out”
 
 A deep copy makes **a brand new box and also makes new copies of every small box inside it**. That means it’s completely **separate from the original.**
 
-### 🔹 Example : 
+### 🟠 Example : 
 ```js
 const original = {
   name: "Suborno",
@@ -913,14 +910,14 @@ console.log(original.details.city); // "Dhaka"
 <summary><b>Q17. Difference between <code>reference types</code> and <code>primitive types</code> in js. </b></summary>
 <p>
 
-### 🔹 1. Definition
+### 🟠 1. Definition
 
 | Type              | Description |
 |-----------------------|----------------------|
 | **Primitive Types**             | Store **single, immutable values** (cannot be changed directly). |
 | **Reference Types**             | Store **references (addresses)** to objects in memory, not the actual data. |
 
-### 🔹 Primitive Types : 
+### 🟠 Primitive Types : 
 
 There are 7 primitive data types:
 - `String` – e.g. `"Hello"`
@@ -940,7 +937,7 @@ console.log(x); // 10 (not affected)
 ```
 **→ Each variable holds its own copy of the value.**
 
-### 🔹 Reference Types : 
+### 🟠 Reference Types : 
 
 Common **reference types:**
 - `Object`
@@ -957,7 +954,7 @@ console.log(obj1.name); // Maksuda
 ```
 **→ Both variables point to the same memory address.**
 
-### 🔹 Comparison Behaviour : 
+### 🟠 Comparison Behaviour : 
 
 ```js
 // Primitive comparison
@@ -986,7 +983,7 @@ console.log(arr1 === arr2); // false (different memory reference)
 <summary><b>Q18. Why are objects assigned by <code>reference</code> in JavaScript? </b></summary>
 <p>
 
-### 🔹 1. Definition
+### 🟠 1. Definition
 
 In JavaScript, **objects are assigned by reference** because they are **complex data structures** that can contain many properties, arrays, and nested objects.
 
@@ -997,7 +994,7 @@ If JavaScript tried to **copy the whole object** each time you assigned it to an
   
 So instead of copying the entire structure, JS simply copies the **memory address (reference)** where the object is stored.
 
-### 🔹 Stack vs Heap memory : 
+### 🟠 Stack vs Heap memory : 
 JavaScript divides memory into two main areas:
 
 | Memory Area              | Used For | Characteristics |
@@ -1030,7 +1027,7 @@ console.log(person.name); // "Maksuda"
 ```
 Both variables reflect the same data — they share the same memory reference.
 
-### 🔹 Why this design makes sense : 
+### 🟠 Why this design makes sense : 
 There are **two main reasons:**
 
 1. **Efficiency** → Copying large objects by value would be slow and memory-heavy.
@@ -1043,7 +1040,7 @@ There are **two main reasons:**
 <summary><b>Q18.  What are global variables and why should you avoid them? </b></summary>
 <p>
 
-### 🔹 1. Definition
+### 🟠 1. Definition
 
 In JavaScript, a **global variable** is a variable that is declared **outside of any function, block, or module**, and therefore it is **accessible from anywhere in your code** — inside **functions, loops, or even other scripts.**
 
@@ -1060,7 +1057,7 @@ increment(); // 2
 ```
 Here, `count` is a **global variable** — it exists in the **global scope**, which means it can be accessed or modified from any part of the script.
 
-### 🔹 Why You Should Avoid Global Variables: 
+### 🟠 Why You Should Avoid Global Variables: 
 
 Using too many **global variables** is considered **bad practice**. Here’s why:
 
@@ -1095,7 +1092,7 @@ var user = "Bob";    // now your 'user' got overwritten!
 window.myGlobal = "secret";
 // Any script can access or modify it
 ```
-### 🔹 How to Avoid Global Variables: 
+### 🟠 How to Avoid Global Variables: 
 
 1. **Use `let`, `const`, or `var` inside functions or blocks**
 ```js
@@ -1131,7 +1128,7 @@ import { name } from "./file.js";
 <summary><b>Q19.  What are <code>function declarations</code> vs <code>function expressions?</code> </b></summary>
 <p>
 
-### 🔹 Function Declaration: 
+### 🟡 Function Declaration: 
 
 A **function declaration** defines a named function using the `function` keyword.
 
@@ -1157,7 +1154,7 @@ function sayHi() {
 }
 ```
 
-### 🔹 Function Expression: 
+### 🟡 Function Expression: 
 
 A **function expression** involves creating a function and assigning it to a variable.
 
@@ -1184,7 +1181,7 @@ const sayHi = function() {
 
 ```
 
-### 🔹 Bonus:: 
+### 🟡 Bonus:: 
 
 ```js
 const greet = () => console.log("Hello!");
@@ -1216,7 +1213,7 @@ Or even shorter (if there’s only one line of code and one parameter):
 const greet = name => "Hello, " + name;
 ```
 
-### 🔹 Syntax Summary: 
+### 🟡 Syntax Summary: 
 
 |      Type      |     Example   |     Notes     |
 |----------------|---------------|---------------|
@@ -1225,7 +1222,7 @@ const greet = name => "Hello, " + name;
 | **Multiple parameters** | `(a, b) => a + b` | Parentheses required |
 | **Multiple statements** | `(x, y) => { let sum = x + y; return sum; }` | Use `{}` and `return` |
 
-### 🔹 How Are Arrow Functions Different? 
+### 🟡 How Are Arrow Functions Different? 
 
 |      Feature      |     Arrow Function   |     Regular Function (Expression or Declaration)     |
 |----------------|---------------|---------------|
@@ -1237,7 +1234,7 @@ const greet = name => "Hello, " + name;
 | **Readability** | Cleaner for small callbacks | Can be verbose |
 
 
-### 🔹 Example of `this` Difference
+### 🟡 Example of `this` Difference
 
 ```js
 // Regular function
@@ -1262,7 +1259,7 @@ user.sayHi(); //  "Hi, I’m undefined"
 
 👉 Because arrow functions **don’t have their own** `this`, they use `this` from the **outer scope**, which in this case isn’t `user`.
 
-### 🔹 When to Use Arrow Functions: 
+### 🟡 When to Use Arrow Functions: 
 
 - Short, inline functions
 - Callbacks (like in `map`, `filter`, `forEach`)
@@ -1277,7 +1274,7 @@ user.sayHi(); //  "Hi, I’m undefined"
 
 A **higher-order function** is a function that operates on other functions, either by **taking them as parameters** or **returning them**.
 
-### 🔹 Function taking another function as an argument
+### 🟡 Function taking another function as an argument
 
 ```js
 function greet(name) {
@@ -1295,7 +1292,7 @@ console.log(processUserInput(greet));
 
 👉 `processUserInput()` is a **higher-order function** because it **takes another function** (`greet`) **as an argument.**
 
-### 🔹 Function returning another function
+### 🟡 Function returning another function
 
 ```js
 function multiplier(factor) {
@@ -1309,7 +1306,7 @@ console.log(double(5)); // Output: 10
 ```
 👉 `multiplier()` is a **higher-order function** because it **returns another function.**
 
-### 🔹 Common Built-in Higher-Order Functions
+### 🟡 Common Built-in Higher-Order Functions
 These are **array methods** that use callbacks:
 
 ```js
@@ -1331,7 +1328,7 @@ console.log(sum);     // 15
 ```
 👉 Each of these functions (`map`, `filter`, `reduce`) **takes another function as an argument**, so they are **higher-order functions**.
 
-### 🔹 Why Use Higher-Order Functions?
+### 🟡 Why Use Higher-Order Functions?
 - Make code **more modular and reusable**
 - Allow **functional programming** style
 - Simplify **data transformations**
@@ -1347,7 +1344,7 @@ console.log(sum);     // 15
 
 In **JavaScript, functions are first-class citizens (or first-class functions)** — meaning **functions are treated like any other value** in the language.
 
-### 🔹 Definition
+### 🟡 Definition
 
 A **first-class function** means that functions in JavaScript can:
 - Be **assigned** to variables,
@@ -1355,7 +1352,7 @@ A **first-class function** means that functions in JavaScript can:
 - Be **returned** from other functions,
 - Be **stored** in data structures (like arrays, objects, etc).
 
-### 🔹 Example 1 : Assigning a function to a variable
+### 🟡 Example 1 : Assigning a function to a variable
 
 ```js
 const greet = function() {
@@ -1367,7 +1364,7 @@ greet(); // Output: Hello!
 ```
 👉 Here, the function is stored in a variable — just like a number or string.
 
-### 🔹 Example 2 : Passing a function as an argument
+### 🟡 Example 2 : Passing a function as an argument
 
 ```js
 function sayHello() {
@@ -1382,7 +1379,7 @@ greetUser(sayHello); // Output: Hello!
 ```
 👉 `sayHello` is passed as an argument (a callback) to `greetUser.`
 
-### 🔹 Example 3 : Returning a function from another function
+### 🟡 Example 3 : Returning a function from another function
 
 ```js
 function multiplyBy(factor) {
@@ -1397,7 +1394,7 @@ console.log(double(5)); // Output: 10
 ```
 👉 Here, `multiplyBy` returns a new function — this is possible because functions are first-class.
 
-### 🔹 Example 4 : Storing functions in arrays or objects
+### 🟡 Example 4 : Storing functions in arrays or objects
 
 ```js
 const actions = [
@@ -1418,7 +1415,7 @@ actions[1](); // Output: Stop
 
 A **callback function is a function that is passed as an argument** to another function **and is executed later** (or “called back”) inside that other function. So, A **callback** is a function that gets **called back** after something happens.
 
-### 🔹 Why use callbacks?
+### 🟡 Why use callbacks?
 
 Callbacks are used when:
 
@@ -1426,7 +1423,7 @@ Callbacks are used when:
 - You want to **run code after** something else finishes (like loading data, waiting for a user’s input, etc).
 - You want **reusable functions** that can behave differently depending on the callback.
 
-### 🔹 Example 
+### 🟡 Example 
 
 ```js
 function greet(name) {
@@ -1448,7 +1445,7 @@ processUserInput(greet);
   - Inside `processUserInput`, we “call back” that function with the name `"Suborno"`.
   - So the output is → `Hello, Suborno!`
 
-### 🔹 Example with Anonymous Callback:
+### 🟡 Example with Anonymous Callback:
 
 Instead of naming the callback, we can define it directly:
 
@@ -1464,19 +1461,19 @@ processUserInput(function(name) {
 <summary><b>Q25. What is <code>function currying</code>?</b></summary>
 <p>
 
-### 🔹 Definition
+### 🟡 Definition
 
 **Function currying** means **transforming a function that takes multiple arguments into a sequence of functions,**
 each taking **one argument at a time.**
 
-### 🔹 Why do this? 
+### 🟡 Why do this? 
 
 Currying helps you:
 - Reuse functions with **preset arguments** (partial application)
 - Make your code **more modular and flexible**
 - Delay execution until all arguments are provided
 
-### 🔹 Example 1: Normal Function (uncurried)
+### 🟡 Example 1: Normal Function (uncurried)
 
 ```js
 function add(a, b, c) {
@@ -1487,7 +1484,7 @@ console.log(add(2, 3, 4)); // Output: 9
 
 ```
 
-### 🔹 Example 2: Curried Function
+### 🟡 Example 2: Curried Function
 
 ```js
 function add(a) {
@@ -1507,7 +1504,7 @@ console.log(add(2)(3)(4)); // Output: 9
 - `add(2)(3)` returns another function that expects `c`.
 - `add(2)(3)(4)` finally returns the result → `9`.
 
-### 🔹 Arrow Function Version
+### 🟡 Arrow Function Version
 
 You can make it shorter with arrow syntax:
 ```js
@@ -1516,7 +1513,7 @@ const add = a => b => c => a + b + c;
 console.log(add(2)(3)(4)); // Output: 9
 ```
 
-### 🔹 Real-life Example
+### 🟡 Real-life Example
 Imagine you have a function that formats messages:
 
 ```js
@@ -1539,3 +1536,434 @@ Then you can reuse it for different names — `that’s the power of currying.`
 </details>
 ---
 
+<details>
+<summary><b>Q26. What are <code>pure functions</code> in JavaScript?</b></summary>
+<p>
+
+In **JavaScript**, a **pure function** is a function that follows **two main rules:**
+
+### 🟡 Same Input → Same Output 
+
+A pure function always returns the **same result** if given the **same arguments.** It doesn’t depend on or modify anything outside of itself.
+
+### 🟡 Example
+
+```js
+function add(a, b) {
+  return a + b;
+}
+```
+👉 `add(2, 3)` will always return `5`, no matter when or how many times you call it.
+
+### 🟡 No Side Effects
+
+A pure function **does not change** anything outside its own scope.
+That means:
+
+- It doesn’t modify global variables.
+- It doesn’t change input parameters.
+- It doesn’t perform I/O operations (like logging, writing to a file, or making a network request).
+
+### 🟡 Example (Impure function):
+
+```js
+let total = 0;
+function addToTotal(value) {
+  total += value; //  modifies external variable
+}
+```
+### 🟡 Example (Pure version):
+
+```js
+function addToTotal(total, value) {
+  return total + value; // ✅ no external modification
+}
+
+```
+
+### 🟡 Why Use Pure Functions?
+
+- **Predictable behavior** → easier debugging
+- **Easier testing** → no external dependencies
+- **Functional programming** foundation (used in React, Redux, etc.)
+  
+</details>
+---
+
+
+<details>
+<summary><b>Q27. What is the difference between <code>call</code>, <code>apply</code>, and <code>bind</code>?</b></summary>
+<p>
+
+### 🟡 `call()` — Call immediately, pass arguments separately
+
+```js
+const person1 = { name: "Alice" };
+const person2 = { name: "Bob" };
+
+function introduce(city, country) {
+  console.log(`${this.name} is from ${city}, ${country}.`);
+}
+// Using call()
+introduce.call(person1, "Dhaka", "Bangladesh");
+introduce.call(person2, "Paris", "France");
+
+```
+
+### 🟡 Output
+
+```js
+Alice is from Dhaka, Bangladesh.
+Bob is from Paris, France.
+```
+- `call()` executes the function **immediately.**
+- Arguments are passed **one by one** (comma-separated).
+- `this` becomes the object you pass as the first argument.
+
+
+### 🟡 `apply()` — Call immediately, pass args as an array
+
+```js
+const person1 = { name: "Alice" };
+const person2 = { name: "Bob" };
+
+function introduce(city, country) {
+  console.log(`${this.name} is from ${city}, ${country}.`);
+}
+
+// Using apply()
+introduce.apply(person1, ["Chittagong", "Bangladesh"]);
+introduce.apply(person2, ["London", "UK"]);
+```
+
+### 🟡 Output
+
+```js
+Alice is from Chittagong, Bangladesh.
+Bob is from London, UK.
+```
+- Works like `call()`, but the arguments are passed as an **array**.
+- Very handy when you already have arguments stored in an array.
+
+### 🟡 `bind()` — Does NOT call immediately
+
+```js
+const person1 = { name: "Alice" };
+const person2 = { name: "Bob" };
+
+function introduce(city, country) {
+  console.log(`${this.name} is from ${city}, ${country}.`);
+}
+
+// Using bind()
+const introduceAlice = introduce.bind(person1, "Sylhet", "Bangladesh");
+const introduceBob = introduce.bind(person2);
+
+// Call later
+introduceAlice();           // uses default args passed during bind
+introduceBob("Rome", "Italy"); // pass remaining args later
+
+```
+
+### 🟡 Output
+
+```js
+Alice is from Sylhet, Bangladesh.
+Bob is from Rome, Italy.
+```
+- `bind()` creates a **new function** where `this` is permanently set.
+- You can provide some or all arguments now (partial application).
+- You call the function **later**, whenever you need.
+
+</details>
+---
+
+<details>
+<summary><b>Q28. How do you create <code>objects</code> in JavaScript?</b></summary>
+<p>
+
+### 🟡 Object Literal (Easiest and Most Common)
+
+This is the simplest and fastest way.
+
+```js
+const person = {
+  name: "Alice",
+  age: 25,
+  greet: function() {
+    console.log("Hello!");
+  }
+};
+
+person.greet(); // Output: Hello!
+```
+- Easy to read and write.
+- Great for creating single objects.
+- Not ideal when you need to create many similar objects.
+
+
+### 🟡 Using the `new Object()` Constructor
+
+```js
+const person = new Object();
+person.name = "Bob";
+person.age = 30;
+person.greet = function() {
+  console.log("Hi, I'm " + this.name);
+};
+
+person.greet(); // Output: Hi, I'm Bob
+```
+- Similar to object literal, but created dynamically.
+- More verbose and less common than literals.
+
+### 🟡 Using a Constructor Function
+
+A constructor function is used when you want to create **multiple similar objects.**
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log("Hello, I'm " + this.name);
+  };
+}
+
+const p1 = new Person("Alice", 25);
+const p2 = new Person("Bob", 30);
+
+p1.greet(); // Hello, I'm Alice
+p2.greet(); // Hello, I'm Bob
+
+```
+- Useful for object templates.
+- Functions are duplicated in each instance (can be optimized using prototypes).
+
+### 🟡 Using `Object.create()`
+Creates a new object with a **specified prototype**.
+
+```js
+const personProto = {
+  greet() {
+    console.log("Hello, I'm " + this.name);
+  }
+};
+
+const person = Object.create(personProto);
+person.name = "Charlie";
+
+person.greet(); // Output: Hello, I'm Charlie
+```
+
+- Great for prototype-based inheritance.
+- Slightly less intuitive for beginners.
+
+### 🟡 Using ES6 `class` Syntax
+Classes are just **syntactic sugar** over constructor functions.
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log(`Hi, I'm ${this.name}`);
+  }
+}
+
+const person1 = new Person("Diana", 22);
+person1.greet(); // Output: Hi, I'm Diana
+```
+
+- Cleaner and modern syntax.
+- Easy to use inheritance with `extends`.
+
+</details>
+---
+
+## 🟢 Object & Arrays
+
+
+<details>
+<summary><b>Q29. How do you create <code>objects</code> in JavaScript?</b></summary>
+<p>
+
+### 🟢 Object Literal (Easiest and Most Common)
+
+This is the simplest and fastest way.
+
+```js
+const person = {
+  name: "Alice",
+  age: 25,
+  greet: function() {
+    console.log("Hello!");
+  }
+};
+
+person.greet(); // Output: Hello!
+```
+- Easy to read and write.
+- Great for creating single objects.
+- Not ideal when you need to create many similar objects.
+
+
+### 🟢 Using the `new Object()` Constructor
+
+```js
+const person = new Object();
+person.name = "Bob";
+person.age = 30;
+person.greet = function() {
+  console.log("Hi, I'm " + this.name);
+};
+
+person.greet(); // Output: Hi, I'm Bob
+```
+- Similar to object literal, but created dynamically.
+- More verbose and less common than literals.
+
+### 🟢 Using a Constructor Function
+
+A constructor function is used when you want to create **multiple similar objects.**
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log("Hello, I'm " + this.name);
+  };
+}
+
+const p1 = new Person("Alice", 25);
+const p2 = new Person("Bob", 30);
+
+p1.greet(); // Hello, I'm Alice
+p2.greet(); // Hello, I'm Bob
+
+```
+- Useful for object templates.
+- Functions are duplicated in each instance (can be optimized using prototypes).
+
+### 🟢 Using `Object.create()`
+Creates a new object with a **specified prototype**.
+
+```js
+const personProto = {
+  greet() {
+    console.log("Hello, I'm " + this.name);
+  }
+};
+
+const person = Object.create(personProto);
+person.name = "Charlie";
+
+person.greet(); // Output: Hello, I'm Charlie
+```
+
+- Great for prototype-based inheritance.
+- Slightly less intuitive for beginners.
+
+### 🟢 Using ES6 `class` Syntax
+Classes are just **syntactic sugar** over constructor functions.
+
+```js
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    console.log(`Hi, I'm ${this.name}`);
+  }
+}
+
+const person1 = new Person("Diana", 22);
+person1.greet(); // Output: Hi, I'm Diana
+```
+
+- Cleaner and modern syntax.
+- Easy to use inheritance with `extends`.
+
+</details>
+---
+
+<details>
+<summary><b>Q29. What are <code>object prototypes</code> in JavaScript?</b></summary>
+<p>
+
+### 🟢 Definition
+
+In **JavaScript**, every object has a hidden internal property called `[[Prototype]]`, which points to another object — known as its **prototype.**
+
+This prototype object serves as a **template** from which the original object can **inherit properties and methods**.
+
+Prototypes are how **JavaScript implements inheritance**.
+
+If you try to access a property or method on an object and it doesn’t exist there, JavaScript automatically looks for it in the object’s **prototype**.
+
+### 🟢 Example 
+
+```js
+const person = {
+  greet() {
+    console.log("Hello!");
+  }
+};
+
+const student = Object.create(person); // student’s prototype is person
+student.name = "Alice";
+
+student.greet(); // "Hello!" (inherited from person)
+
+```
+- `student` doesn’t have `greet()`.
+- JavaScript checks its prototype (`person`) and finds `greet()`.
+- The method runs successfully.
+
+### 🟢 Constructor Functions and Prototypes 
+
+When you create objects using a **constructor function**, all instances share the same prototype.
+
+```js
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayHi = function() {
+  console.log(`Hi, I'm ${this.name}`);
+};
+
+const p1 = new Person("Alice");
+const p2 = new Person("Bob");
+
+p1.sayHi(); // "Hi, I'm Alice"
+p2.sayHi(); // "Hi, I'm Bob"
+
+```
+Both `p1` and `p2` share the same `sayHi()` method through `Person.prototype`.
+
+### 🟢 Modern ES6 Class Syntax (Behind the scenes uses prototypes)
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, I'm ${this.name}`);
+  }
+}
+
+const p = new Person("Alice");
+p.greet(); // "Hello, I'm Alice"
+```
+Even though it looks like a class, under the hood, JavaScript is still using **prototypes**.
+
+</details>
+---
