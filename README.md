@@ -1967,3 +1967,110 @@ Even though it looks like a class, under the hood, JavaScript is still using **p
 
 </details>
 ---
+
+
+<details>
+<summary><b>Q30. What is <code>Prototype Chain</code> in JavaScript?</b></summary>
+<p>
+
+### 🟢 Definition
+
+The **prototype chain** is the mechanism JavaScript uses to **look up properties and methods**.
+- Every object has a hidden link to its prototype (`[[Prototype]]`).
+- If a property or method is not found on the object itself, JavaScript **checks the prototype**.
+- If it’s not found there, it checks the prototype of that prototype, and so on, until it reaches the top: `Object.prototype`.
+- If nothing is found, it returns `undefined`.
+
+Think of it like a **family tree for objects**: each object can inherit from a parent, which can inherit from a grandparent, and so on.
+
+### 🟢 Example 
+
+```js
+const grandparent = {
+  grandparentProp: "I am grandparent"
+};
+
+const parent = Object.create(grandparent);
+parent.parentProp = "I am parent";
+
+const child = Object.create(parent);
+child.childProp = "I am child";
+
+console.log(child.childProp);      // "I am child" (found on child)
+console.log(child.parentProp);     // "I am parent" (found on parent prototype)
+console.log(child.grandparentProp);// "I am grandparent" (found on grandparent prototype)
+console.log(child.toString());     // [object Object] (found on Object.prototype)
+
+```
+
+Here’s the **prototype chain** visually:
+```js
+child ---> parent ---> grandparent ---> Object.prototype ---> null
+```
+- Arrows (`--->`) show the `[[Prototype]]` link.
+- When you access a property, JS searches along this chain until it finds it.
+
+</details>
+---
+
+<details>
+<summary><b>Q31. Difference between <code>Object.create()</code> and <code>class-based</code> inheritance.</b></summary>
+<p>
+
+### 🟢 `Object.create()` — *Direct Prototypal Inheritance*
+
+`Object.create(proto)` creates a **new object** and directly sets its **prototype** to the object you specify.
+
+```js
+const person = {
+  greet() {
+    console.log("Hello!");
+  }
+};
+
+const student = Object.create(person); // student inherits directly from person
+student.study = function() {
+  console.log("Studying...");
+};
+
+student.greet(); // "Hello!" (inherited)
+student.study(); // "Studying..."
+
+```
+- Simple and direct.
+- No constructor functions.
+- No `this` or `new` keyword needed.
+- Best for **object-to-object** inheritance.
+- Very flexible — you can even change prototypes at runtime.
+- Think of it as “**inherit from this specific object**.”
+
+### 🟢 Class-based Inheritance — *Syntactic Sugar for Prototypes*
+
+Classes in JavaScript use **constructor functions** and **prototypes**, but the syntax looks like classical OOP (like Java or C++).
+
+```js
+class Person {
+  greet() {
+    console.log("Hello!");
+  }
+}
+
+class Student extends Person {
+  study() {
+    console.log("Studying...");
+  }
+}
+
+const s = new Student();
+s.greet(); // "Hello!" (inherited from Person)
+s.study(); // "Studying..."
+
+```
+- Uses `class` and `extends` keywords.
+- Behind the scenes, JS sets `Student.prototype.__proto__ = Person.prototype`.
+- Cleaner syntax for developers coming from other OOP languages.
+- Ideal when you need **constructors, super calls**, and **structured inheritance.**
+- Think of it as “**inherit from this class’s prototype.**”
+
+</details>
+---
