@@ -2244,7 +2244,7 @@ displayUser(user); // Name: Sara, Age: 22
 --- 
 
 <details>
-<summary><b>Q33. What is <code>object destructuring</code>?</b></summary>
+<summary><b>Q34. What is <code>object destructuring</code>?</b></summary>
 <p>
 
 ### 🟢 Definition
