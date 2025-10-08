@@ -2072,5 +2072,243 @@ s.study(); // "Studying..."
 - Ideal when you need **constructors, super calls**, and **structured inheritance.**
 - Think of it as “**inherit from this class’s prototype.**”
 
+
+|      Feature    |   `Object.create()`     |   **Class-based**(`class`/`extends`)    |
+|------------------|-----------------------|--------------------|
+|      Type    |   Object-to-object inheritance     |   Class (constructor)-based inheritance    |
+|      Syntax    |   Functional / prototype-based    |   Declarative / class syntax    |
+|      How it works    |   Creates a new object and sets its prototype directly     |   Uses constructor functions and prototype chaining    |
+|      Ease of Use    |   Simple for small objects     |   Better for structured, large-scale code    |
+|      `this` keyword    |   Optional     |   Commonly used inside constructors    |
+|      Inheritance setup    |   Manual (`Object.create(proto)`)    |   Automatic (`extends` keyword)    |
+|      Flexibility    |   More flexible, dynamic     |   More structured, but less flexible    |
+|      Under the hood    |   Uses prototypes directly     |   Uses prototypes (syntactic sugar)    |
+
+
 </details>
 ---
+
+
+<details>
+<summary><b>Q32. How do you <code>merge</code> objects in JavaScript?</b></summary>
+<p>
+
+### 🟢 Using `Object.assign()`
+
+It copies properties from one or more **source** objects into a **target** object.
+
+```js
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+
+const merged = Object.assign({}, obj1, obj2);
+console.log(merged); // { a: 1, b: 3, c: 4 }
+```
+- It modifies the **first argument** (the target).
+- Later sources **overwrite** earlier properties with the same key.
+- To avoid mutating existing objects, pass an empty `{}` as the first argument.
+
+  
+### 🟢 Using the Spread Operator (`...`)
+
+```js
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+
+const merged = { ...obj1, ...obj2 };
+console.log(merged); // { a: 1, b: 3, c: 4 }
+
+```
+- The spread operator is a **modern and concise** way to merge.
+- Works like `Object.assign()`, overwriting properties from left to right.
+- Doesn’t mutate the original objects.
+
+### 🟢 Deep Merging (Nested Objects)
+
+Both `Object.assign()` and spread only perform a **shallow merge** (they don’t merge nested objects).
+
+**Example of a problem**
+```js
+const obj1 = { a: { x: 1 } };
+const obj2 = { a: { y: 2 } };
+
+const merged = { ...obj1, ...obj2 };
+console.log(merged); // { a: { y: 2 } } ; x is lost
+```
+**Solution**: Use a **deep merge** approach.
+
+**Option 1 — Write a recursive function:**
+
+```js
+function deepMerge(target, source) {
+  for (let key in source) {
+    if (
+      typeof source[key] === "object" &&
+      !Array.isArray(source[key]) &&
+      source[key] !== null
+    ) {
+      if (!target[key]) target[key] = {};
+      deepMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+
+const obj1 = { a: { x: 1 } };
+const obj2 = { a: { y: 2 } };
+
+console.log(deepMerge({}, obj1, obj2)); // { a: { x: 1, y: 2 } }
+```
+
+**Option 2 — Use a library like Lodash:**
+
+```js
+// Using Lodash
+_.merge(obj1, obj2);
+
+```
+</details>
+--- 
+
+
+<details>
+<summary><b>Q33. What is <code>object destructuring</code>?</b></summary>
+<p>
+
+### 🟢 Definition
+
+**Object destructuring** in **JavaScript** is a convenient way to **extract values from objects** and assign them to variables in a single statement.
+
+It makes your code **cleaner, shorter**, and **more readable**.
+
+```js
+const person = {
+  name: "Alice",
+  age: 25,
+  country: "Bangladesh"
+};
+
+// Destructuring
+const { name, age } = person;
+
+console.log(name); // Alice
+console.log(age);  // 25
+
+```
+- `name` and `age` are extracted from the `person` object.
+- You don’t need to write `person.name` or `person.age` repeatedly.
+
+```js
+const person = { name: "Alice", age: 25 };
+
+const { name: fullName, age: years } = person;
+
+console.log(fullName); // Alice
+console.log(years);    // 25
+
+```
+The syntax `name: fullName` means "take the `name` property and store it in a variable called `fullName`."
+
+### 🟢 Nested object destructuring:
+
+```js
+const user = {
+  id: 101,
+  info: {
+    name: "Bob",
+    city: "Dhaka"
+  }
+};
+
+const { info: { name, city } } = user;
+
+console.log(name); // Bob
+console.log(city); // Dhaka
+
+```
+### 🟢 Using destructuring in function parameters:
+You can destructure objects directly in function parameters:
+
+```js
+function displayUser({ name, age }) {
+  console.log(`Name: ${name}, Age: ${age}`);
+}
+
+const user = { name: "Sara", age: 22 };
+displayUser(user); // Name: Sara, Age: 22
+```
+
+</details>
+--- 
+
+<details>
+<summary><b>Q33. What is <code>object destructuring</code>?</b></summary>
+<p>
+
+### 🟢 Definition
+
+**Object destructuring** in **JavaScript** is a convenient way to **extract values from objects** and assign them to variables in a single statement.
+
+It makes your code **cleaner, shorter**, and **more readable**.
+
+```js
+const person = {
+  name: "Alice",
+  age: 25,
+  country: "Bangladesh"
+};
+
+// Destructuring
+const { name, age } = person;
+
+console.log(name); // Alice
+console.log(age);  // 25
+
+```
+- `name` and `age` are extracted from the `person` object.
+- You don’t need to write `person.name` or `person.age` repeatedly.
+
+```js
+const person = { name: "Alice", age: 25 };
+
+const { name: fullName, age: years } = person;
+
+console.log(fullName); // Alice
+console.log(years);    // 25
+
+```
+The syntax `name: fullName` means "take the `name` property and store it in a variable called `fullName`."
+
+### 🟢 Nested object destructuring:
+
+```js
+const user = {
+  id: 101,
+  info: {
+    name: "Bob",
+    city: "Dhaka"
+  }
+};
+
+const { info: { name, city } } = user;
+
+console.log(name); // Bob
+console.log(city); // Dhaka
+
+```
+### 🟢 Using destructuring in function parameters:
+You can destructure objects directly in function parameters:
+
+```js
+function displayUser({ name, age }) {
+  console.log(`Name: ${name}, Age: ${age}`);
+}
+
+const user = { name: "Sara", age: 22 };
+displayUser(user); // Name: Sara, Age: 22
+```
+
+</details>
+--- 
