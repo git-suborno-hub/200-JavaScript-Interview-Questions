@@ -7,8 +7,8 @@ This repository contains categorized JavaScript questions with answers.
 |-----------------------|---------------------|------------------|
 | 🔴 Basics             | 11                  | [View](#-basics) |
 | 🟠 variables & scope  | 10                  | [View](#-variables--scope) |
-| 🟡 Functions      | 10                  | [View](#--functions) |
-| 🟢 Object & Arrays      | 20                  | [View](#--object--arrays) |
+| 🟡 Functions      | 10                  | [View](#-functions) |
+| 🟢 Object & Arrays      | 20                  | [View](#-object--arrays) |
 | 🔵 Strings & Numbers      | 10                  | [View](#--strings--numbers) |
 | 🟣 DOM Manipulation   | 10                  | [View](#-dom-manipulation) |
 | 🟤 Events    | 10                  | [View](#-events-) |
