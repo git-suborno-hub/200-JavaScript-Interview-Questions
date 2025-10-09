@@ -2312,3 +2312,427 @@ displayUser(user); // Name: Sara, Age: 22
 
 </details>
 --- 
+
+
+<details>
+<summary><b>Q35. What are object methods like <code>keys()</code>, <code>values()</code>, <code>entries()</code>?</b></summary>
+<p>
+
+### 🟢 Definition
+
+In JavaScript, `Object.keys()`, `Object.values()`, and `Object.entries()` are **built-in object methods** that help you work with the properties (keys and values) of an object.
+
+### 🟢 `Object.keys()`
+
+```js
+const person = { name: "Suborno", age: 21, city: "Dhaka" };
+
+console.log(Object.keys(person));//["name", "age", "city"]
+```
+👉 Returns an array of **all the property names (keys)** of an object.
+
+### 🟢 `Object.values()`
+
+```js
+const person = { name: "Suborno", age: 21, city: "Dhaka" };
+
+console.log(Object.values(person)); //["Suborno", 21, "Dhaka"]
+
+```
+👉 Returns an array of **all the property values** of an object.
+
+### 🟢 `Object.entries()`
+
+```js
+const person = { name: "Suborno", age: 21, city: "Dhaka" };
+
+console.log(Object.entries(person));
+```
+
+**Output**
+```js
+[
+  ["name", "Suborno"],
+  ["age", 21],
+  ["city", "Dhaka"]
+]
+```
+
+You can even loop through these entries easily:
+
+```js
+for (const [key, value] of Object.entries(person)) {
+  console.log(`${key}: ${value}`);
+}
+```
+**Output**
+```js
+name: Suborno
+age: 21
+city: Dhaka
+
+```
+👉 Returns an array of **[key, value] pairs** from the object — each key-value pair becomes a small array.
+
+</details>
+--- 
+
+
+
+<details>
+<summary><b>Q36. How to <code>freeze</code> or <code>seal</code> an object? </b></summary>
+<p>
+
+### 🟢 Why We Use `Object.freeze()` or `Object.seal()`
+
+These methods are mainly about controlling changes to your data and protecting object integrity — especially in large applications.
+
+### 🧊 1. To prevent accidental changes
+
+Sometimes you want an object’s data to stay constant.
+
+```js
+const CONFIG = {
+  appName: "MyApp",
+  version: "1.0"
+};
+
+Object.freeze(CONFIG);
+```
+👉 Now no one can change `CONFIG.version` by mistake anywhere in your code.
+It’s a safe constant.
+
+### 🧊 2. To maintain data integrity
+
+If your object represents important or shared data (like settings, user roles, or API responses), freezing/sealing ensures other parts of your program **don’t modify it unexpectedly.**
+
+```js
+const roles = { admin: "full", user: "limited" };
+Object.freeze(roles);
+
+// Later in another file:
+roles.user = "full"; //  Won’t work
+
+```
+👉 Keeps your system consistent and prevents bugs.
+
+### 🧊 3. To create predictable, reliable code
+### 🧊 4. When using objects as constants or configs
+### 🧊 5. To prevent mutation in functional programming
+
+
+### 🟢 `Object.freeze()`
+
+**Purpose:**
+Makes an object completely immutable — you can’t:
+- Add new properties 
+- Remove existing properties 
+- Change existing property values 
+
+```js
+const person = { name: "Suborno", age: 21 };
+
+Object.freeze(person);
+
+person.age = 25;       //  Won’t change
+person.city = "Dhaka"; //  Won’t add
+delete person.name;    //  Won’t delete
+
+console.log(person); // { name: "Suborno", age: 21 }
+```
+👉 The object stays **frozen** — no modification possible.
+
+### 🟢 `Object.seal()`
+
+**Purpose:**
+Makes an object **partially immutable** — you can modify existing property values.
+
+But you can’t:
+- Add new properties
+- Delete existing ones
+
+```js
+const car = { brand: "Toyota", color: "red" };
+
+Object.seal(car);
+
+car.color = "blue";   //  Allowed (you can modify)
+car.model = "Corolla"; //  Not added
+delete car.brand;      //  Not deleted
+
+console.log(car); //{ brand: "Toyota", color: "blue" }
+```
+### 🟢 Check the object’s status
+
+You can check whether an object is sealed or frozen:
+
+```js
+Object.isSealed(car);  // true
+Object.isFrozen(person); // true
+
+```
+</details>
+--- 
+
+
+<details>
+<summary><b>Q37. Difference between shallow equality <code>(==)</code> and <code>deep equality</code> in objects. </b></summary>
+<p>
+
+### 🟢 Shallow Equality (`==` or `===`)
+
+In JavaScript, when you compare **objects** using `==` or `===`, you are comparing references, not contents.
+
+That means:
+- It checks whether **both variables point to the same object in memory**,
+not whether their properties are equal.
+
+```js
+const obj1 = { name: "Suborno" };
+const obj2 = { name: "Suborno" };
+const obj3 = obj1;
+
+console.log(obj1 === obj2); //  false
+console.log(obj1 === obj3); //  true
+
+```
+👉 **Explanation:**
+
+- `obj1` and `obj2` have the same content but live in **different memory locations.**
+- `obj1` and `obj3` point to the **same object**, so they are equal.
+
+### 🟢 Deep Equality
+
+**Deep equality** means comparing the **actual contents (keys and values)** of two objects — not their memory references.
+JavaScript doesn’t do this automatically — you have to check it yourself (or use libraries like Lodash).
+
+```js
+const obj1 = { name: "Suborno", age: 21 };
+const obj2 = { name: "Suborno", age: 21 };
+
+// Manual deep check
+function isDeepEqual(a, b) {
+  const keysA = Object.keys(a);
+  const keysB = Object.keys(b);
+
+  if (keysA.length !== keysB.length) return false;
+
+  for (let key of keysA) {
+    if (a[key] !== b[key]) return false;
+  }
+
+  return true;
+}
+
+console.log(isDeepEqual(obj1, obj2)); //  true
+
+```
+</details>
+--- 
+
+<details>
+<summary><b>Q38. Difference between <code>for</code>, <code>for...in<code>, and <code>for...of<code>. </b></summary>
+<p>
+
+### 🟢 `for` loop
+
+The **traditional** loop — used when you know how many times you want to repeat something (usually for arrays or numbers).
+
+```js
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+```
+👉 **Best For:**
+
+- Looping a **specific number of times**
+- Accessing array elements **by index**
+
+### 🟢 Example:
+
+```js
+const fruits = ["apple", "banana", "mango"];
+
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]); // apple banana mango
+}
+```
+
+### 🟢 `for...in` loop
+
+Used for **iterating over the keys (property names)** of an **object**.
+
+```js
+for (let key in object) {
+  // use key and object[key]
+}
+```
+👉 `for...in` works on **objects**, not arrays (though you can use it on arrays, it’s not recommended because the order is not guaranteed).
+
+### 🟢 Example:
+
+```js
+const person = { name: "Suborno", age: 21, city: "Dhaka" };
+
+for (let key in person) {
+  console.log(key, ":", person[key]);
+}
+
+Output:
+name : Suborno
+age : 21
+city : Dhaka
+
+```
+
+### 🟢 `for...of` loop
+
+Used to **iterate over iterable objects** — such as **arrays, strings, Maps, Sets**, etc. It gives **values**, not keys.
+
+```js
+for (let value of iterable) {
+  // use value
+}
+```
+👉 **Note**
+
+- Works on **iterables** (arrays, strings, maps, sets)
+- Doesn’t work directly on plain objects
+
+### 🟢 Example:
+
+```js
+const fruits = ["apple", "banana", "mango"];
+
+for (let fruit of fruits) {
+  console.log(fruit);
+}
+
+Output:
+apple
+banana
+mango
+```
+
+### 🟢 Quick Example Comparison:
+
+```js
+const arr = ["a", "b", "c"];
+const obj = { x: 10, y: 20 };
+
+// for
+for (let i = 0; i < arr.length; i++) console.log(arr[i]); // a b c
+
+// for...in
+for (let key in obj) console.log(key, obj[key]); // x 10, y 20
+
+// for...of
+for (let value of arr) console.log(value); // a b c
+
+```
+</details>
+--- 
+
+
+<details>
+<summary><b>Q39. Difference between <code>for</code>, <code>for...in<code>, and <code>for...of<code>. </b></summary>
+<p>
+
+### 🟢 `for` loop
+
+The **traditional** loop — used when you know how many times you want to repeat something (usually for arrays or numbers).
+
+```js
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+```
+👉 **Best For:**
+
+- Looping a **specific number of times**
+- Accessing array elements **by index**
+
+### 🟢 Example:
+
+```js
+const fruits = ["apple", "banana", "mango"];
+
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]); // apple banana mango
+}
+```
+
+### 🟢 `for...in` loop
+
+Used for **iterating over the keys (property names)** of an **object**.
+
+```js
+for (let key in object) {
+  // use key and object[key]
+}
+```
+👉 `for...in` works on **objects**, not arrays (though you can use it on arrays, it’s not recommended because the order is not guaranteed).
+
+### 🟢 Example:
+
+```js
+const person = { name: "Suborno", age: 21, city: "Dhaka" };
+
+for (let key in person) {
+  console.log(key, ":", person[key]);
+}
+
+Output:
+name : Suborno
+age : 21
+city : Dhaka
+
+```
+
+### 🟢 `for...of` loop
+
+Used to **iterate over iterable objects** — such as **arrays, strings, Maps, Sets**, etc. It gives **values**, not keys.
+
+```js
+for (let value of iterable) {
+  // use value
+}
+```
+👉 **Note**
+
+- Works on **iterables** (arrays, strings, maps, sets)
+- Doesn’t work directly on plain objects
+
+### 🟢 Example:
+
+```js
+const fruits = ["apple", "banana", "mango"];
+
+for (let fruit of fruits) {
+  console.log(fruit);
+}
+
+Output:
+apple
+banana
+mango
+```
+
+### 🟢 Quick Example Comparison:
+
+```js
+const arr = ["a", "b", "c"];
+const obj = { x: 10, y: 20 };
+
+// for
+for (let i = 0; i < arr.length; i++) console.log(arr[i]); // a b c
+
+// for...in
+for (let key in obj) console.log(key, obj[key]); // x 10, y 20
+
+// for...of
+for (let value of arr) console.log(value); // a b c
+
+```
+</details>
+--- 
