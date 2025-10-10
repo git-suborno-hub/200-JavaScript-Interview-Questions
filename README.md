@@ -9,7 +9,7 @@ This repository contains categorized JavaScript questions with answers.
 | 🟠 variables & scope  | 10                  | [View](#-variables--scope) |
 | 🟡 Functions      | 10                  | [View](#-functions) |
 | 🟢 Object & Arrays      | 20                  | [View](#-object--arrays) |
-| 🔵 Strings & Numbers      | 10                  | [View](#--strings--numbers) |
+| 🔵 Strings & Numbers      | 10                  | [View](#-strings--numbers) |
 | 🟣 DOM Manipulation   | 10                  | [View](#-dom-manipulation) |
 | 🟤 Events    | 10                  | [View](#-events-) |
 | ⚫ ES6+ Features     | 10                  | [View](#-asynchronous-js) |
@@ -30,7 +30,7 @@ This repository contains categorized JavaScript questions with answers.
 <details>
 <summary><b>Q1. What is JavaScript and how is it different from Java?</b></summary> 
 
-👉 JavaScript is a <b>high-level, lightweight, interpreted programming language</b> mainly used for making web pages interactive.
+🔴 JavaScript is a <b>high-level, lightweight, interpreted programming language</b> mainly used for making web pages interactive.
 
 - Runs directly inside the <b>browser (client-side)</b>, though it’s also used on <b>servers (via Node.js)</b>.
 
@@ -97,7 +97,7 @@ function greet() { return "Hello!"; }    // Function
 <details>
 <summary><b>Q3. What is the difference between <code>null</code> and <code>undefined</code> in JavaScript?</b></summary>
 
-### `undefined`
+### 🔴 `undefined`
 - A variable that has been declared but **not assigned a value**.  
 - Default value of uninitialized variables.  
 - Default return value of functions that don’t explicitly return.  
@@ -110,7 +110,7 @@ function test() {}
 console.log(test()); // undefined
 ```
 
-### `null`
+### 🔴 `null`
 - Represents an **intentional absence** of any value. 
 - Must be explicitly assigned by the developer. 
 - Often used to indicate "no object" or "empty value".  
@@ -124,15 +124,15 @@ console.log(y); // null
 <details>
 <summary><b>Q4. What is a "quirk" of JavaScript? Can you give examples?</b></summary>
 
-###  Definition
+### 🔴 Definition
 A **quirk** in JavaScript refers to a behavior that feels **unexpected, confusing, or inconsistent** compared to most programming languages.  
 They often come from the way JavaScript was originally designed and how it maintains backward compatibility.
 
 ---
 
-###  Common JavaScript Quirks
+### 🔴 Common JavaScript Quirks
 
-1. **`typeof null` is "object"**
+1.  **`typeof null` is "object"**
 ```js
 console.log(typeof null); // "object" 😮
 ```
@@ -189,7 +189,7 @@ It is a special value in JavaScript that represents a result which is **not a va
 
 ---
 
-### 🔴 Examples
+### Examples
 
 ```js
 console.log(0 / 0);          // NaN
@@ -198,7 +198,7 @@ console.log(Math.sqrt(-1));  // NaN
 console.log(parseInt("abc")); // NaN
 ```
 
-### 🔴 Checking `NaN`
+### Checking `NaN`
 
 The tricky part:
 ```js
@@ -213,7 +213,7 @@ Number.isNaN("hello"); // false (better strict check)
 Number.isNaN(NaN);     // true
 ```
 
-### 🔴 Key Points
+### Key Points
 
 - `NaN` is of type <b>number.</b>
 - It represents an invalid numeric operation.
@@ -269,7 +269,7 @@ There are only **7 falsy values** in JavaScript:
 
 👉 Everything else is **truthy**.
 
-### 🔴 Examples
+### Examples
 
 ```js
 if ("hello") {
@@ -321,7 +321,7 @@ Happens when JavaScript automatically converts one type to another during operat
    console.log(String(100));     // "100"
    console.log(Boolean(0));      // false
    ```
-### 🔴 Rule 1: Boolean Context (Truthy / Falsy)
+###  Rule 1: Boolean Context (Truthy / Falsy)
 When a value is used in a **conditional (`if`, `while`, `!`, `||`, `&&`)**, JS converts it to **boolean**.
 
 - Falsy values: `false, 0, -0, 0n, "", null, undefined, NaN`
@@ -332,7 +332,7 @@ if ("hello") console.log("Truthy"); // runs
 if (0) console.log("Falsy");        // doesn’t run
 ```
 
-### 🔴 Rule 2: Numeric Operators `(- * / % **)`
+###  Rule 2: Numeric Operators `(- * / % **)`
 
 - All operands are converted to **numbers.**
 
@@ -342,7 +342,7 @@ console.log("10" * "2"); // 20
 console.log(true - 1);  // 0   (true → 1)
 console.log("abc" / 2); // NaN ("abc" → NaN)
 ```
-### 🔴 Rule 3: The `+` Operator (Special Case)
+###  Rule 3: The `+` Operator (Special Case)
 - If **both operands are numbers** → numeric addition
 - If **either operand is a string** → string concatenation
 
@@ -354,7 +354,7 @@ console.log("5" + true); // "5true"
 console.log([] + 1);    // "1"   ([] → "" then "" + "1")
 console.log([1,2] + [3,4]); // "1,23,4"
 ```
-### 🔴 Rule 4: Comparisons `(==)`
+###  Rule 4: Comparisons `(==)`
 - The **loose equality `(==)` operator** does type coercion.
 
 ```js
@@ -367,7 +367,7 @@ console.log([1] == 1);      // true   ([1] → "1" → 1)
 👉 Always prefer `===` to avoid these pitfalls.
 
 
-### 🔴 Rule 5: Objects to Primitives
+###  Rule 5: Objects to Primitives
 When an object/array is used where a primitive is expected, JS calls:
 - `valueOf()`
 - If not primitive, then `toString()`
@@ -416,7 +416,6 @@ What’s happening:
 
 - Finds `greet()` there → executes it.
 So **prototype is where objects “inherit” properties and methods from.**
----
 
 ### 🔴 Prototype in Arrays and Objects
 ```js
@@ -3173,5 +3172,260 @@ console.log(uniqueUsers);
 
 ```
 
+</details>
+---
+
+## 🔵 Strings & Numbers
+
+<details>
+<summary><b>Q45. What are <code>template literals</code>? </b></summary>
+
+
+### 🔵 Definition
+
+**Template literals** in JavaScript are a special way to create strings — they make it easier to include variables, expressions, and even multi-line text.
+They are enclosed by `backticks (` `)`, not `single (' ')` or `double (" ")` quotes.
+
+### Syntax
+
+```js
+let name = "Suborno";
+let message = `Hello, ${name}!`;
+console.log(message); // Output: Hello, Suborno!
+
+```
+Here, `${name}` is a **placeholder** — JavaScript replaces it with the value of the variable.
+
+### 🔵 Multi-line Strings
+
+You can easily create strings that span multiple lines without using `\n`:
+
+```js
+let poem = `Roses are red,
+Violets are blue,
+JavaScript is fun,
+And so are you!`;
+console.log(poem);
+
+```
+
+### 🔵 Expression Interpolation
+
+You can include not just variables, but **any expression** inside `${}`:
+
+```js
+let a = 10;
+let b = 5;
+console.log(`The sum is ${a + b}.`); // Output: The sum is 15.
+
+```
+
+### 🔵 Tagged Templates (Advanced)
+
+You can use a **function** to process template literals — this is called a *tagged template*.
+
+```js
+function highlight(strings, value) {
+  return `${strings[0]}***${value.toUpperCase()}***${strings[1]}`;
+}
+
+let result = highlight`Hello, ${"world"}!`;
+console.log(result); // Output: Hello, ***WORLD***!
+
+```
+
+</details>
+---
+
+<details>
+<summary><b>Q45. Difference between <code>single quotes</code>, <code>double quotes</code>, and <code>backticks</code>. </b></summary>
+
+
+### 🔵 Single Quotes (' ')
+
+- Used to define **simple string literals**.
+- Do not support variable interpolation.
+- Do not support multi-line strings (without escape characters).
+
+```js
+let name = 'Suborno';
+let greeting = 'Hello, ' + name + '!'; // Must use + for concatenation
+
+```
+
+### 🔵 Double Quotes (" ")
+
+- Work almost the same as single quotes.
+- The only difference is **stylistic** — you can use them interchangeably.
+- Helpful when your string contains a single quote (`'`) that you don’t want to escape.
+
+```js
+let message = "It's a nice day!";
+
+```
+
+### 🔵 Backticks `(``)` — Template Literals
+
+- Introduced in **ES6 (ES2015)**.
+- Allow **string interpolation with** `${}`.
+- Support **multi-line strings** easily.
+- Can include **expressions**, not just variables.
+
+```js
+let name = "Suborno";
+let age = 20;
+
+let info = `My name is ${name}, and I am ${age} years old.`;
+console.log(info);
+
+// Multi-line example
+let poem = `Roses are red,
+Violets are blue,
+JavaScript is awesome,
+And so are you!`;
+```
+</details>
+---
+
+<details>
+<summary><b>Q46. Difference between <code>slice</code>, <code>substr</code>, and <code>substring</code>. </b></summary>
+
+
+### 🔵 `slice(start, end)`
+
+Extracts part of a string from `start` to `end` (not including `end`). Works with negative indexes (counts from the end).
+
+```js
+let text = "JavaScript";
+
+console.log(text.slice(0, 4));   // "Java"
+console.log(text.slice(4, 10));  // "Script"
+console.log(text.slice(-6, -3)); // "Scr"
+
+```
+**Use case:** When you want to extract by position range (and need negative index support).
+
+### 🔵 `substring(start, end)`
+
+Extracts part of a string from `start` to `end` (not including `end`). but **does NOT support negative indexes**.
+
+❗If `start` > `end`, it **swaps** the two values.
+
+```js
+let text = "JavaScript";
+
+console.log(text.substring(0, 4));  // "Java"
+console.log(text.substring(4, 0));  // "Java" (swapped)
+console.log(text.substring(4, 10)); // "Script"
+console.log(text.substring(-3, 4)); // "Java" (negative ignored)
+
+```
+**Use case:** When you want a simple, safe extraction without worrying about negative indexes.
+
+### 🔵 `substr(start, length)`
+
+Extracts a substring starting from `start` and taking `length` characters. Supports **negative** `start` (counts from the end). 
+
+🚫 **But note:** `substr()` is **deprecated** (not recommended for new code).
+
+```js
+let text = "JavaScript";
+
+console.log(text.substr(0, 4));   // "Java"
+console.log(text.substr(4, 6));   // "Script"
+console.log(text.substr(-6, 3));  // "Scr"
+
+```
+**Use case:** When you want to extract a specific **number of characters**, but better use `slice()` instead (since `substr()` is deprecated).
+
+👉 **Use `slice()` in modern JavaScript — it’s the most flexible and predictable.**
+
+</details>
+---
+
+<details>
+<summary><b>Q47. What is string immutability in JavaScript?</b></summary>
+
+
+### 🔵 Definition
+
+In JavaScript, **strings are immutable**, meaning **once a string is created, it cannot be changed.**
+You can’t modify a character inside a string — you can only create a new string.
+
+```js
+let str = "Hello";
+
+str[0] = "Y";    //  This does nothing
+console.log(str); // "Hello"
+```
+Even though it looks like you’re changing the first character, the original string remains the same — it’s **unchangeable**.
+
+### 🔵 The Correct Way — Create a New String
+
+To “change” a string, you must **build a new one**:
+
+```js
+let str = "Hello";
+str = "Y" + str.slice(1);
+
+console.log(str); //  "Yello"
+
+```
+Here, we didn’t edit the original string — we **constructed a new string** and reassigned it to the same variable.
+
+### Another Example:
+```js
+let word = "cat";
+let newWord = word.replace("c", "b");
+
+console.log(newWord); // "bat"
+console.log(word);    // "cat" (unchanged)
+```
+Even `replace()` or `toUpperCase()` **return new strings** instead of changing the original.
+
+</details>
+---
+
+<details>
+<summary><b>Q48. Difference between <code>parseInt</code> and <code>Number()</code>.</b></summary>
+
+
+### 🔵 `parseInt()`
+
+**Converts a string to an integer (whole number).**
+
+It: 
+- **Parses** the string **until it hits a non-numeric character.**
+- Can handle **spaces** or **extra characters** (up to the first invalid one).
+- Can take an **optional radix** (base) like binary (2), decimal (10), or hex (16).
+
+```js
+console.log(parseInt("42"));        // 42
+console.log(parseInt("42px"));      // 42 ; stops at 'p'
+console.log(parseInt("  100abc"));  // 100
+console.log(parseInt("10", 2));     // 2  (binary 10 = 2)
+console.log(parseInt("3.14"));      // 3  (decimal part ignored)
+console.log(parseInt("abc123")); // NaN
+
+```
+
+### 🔵 `Number()`
+
+**Converts the entire string (or value) into a number — integer or float.**
+
+It: 
+- Converts the **whole string**, not just part of it.
+- Returns **NaN** if the string isn’t a valid number.
+- Converts **booleans, null**, and other types too.
+
+```js
+console.log(Number("42"));      // 42
+console.log(Number("3.14"));    // 3.14
+console.log(Number("42px"));    // NaN 
+console.log(Number("   42 "));  // 42 (trims spaces)
+console.log(Number(true));      // 1
+console.log(Number(false));     // 0
+console.log(Number(null));      // 0
+```
 </details>
 ---
