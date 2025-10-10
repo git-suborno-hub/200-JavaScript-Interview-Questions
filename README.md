@@ -3238,7 +3238,7 @@ console.log(result); // Output: Hello, ***WORLD***!
 ---
 
 <details>
-<summary><b>Q45. Difference between <code>single quotes</code>, <code>double quotes</code>, and <code>backticks</code>. </b></summary>
+<summary><b>Q46. Difference between <code>single quotes</code>, <code>double quotes</code>, and <code>backticks</code>. </b></summary>
 
 
 ### 🔵 Single Quotes (' ')
@@ -3288,7 +3288,7 @@ And so are you!`;
 ---
 
 <details>
-<summary><b>Q46. Difference between <code>slice</code>, <code>substr</code>, and <code>substring</code>. </b></summary>
+<summary><b>Q47. Difference between <code>slice</code>, <code>substr</code>, and <code>substring</code>. </b></summary>
 
 
 ### 🔵 `slice(start, end)`
@@ -3344,7 +3344,7 @@ console.log(text.substr(-6, 3));  // "Scr"
 ---
 
 <details>
-<summary><b>Q47. What is string immutability in JavaScript?</b></summary>
+<summary><b>Q48. What is string immutability in JavaScript?</b></summary>
 
 
 ### 🔵 Definition
@@ -3387,7 +3387,7 @@ Even `replace()` or `toUpperCase()` **return new strings** instead of changing t
 ---
 
 <details>
-<summary><b>Q48. Difference between <code>parseInt</code> and <code>Number()</code>.</b></summary>
+<summary><b>Q49. Difference between <code>parseInt</code> and <code>Number()</code>.</b></summary>
 
 
 ### 🔵 `parseInt()`
@@ -3427,5 +3427,74 @@ console.log(Number(true));      // 1
 console.log(Number(false));     // 0
 console.log(Number(null));      // 0
 ```
+</details>
+---
+
+<details>
+<summary><b>Q50. How does <code>toFixed()</code> work?</b></summary>
+
+
+### 🔵 Definition
+
+`number.toFixed(digits)`
+- Returns a **string** representing the number with exactly `digits` digits **after the decimal point**.
+- **Rounds** the number if necessary.
+
+```js
+let num = 3.14159;
+
+console.log(num.toFixed(2)); // "3.14"
+console.log(num.toFixed(4)); // "3.1416"
+console.log(num.toFixed(0)); // "3"
+```
+👉 Notice: the result is a **string**, not a number.
+
+### 🔵 Rounding Behavior
+
+`toFixed()` **rounds** the number using standard rounding rules (≥ 0.5 rounds up):
+
+```js
+let n = 2.678;
+console.log(n.toFixed(2)); // "2.68"
+```
+</details>
+---
+
+<details>
+<summary><b>Q51.  Difference between <code>Math.floor()</code>, <code>Math.ceil()</code>, and <code>Math.round()</code>.</b></summary>
+
+
+### 🔵 Here’s the difference between `Math.floor()`, `Math.ceil()`, and `Math.round()` in JavaScript
+
+|     Methods       |    Description    |    Example Input      |    Output     |   Explanation      |
+|----------------|----------------|----------------|----------------|----------------|
+|`Math.floor()`   | Rounds **down** to the nearest integer  | `Math.floor(4.9)`  |  `4`    | Always rounds **down** (toward −∞).  |
+|  |  | `Math.floor(-4.9)`  |  `-5`    | For negatives, it goes **more negative**.  |
+|`Math.ceil()`   | Rounds **up** to the nearest integer  | `Math.ceil(4.1)`  |  `5`    | Always rounds **up** (toward +∞).  |
+|  |  | `Math.ceil(-4.1)`  |  `-4`    | For negatives, it goes **less negative**.  |
+|`Math.round()`   | Rounds to the **nearest integer**  | `Math.round(4.4)`  |  `4`    | 0.5 or higher → rounds up. |
+|  |  | `Math.round(4.5)`  |  `5`    | 0.5 rounds **up** to next integer.  |
+|  |  | `Math.round(-4.5)`  |  `-4`    | Negative 0.5 rounds **up toward 0**.  |
+
+</details>
+---
+
+
+<details>
+<summary><b>Q52.  Difference between <code>Math.floor()</code>, <code>Math.ceil()</code>, and <code>Math.round()</code>.</b></summary>
+
+
+### 🔵 Here’s the difference between `Math.floor()`, `Math.ceil()`, and `Math.round()` in JavaScript
+
+|     Methods       |    Description    |    Example Input      |    Output     |   Explanation      |
+|----------------|----------------|----------------|----------------|----------------|
+|`Math.floor()`   | Rounds **down** to the nearest integer  | `Math.floor(4.9)`  |  `4`    | Always rounds **down** (toward −∞).  |
+|  |  | `Math.floor(-4.9)`  |  `-5`    | For negatives, it goes **more negative**.  |
+|`Math.ceil()`   | Rounds **up** to the nearest integer  | `Math.ceil(4.1)`  |  `5`    | Always rounds **up** (toward +∞).  |
+|  |  | `Math.ceil(-4.1)`  |  `-4`    | For negatives, it goes **less negative**.  |
+|`Math.round()`   | Rounds to the **nearest integer**  | `Math.round(4.4)`  |  `4`    | 0.5 or higher → rounds up. |
+|  |  | `Math.round(4.5)`  |  `5`    | 0.5 rounds **up** to next integer.  |
+|  |  | `Math.round(-4.5)`  |  `-4`    | Negative 0.5 rounds **up toward 0**.  |
+
 </details>
 ---
