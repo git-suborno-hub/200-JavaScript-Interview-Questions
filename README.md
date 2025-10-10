@@ -2901,3 +2901,277 @@ Explanation:
 
 </details>
 ---
+
+
+<details>
+<summary><b>Q43. Difference between <code>push()</code>, <code>pop()</code>, <code>shift()</code> and <code>unshift()</code>.</b></summary>
+<p>
+
+|     Method   |    Works On    |    Description    |   Returns      |   Example    |
+|--------------|----------------|---------------|------------------|----------|
+|  `push()`   | End of array   |  Adds one or more elements **to the end** of an array.  |  New length of the array   |      `arr.push(4)`   |
+|  `pop()`   | End of array   |  **Removes the last** element from an array.  |  The removed element   |      `arr.pop()`   |
+|  `shift()`   | Beginning of array   |  **Removes the first** element from an array.  |  The removed element   |      `arr.shift()`   |
+|  `unshift()`   | Beginning of array   |  Adds one or more elements **to the beginning** of an array.  |  New length of the array   |      `arr.unshift(0)`   |
+
+### 🟢 Example: 
+
+```js
+let arr = [1, 2, 3];
+
+// push() → add at end
+arr.push(4);    
+console.log(arr); // [1, 2, 3, 4]
+
+// pop() → remove last
+arr.pop();       
+console.log(arr); // [1, 2, 3]
+
+// shift() → remove first
+arr.shift();     
+console.log(arr); // [2, 3]
+
+// unshift() → add at beginning
+arr.unshift(1);  
+console.log(arr); // [1, 2, 3]
+
+```
+
+</details>
+---
+
+
+<details>
+<summary><b>Q43. What is <code>array destructuring</code>? </b></summary>
+<p>
+
+### 🟢 Definition: 
+
+**Array destructuring** in **JavaScript** is a shorthand way to **extract values from an array** and **assign them to variables** in a single, clean line.
+
+### 🟢 Example: 
+
+```js
+const numbers = [10, 20, 30];
+
+const [a, b, c] = numbers;
+
+console.log(a); // 10
+console.log(b); // 20
+console.log(c); // 30
+```
+
+### 🟢 Skipping Elements: 
+
+You can skip unwanted values by leaving empty commas:
+
+```js
+const [first, , third] = [1, 2, 3];
+console.log(first); // 1
+console.log(third); // 3
+```
+
+### 🟢 Default Values: 
+
+You can assign default values if the array doesn’t have enough elements:
+
+```js
+const [a = 1, b = 2, c = 3] = [10];
+console.log(a); // 10
+console.log(b); // 2
+console.log(c); // 3
+```
+
+
+### 🟢 Swapping Variables: 
+
+Array destructuring makes swapping values easy:
+
+```js
+let x = 5;
+let y = 10;
+
+[x, y] = [y, x];
+
+console.log(x); // 10
+console.log(y); // 5
+
+```
+
+### 🟢 Using with Functions
+
+If a function returns an array, you can destructure the result directly:
+
+```js
+function getValues() {
+  return [1, 2];
+}
+
+const [a, b] = getValues();
+console.log(a, b); // 1 2
+```
+
+</details>
+---
+
+
+<details>
+<summary><b>Q44. Difference between <code>spread operator</code><code>concat</code> </b></summary>
+
+
+### 🟢 Spread Operator (`...`)
+
+The **spread operator** expands (or “spreads out”) the elements of an array (or iterable) into another array or function call. Used for merging, copying, or passing elements.
+
+### 🟢 Syntax: 
+
+```js
+const newArray = [...array1, ...array2];
+```
+
+### 🟢 Example: 
+
+```js
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const combined = [...arr1, ...arr2];
+console.log(combined); // [1, 2, 3, 4]
+
+```
+
+### 🟢 Features: 
+
+- Can combine arrays or clone them easily.
+- Can also be used inside objects and function calls.
+- Creates a **shallow copy**.
+
+### 🟢 `concat()` Method
+
+The `concat()` method merges two or more arrays and returns a **new array** without changing the originals.
+
+### 🟢 Syntax: 
+
+```js
+const newArray = array1.concat(array2);
+
+```
+
+### 🟢 Example: 
+
+```js
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const combined = arr1.concat(arr2);
+console.log(combined); // [1, 2, 3, 4]
+
+```
+
+### 🟢 Features: 
+
+- Specifically made for joining arrays.
+- Can merge multiple arrays or values:
+
+```js
+const result = arr1.concat(arr2, [5, 6], 7);
+console.log(result); // [1, 2, 3, 4, 5, 6, 7]
+```
+
+### 🟢 Example Comparison: 
+
+```js
+const a = [1, 2];
+const b = [3, 4];
+
+// Using spread
+const spreadResult = [...a, ...b, 5]; // [1, 2, 3, 4, 5]
+
+// Using concat
+const concatResult = a.concat(b, 5);  // [1, 2, 3, 4, 5]
+```
+
+👉 Both work similarly for arrays, but the spread operator is more flexible and modern — it’s preferred in modern JavaScript.
+
+</details>
+---
+
+<details>
+<summary><b>Q45. How do you remove duplicates from an array? </b></summary>
+
+
+### 🟢 Using `Set` (Most Common & Easiest Way)
+
+The `Set` object automatically stores **unique values** — duplicates are ignored.
+
+### 🟢 Example: 
+
+```js
+const numbers = [1, 2, 2, 3, 4, 4, 5];
+const unique = [...new Set(numbers)];
+console.log(unique);
+//  [1, 2, 3, 4, 5]
+```
+
+### 🟢 Features: 
+
+- Very short and fast.
+- Works for strings, numbers, booleans, etc.
+
+### 🟢 Using `filter()` + `indexOf()`
+
+### 🟢 Example: 
+
+```js
+const arr = [1, 2, 2, 3, 4, 4, 5];
+const unique = arr.filter((value, index, self) => self.indexOf(value) === index);
+console.log(unique);
+//  [1, 2, 3, 4, 5]
+```
+**Explanation:**
+
+- `indexOf(value)` gives the first index of that value.
+- If the current index matches that, it means it’s the **first occurrence**, so it’s kept.
+
+### 🟢 Using `reduce()` + `includes()`
+
+### 🟢 Example: 
+
+```js
+const arr = [1, 2, 2, 3, 4, 4, 5];
+const unique = arr.reduce((acc, curr) => {
+  if (!acc.includes(curr)) acc.push(curr);
+  return acc;
+}, []);
+console.log(unique);
+//  [1, 2, 3, 4, 5]
+```
+**Explanation:**
+
+- Good if you want more control over how duplicates are handled.
+
+### 🟢 Removing Duplicates from Array of Objects
+
+If you have **objects**, `Set` won’t work directly (because objects are compared by reference).
+
+You can use `filter()` and `findIndex()` or `Map()`.
+
+
+### 🟢 Example: 
+
+```js
+const users = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 1, name: "Alice" }
+];
+
+const uniqueUsers = users.filter(
+  (user, index, self) => index === self.findIndex(u => u.id === user.id)
+);
+
+console.log(uniqueUsers);
+//  [{ id: 1, name: "Alice" }, { id: 2, name: "Bob" }]
+
+```
+
+</details>
+---
