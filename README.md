@@ -3479,22 +3479,233 @@ console.log(n.toFixed(2)); // "2.68"
 </details>
 ---
 
+## 🟣 DOM Manipulation
 
 <details>
-<summary><b>Q52.  Difference between <code>Math.floor()</code>, <code>Math.ceil()</code>, and <code>Math.round()</code>.</b></summary>
+<summary><b>Q53. What is the DOM in JavaScript?</b></summary>
 
 
-### 🔵 Here’s the difference between `Math.floor()`, `Math.ceil()`, and `Math.round()` in JavaScript
+### 🟣 Definition
 
-|     Methods       |    Description    |    Example Input      |    Output     |   Explanation      |
-|----------------|----------------|----------------|----------------|----------------|
-|`Math.floor()`   | Rounds **down** to the nearest integer  | `Math.floor(4.9)`  |  `4`    | Always rounds **down** (toward −∞).  |
-|  |  | `Math.floor(-4.9)`  |  `-5`    | For negatives, it goes **more negative**.  |
-|`Math.ceil()`   | Rounds **up** to the nearest integer  | `Math.ceil(4.1)`  |  `5`    | Always rounds **up** (toward +∞).  |
-|  |  | `Math.ceil(-4.1)`  |  `-4`    | For negatives, it goes **less negative**.  |
-|`Math.round()`   | Rounds to the **nearest integer**  | `Math.round(4.4)`  |  `4`    | 0.5 or higher → rounds up. |
-|  |  | `Math.round(4.5)`  |  `5`    | 0.5 rounds **up** to next integer.  |
-|  |  | `Math.round(-4.5)`  |  `-4`    | Negative 0.5 rounds **up toward 0**.  |
+The **DOM** in JavaScript stands for **Document Object Model**. It’s a **programming interface** that allows JavaScript (and other languages) to **interact with and manipulate** the content, structure, and style of a web page. 
 
+When a web page loads, the browser takes the HTML code and **creates a tree-like structure** called the **DOM tree**.
+Each HTML element (like `<div>`, `<p>`, `<h1>`, etc.) becomes an **object** (or “node”) in this tree.
+JavaScript can then **access, modify, add, or remove** these nodes dynamically — without reloading the page. 
+
+👉 The document object represents the entire web page
+
+🧠 **Key Concepts:**
+
+- `document` → The root object of the DOM (represents the whole page).
+- **Elements (Nodes)** → Every HTML tag becomes a node in the DOM tree.
+- **DOM Manipulation** → You can change text, styles, or even structure using JavaScript.
+- **Event Handling** → The DOM lets you respond to user actions (like clicks, typing, etc.).
+
+</details>
+---
+
+<details>
+<summary><b>Q54. Difference between <code>document.getElementById</code> and <code>querySelector</code>.</b></summary>
+
+
+### 🟣 Using `getElementById()`:
+
+```html
+<h1 id="title">Hello!</h1>
+<script>
+  const heading = document.getElementById("title");
+  console.log(heading.textContent); // "Hello!"
+</script>
+```
+Works **only** for elements with an `id` attribute.
+
+### 🟣 Using `querySelector()`:
+
+```html
+<h1 class="title">Welcome!</h1>
+<p id="message">Hi there!</p>
+
+<script>
+  // Select by class
+  const heading = document.querySelector(".title");
+  
+  // Select by ID
+  const message = document.querySelector("#message");
+  
+  // Select by tag
+  const paragraph = document.querySelector("p");
+</script>
+
+```
+Works with **any** valid CSS selector (ID, class, tag, attribute, etc.).
+But returns only the first match if there are multiple elements.
+
+### 🟣 When to Use Which
+
+|  Use Case   |  Recommended Method  |
+|-------------|----------------------|
+| You know the element has a unique ID   |  `getElementById()`   |
+| You want to select by class, tag, or attribute   |  `querySelector()`   |
+| You want to select multiple elements   |  `querySelectorAll()` (returns a NodeList)  |
+
+
+</details>
+---
+
+<details>
+<summary><b>Q55. Difference between <code>innerHTML</code> , <code>innerText</code> and <code>textContent</code>.</b></summary>
+
+
+|Property|Returns|Includes HTML Tags?|Affects Hidden Text?|Faster?|Common Use| 
+|--------|-------|----------------|--------------------|-----------|---------|
+|`innerHTML`|HTML code (tags + text)| Yes|Includes hidden elements| Slower (parses HTML)  | Insert or read HTML|
+|`innerText`|Visible text (only what’s displayed)| No |Ignores hidden text| Medium  | Read/write visible text |
+|`textContent`|All text (including hidden)| No |Includes hidden text| Fastest  | Read/write plain text |
+
+### 🟣 Example HTML
+
+```html
+<div id="demo">
+  <p>Hello <b>World</b>!</p>
+  <p style="display: none;">Hidden text</p>
+</div>
+
+```
+
+### 🟣 Examples in JavaScript
+
+**`innerHTML`**
+```js
+let htmlValue = document.getElementById("demo").innerHTML;
+console.log(htmlValue);
+
+```
+**Output**
+```html
+<p>Hello <b>World</b>!</p>
+<p style="display: none;">Hidden text</p>
+```
+Returns **HTML markup** (including tags).
+
+**`innerText`**
+```js
+let textValue = document.getElementById("demo").innerText;
+console.log(textValue);
+
+```
+**Output**
+```html
+Hello World!
+
+```
+Does **not include hidden text** (from `display: none`). Represents what the user **actually sees on the page.**
+
+**`textContent`**
+```js
+let contentValue = document.getElementById("demo").textContent;
+console.log(contentValue);
+```
+**Output**
+```html
+Hello World!
+Hidden text
+```
+- Includes all text, even hidden ones.
+- Does not process HTML tags.
+- Fastest because it doesn’t compute styles or layout.
+
+### 🟣 When to Use Each
+
+|Task|Recommended Property|
+|----------|------------------|
+|Get or set HTML (including tags)| `innerHTML`|
+|Need formatted HTML content| `innerHTML`|
+|Get visible text (what user sees)| `innerText`|
+|Get all text (visible + hidden)| `textContent`|
+|Need performance and no formatting| `textContent`|
+
+</details>
+---
+
+
+<details>
+<summary><b>Q56. Difference between <code>innerHTML</code> , <code>innerText</code> and <code>textContent</code>.</b></summary>
+
+### 🟣 Basic Steps to Create Elements Dynamically
+
+|Step|Description|Example|
+|--------|-------|----------------|
+|1|Create a new element| `document.createElement("p")`|
+|2|Add content (text or HTML)| `element.textContent = "Hello!"` |
+|3|Set attributes or styles| `element.id = "greeting"` |
+|4|Attach it to the DOM| `document.body.appendChild(element)` |
+
+### 🟣 Example 1: Create and Add a Paragraph
+
+```js
+// 1. Create a new <p> element
+let para = document.createElement("p");
+
+// 2. Add text inside the paragraph
+para.textContent = "This paragraph was added dynamically!";
+
+// 3. Add a class for styling
+para.className = "dynamic-text";
+
+// 4. Add it to the page (for example, inside the <body>)
+document.body.appendChild(para);
+
+```
+
+**Result**
+A new paragraph appears on the page with the text
+  “This paragraph was added dynamically!”
+
+### 🟣 Example 2: Create Nested Elements
+
+```js
+// Create a <div> container
+let div = document.createElement("div");
+div.className = "card";
+
+// Create a <h2> element
+let title = document.createElement("h2");
+title.textContent = "Dynamic Title";
+
+// Create a <p> element
+let description = document.createElement("p");
+description.textContent = "This content was created using JavaScript.";
+
+// Add <h2> and <p> inside the <div>
+div.appendChild(title);
+div.appendChild(description);
+
+// Finally, add the <div> to the body
+document.body.appendChild(div);
+
+```
+
+**Result**
+```html
+<div class="card">
+  <h2>Dynamic Title</h2>
+  <p>This content was created using JavaScript.</p>
+</div>
+```
+
+
+### 🟣 Example 3: Add Elements to a Specific Container
+
+```html
+<div id="container"></div>
+```
+```js
+let container = document.getElementById("container");
+let button = document.createElement("button");
+button.textContent = "Click Me!";
+container.appendChild(button);
+```
+The button will appear **inside the** `#container` **div**, not the body.
 </details>
 ---
