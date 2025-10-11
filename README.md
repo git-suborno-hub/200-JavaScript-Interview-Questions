@@ -3884,51 +3884,127 @@ The `classList` property in JavaScript is a **convenient way to work with the cl
 
 ```html
 <div id="myDiv" class="box highlight"></div>
+```
 
+```js
+const div = document.getElementById('myDiv');
+console.log(div.classList); 
+// DOMTokenList ["box", "highlight"]
 ```
 Here, 
 
-- `data-id`, `data-name`, and `data-role` are **data attributes**.
-- The prefix `data-` is **required**, but you can name the rest as you wish (`data-*`).
+- `classList` returns a **DOMTokenList**, which acts like an array of class names.
+- You can use methods on it to manipulate classes easily.
 
+### 🟣 Methods of `classList`
 
-**Output:** Removes `<div id="item">` from inside `<div id="container">`.
-
-### 🟣 Why Use Data Attributes?
+|   Method   |   Description     |   Example   |
+|-------------|-------------------|------------|
+|`add(className1, …)`  | Adds one or more classes   | `div.classList.add('active')`|
+|`remove(className1, …)`  | Removes one or more classes   | `div.classList.remove('highlight')`|
+|`toggle(className, [force])`  | Toggles a class: adds if missing, removes if present. Optional force boolean forces add/remove   | `div.classList.toggle('active')`|
+|`contains(className)`  | Checks if element has the class  | `div.classList.contains('box') // true`|
+|`replace(oldClass, newClass)`  | Replaces one class with another  | `div.classList.replace('box', 'container')`|
 
 They are:
 - **Customizable:** You can define any name after `data-`.
 - **HTML5 standard:** They are valid and supported in all modern browsers.
 - **Useful for JS interaction:** JavaScript can easily access, modify, or use these values without needing global variables or hardcoded data.
 
-### 🟣 Accessing Data Attributes in JavaScript
+### 🟣 Examples
 
-**1. Using the `.dataset` property**
+```html
+<div id="myDiv" class="box highlight"></div>
+```
+
+**1. Adding a class**
 
 ```js
-const user = document.getElementById('user');
+div.classList.add('visible');
+console.log(div.classList); // ["box", "highlight", "visible"]
 
-console.log(user.dataset.id);     // "101"
-console.log(user.dataset.name);   // "Alice"
-console.log(user.dataset.role);   // "admin"
 ```
-**Note:**
 
-- The part **after** `data-` becomes a **camelCase property** in JavaScript.
-    - Example: `data-user-id` → `dataset.userId`
+**2. Removing a class**
+
+```js
+div.classList.remove('highlight');
+console.log(div.classList); // ["box", "visible"]
+```
+
+**3. Toggling a class**
+
+```js
+div.classList.toggle('active'); // Adds 'active' if not present
+div.classList.toggle('active'); // Removes 'active' if present
+
+```
+
+**4. Checking a class**
+
+```js
+if (div.classList.contains('box')) {
+  console.log('Box class exists!');
+}
+
+```
+
+**4. Replacing a class**
+
+```js
+div.classList.replace('box', 'container');
+console.log(div.classList); // ["container", "visible"]
+```
+
+ ### 🟣 Advantages over `className`
  
-**2. Setting / Changing Data Attributes**
-
-```js
-user.dataset.role = "editor"; // updates the attribute
-console.log(user.dataset.role); // "editor"
-
-```
-You can also modify it through HTML:
-
-```js
-user.setAttribute('data-role', 'viewer');
-```
- 
+- You **don’t need to worry about spaces** between class names.
+- Easier to **add/remove multiple classes** dynamically.
+- Cleaner and more **readable** code.
 </details>
 ---
+
+
+<details>
+<summary><b>Q61. Difference between <code>setAttribute</code> and <code>direct property</code> assignment. </b></summary>
+
+|   Aspect   |   `setAttribute(name, value)`     |   Direct Property Assignment   |
+|-------------|-------------------|------------|
+|Description  | A **DOM method** used to set the value of any **HTML attribute** on an element.   | Assigns a value directly to the **DOM element’s property** in JavaScript (e.g., `element.id = "value"`).|
+|Scope  | Updates the **HTML attribute** but may not always change the corresponding DOM property.  | Updates the **DOM property**, but not always the HTML attribute.|
+|Example  | `element.setAttribute("value", "Hello")`   | `element.value = "Hello"`|
+|When it affects the UI  | Depends on the attribute — not all attributes are reflected immediately in the rendered UI.  | Usually updates the **live state** of the element (e.g., what’s displayed in a form input).|
+|Type of Value  | Always treats the value as a **string**.  | Keeps the **data type** (string, number, boolean, etc.).|
+|Can set custom attributes?  | Yes, you can set custom attributes like `data-user="John"`.  | No, unless that property exists on the element object.|
+|Use Case  | When you need to manipulate **HTML attributes** directly (like `data-*`, `aria-*`, or for serialization).  | When you need to manipulate the **live state** or **behavior** of the element.|
+|When to use  | Manipulating **HTML markup or custom attributes**. Examples: `element.setAttribute('data-id', 123)` | Manipulating **element state or behavior**. Example: `element.checked = true or element.value = "text"`|
+
+### 🟣 Examples
+
+```html
+<input id="myInput" value="initial">
+```
+
+```js
+const input = document.getElementById("myInput");
+
+// Using setAttribute
+input.setAttribute("value", "new"); 
+console.log(input.value); //  "initial" (property not updated yet)
+console.log(input.getAttribute("value")); //  "new"
+
+// Using property assignment
+input.value = "updated"; 
+console.log(input.value); //  "updated"
+console.log(input.getAttribute("value")); //  "new" (attribute didn’t change)
+
+```
+
+**Explanation**
+
+- `setAttribute("value", ...)` changes the **HTML attribute**, not the current UI value.
+- `input.value = ...` changes the **current input field’s value** (what the user sees).
+</details>
+---
+
+
