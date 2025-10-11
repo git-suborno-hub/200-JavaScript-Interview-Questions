@@ -3710,3 +3710,225 @@ container.appendChild(button);
 The button will appear **inside the** `#container` **div**, not the body.
 </details>
 ---
+
+<details>
+<summary><b>Q57. What is the difference between <code>append</code>, <code>appendChild</code>, and <code>insertBefore</code>?</b></summary>
+
+
+|Method|Used On|Can Add Multiple Nodes?|Can Add Text?|Returns|Browser Support|
+|--------|-------|----------------|----------|-------------|------------------|
+|`append()`|Parent Node| Yes |Yes (text strings)|`undefined`|Modern browsers (newer)|
+|`appendChild()`|Parent Node| No (only one node) |No (only Node objects)|Returns appended node|All browsers|
+|`insertBefore()`|Parent Node| No (only one node) |No (only Node objects)|Returns inserted node|All browsers|
+
+
+### 🟣 `append()`
+
+- Adds **one or more nodes or strings** to the **end** of a parent element.
+- Can insert **text directly** without creating a text node.
+- **Does not return** anything.
+- Modern and more flexible.
+
+```js
+const div = document.createElement("div");
+div.append("Hello ", document.createElement("span"), " World!");
+```
+**Output:** `<div>Hello <span></span> World!</div>`
+
+### 🟣 `appendChild()`
+
+- Adds **a single node** to the **end** of a parent element.
+- Only accepts **Node objects**, not text strings.
+- **Returns** the appended node.
+- Works in all browsers (including old ones).
+
+```js
+const div = document.createElement("div");
+const span = document.createElement("span");
+div.appendChild(span);
+```
+**Output:** `<div><span></span></div>`
+
+
+
+### 🟣 `insertBefore()`
+
+- Inserts a node **before** a specified existing child node.
+- Only accepts **Node objects**, not text.
+- **Returns** the inserted node.
+- Useful for placing an element **at a specific position**, not just the end.
+
+```js
+const list = document.querySelector("ul");
+const newItem = document.createElement("li");
+newItem.textContent = "New Item";
+const firstItem = list.firstElementChild;
+list.insertBefore(newItem, firstItem);
+```
+**Output:** Inserts `<li>New Item</li>` before the first `<li>`.
+
+</details>
+---
+
+
+<details>
+<summary><b>Q58. What is the difference between <code>removeChild</code> and <code>remove</code>?</b></summary>
+
+
+|Feature|`removeChild()`|`remove()`|
+|--------|-------|----------------|
+|Used On|Parent Node| The element itself|
+|What It Removes|Removes a specific child node from a parent| Removes the element itself from the DOM|
+|Requires Parent Reference?|Yes — you must call it from the parent| No — called directly on the element|
+|Returns|Returns the removed child node| Returns nothing (`undefined`)|
+|Browser Support|All browsers (including old ones)| Modern browsers (IE not supported)|
+|Example|`parent.removeChild(child)`| `element.remove()`|
+
+### 🟣 `removeChild()`
+
+- Must be called **on the parent** of the node you want to remove.
+- You need a **reference to both the parent and the child.**
+- **Returns** the removed child node (you can store or reuse it).
+
+```js
+const parent = document.getElementById("container");
+const child = document.getElementById("item");
+
+parent.removeChild(child);
+
+```
+**Output:** Removes `<div id="item">` from inside `<div id="container">`.
+
+### 🟣 `remove()`
+
+- Called **directly on the element itself** — no need to reference the parent.
+- Simpler syntax and cleaner code.
+- Does **not return anything**.
+
+
+```js
+const item = document.getElementById("item");
+item.remove();
+
+```
+**Output:** Removes `<div id="item">` from the DOM.
+
+</details>
+---
+
+<details>
+<summary><b>Q59. What are data attributes in HTML/JS (data-*)? </b></summary>
+
+**Data attributes** (written as `data-*`) in **HTML** are custom attributes that store extra information (metadata) directly on HTML elements.
+
+They are especially useful when you want to associate some data with an element — data that **doesn’t have a built-in HTML attribute** — and you want to **access it later in JavaScript**.
+
+### 🟣 Syntax
+
+```html
+<div id="user" data-id="101" data-name="Alice" data-role="admin"></div>
+```
+Here, 
+
+- `data-id`, `data-name`, and `data-role` are **data attributes**.
+- The prefix `data-` is **required**, but you can name the rest as you wish (`data-*`).
+
+
+**Output:** Removes `<div id="item">` from inside `<div id="container">`.
+
+### 🟣 Why Use Data Attributes?
+
+They are:
+- **Customizable:** You can define any name after `data-`.
+- **HTML5 standard:** They are valid and supported in all modern browsers.
+- **Useful for JS interaction:** JavaScript can easily access, modify, or use these values without needing global variables or hardcoded data.
+
+### 🟣 Accessing Data Attributes in JavaScript
+
+**1. Using the `.dataset` property**
+
+```js
+const user = document.getElementById('user');
+
+console.log(user.dataset.id);     // "101"
+console.log(user.dataset.name);   // "Alice"
+console.log(user.dataset.role);   // "admin"
+```
+**Note:**
+
+- The part **after** `data-` becomes a **camelCase property** in JavaScript.
+    - Example: `data-user-id` → `dataset.userId`
+ 
+**2. Setting / Changing Data Attributes**
+
+```js
+user.dataset.role = "editor"; // updates the attribute
+console.log(user.dataset.role); // "editor"
+
+```
+You can also modify it through HTML:
+
+```js
+user.setAttribute('data-role', 'viewer');
+```
+ 
+</details>
+---
+
+<details>
+<summary><b>Q60. How does classList work? </b></summary>
+
+The `classList` property in JavaScript is a **convenient way to work with the classes of an HTML element**. It allows you to **read, add, remove, toggle, or check** CSS classes without manipulating the `className` string manually.
+
+### 🟣 Accessing `classList`
+
+```html
+<div id="myDiv" class="box highlight"></div>
+
+```
+Here, 
+
+- `data-id`, `data-name`, and `data-role` are **data attributes**.
+- The prefix `data-` is **required**, but you can name the rest as you wish (`data-*`).
+
+
+**Output:** Removes `<div id="item">` from inside `<div id="container">`.
+
+### 🟣 Why Use Data Attributes?
+
+They are:
+- **Customizable:** You can define any name after `data-`.
+- **HTML5 standard:** They are valid and supported in all modern browsers.
+- **Useful for JS interaction:** JavaScript can easily access, modify, or use these values without needing global variables or hardcoded data.
+
+### 🟣 Accessing Data Attributes in JavaScript
+
+**1. Using the `.dataset` property**
+
+```js
+const user = document.getElementById('user');
+
+console.log(user.dataset.id);     // "101"
+console.log(user.dataset.name);   // "Alice"
+console.log(user.dataset.role);   // "admin"
+```
+**Note:**
+
+- The part **after** `data-` becomes a **camelCase property** in JavaScript.
+    - Example: `data-user-id` → `dataset.userId`
+ 
+**2. Setting / Changing Data Attributes**
+
+```js
+user.dataset.role = "editor"; // updates the attribute
+console.log(user.dataset.role); // "editor"
+
+```
+You can also modify it through HTML:
+
+```js
+user.setAttribute('data-role', 'viewer');
+```
+ 
+</details>
+---
