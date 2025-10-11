@@ -3630,7 +3630,7 @@ Hidden text
 
 
 <details>
-<summary><b>Q56. Difference between <code>innerHTML</code> , <code>innerText</code> and <code>textContent</code>.</b></summary>
+<summary><b>Q56. How do you create elements dynamically in JavaScript?</b></summary>
 
 ### 🟣 Basic Steps to Create Elements Dynamically
 
@@ -3659,6 +3659,7 @@ document.body.appendChild(para);
 ```
 
 **Result**
+
 A new paragraph appears on the page with the text
   “This paragraph was added dynamically!”
 
