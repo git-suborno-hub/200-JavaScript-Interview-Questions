@@ -4007,4 +4007,171 @@ console.log(input.getAttribute("value")); //  "new" (attribute didn’t change)
 </details>
 ---
 
+## 🟤 Events
 
+
+<details>
+<summary><b>Q62. What is event delegation in JavaScript? </b></summary>
+
+**Event Delegation** in JavaScript is a technique that allows you to handle events more efficiently by using **event bubbling**.
+
+Instead of adding event listeners to **multiple child elements**, you attach a **single event listener** to a **common parent element**.
+
+That parent then listens for events that bubble up from its children and handles them appropriately.
+
+### 🟤 Examples
+
+```html
+<ul id="menu">
+  <li>Home</li>
+  <li>About</li>
+  <li>Contact</li>
+</ul>
+
+<script>
+  const menu = document.getElementById('menu');
+
+  // Event delegation: attach one listener to the parent <ul>
+  menu.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+      console.log(`You clicked on ${event.target.textContent}`);
+    }
+  });
+</script>
+
+```
+
+**Explanation**
+
+- The `<ul>` has **one** click listener.
+- When you click a `<li>`, the event **bubbles up** to the `<ul>`.
+- The `<ul>`’s listener checks which element triggered the event using `event.target`.
+- You don’t need to attach a listener to every `<li>` individually.
+
+### 🟤 How It Works
+
+Event delegation relies on **event bubbling**:
+  1. An event starts from the target element (e.g., `<li>`).
+  2. It bubbles up through its ancestors (e.g., `<ul>`, `<body>`, `document`).
+  3. A listener on any ancestor can catch it.
+
+### 🟤 Advantages
+
+  1. Fewer event listeners → better **performance**.
+  2. Works for **dynamically added elements**.
+  3. Easier **code management**.
+
+</details>
+---
+
+
+<details>
+<summary><b>Q63. Difference between <code>onclick</code> and <code>addEventListener</code>. </b></summary>
+
+|Feature|`onclick`|`addEventListener()`|
+|-------|----------|--------------------|
+|Type|Property-based event handler|Method to attach event listeners|
+|Usage|`element.onclick = function() { ... }`|`element.addEventListener('click', function() { ... })`|
+|Multiple Handlers|Only one handler can exist — a new one overwrites the old one|You can attach multiple handlers for the same event|
+|Event Removal|Must overwrite with `null`|Can remove using `removeEventListener()`|
+|Supports Multiple Event Types|No, only one event per property|Yes, can handle any event type dynamically|
+|Event Phases|Works only in the **bubbling phase**|Can specify **capturing** or **bubbling** phase|
+|Modern Use|Older, less flexible|Preferred modern approach|
+
+### 🟤 Example 1 — `onclick`
+
+```js
+const btn = document.querySelector('button');
+
+btn.onclick = function() {
+  console.log('Button clicked!');
+};
+
+// This will overwrite the previous one
+btn.onclick = function() {
+  console.log('Another handler');
+};
+```
+Output: Only “**Another handler**” appears. (Second handler replaced the first one.)
+
+
+### 🟤 Example 2 — `addEventListener()`
+
+```js
+const btn = document.querySelector('button');
+
+btn.addEventListener('click', function() {
+  console.log('First handler');
+});
+
+btn.addEventListener('click', function() {
+  console.log('Second handler');
+});
+
+```
+Output: 
+
+```sql
+First handler
+Second handler
+```
+(Both handlers run - no overwriting)
+</details>
+---
+
+
+<details>
+<summary><b>Q63. What are <code>event bubbling</code> and <code>capturing</code> in js? </b></summary>
+
+In **JavaScript, event bubbling** and **event capturing** are **two ways that events propagate (travel)** through the **DOM tree** when an event occurs on an element that is nested inside other elements.
+
+### 🟤 Event Propagation Overview
+
+When an event (like a click) happens on an element, it **doesn’t just affect that element** — it moves through the DOM in three phases:
+
+| Phase | Description | Example order (for nested elements `<div><p><button></button></p></div>`)|
+| 1. Capturing phase | Event moves **from the root → down to the target** | `document → html → body → div → p → button`|
+| 2. Target phase | Event **reaches the target element** | `button`|
+| 3. Bubbling phase | Event moves **back up from the target → root** | `button → p → div → body → html → document`|
+
+
+### 🟤 Event Capturing (Trickling Down)
+
+- The event is **first captured** by the outermost element and **propagates downward** to the target.
+- Rarely used, but can be enabled by passing `true` as the third argument to `addEventListener`.
+```js
+div.addEventListener('click', () => {
+  console.log('Div (capturing)');
+}, true); // true = capturing phase
+
+```
+Output
+
+```css
+Div (capturing)
+Button (target)
+```
+
+### 🟤 Event Bubbling (Default Behavior)
+
+- After the event reaches the target, it **bubbles up** to its ancestors.
+- This is the **default phase** (if you don’t pass `true`).
+
+```js
+div.addEventListener('click', () => {
+  console.log('Div (bubbling)');
+});
+button.addEventListener('click', () => {
+  console.log('Button');
+});
+
+```
+Output
+
+```css
+Button
+Div (bubbling)
+
+```
+</details>
+---
