@@ -562,7 +562,7 @@ const pi = 3.14;
 ## 🟠 variables & scope
 
 <details>
-<summary><b>Q12. What is Scope in JavaScript?</b></summary>
+<summary><b>Q1. What is Scope in JavaScript?</b></summary>
 <p>
 
 ### 🟠 Definition
@@ -645,7 +645,7 @@ outer();
 ---
 
 <details>
-<summary><b>Q13. What is hoisting in JavaScript?</b></summary>
+<summary><b>Q2. What is hoisting in JavaScript?</b></summary>
 <p>
 
 ### 🟠 Definition
@@ -729,7 +729,7 @@ const hello = () => {
 ---
 
 <details>
-<summary><b>Q14. Temporal Dead Zone (TDZ) in JavaScript?</b></summary>
+<summary><b>Q3. Temporal Dead Zone (TDZ) in JavaScript?</b></summary>
 <p>
 
 ### 🟠 Definition
@@ -772,7 +772,7 @@ Additionally, it must be initialized at the time of declaration.
 ---
 
 <details>
-<summary><b>Q15. Why You Should Avoid <code>var</code> in JavaScript? </b></summary>
+<summary><b>Q4. Why You Should Avoid <code>var</code> in JavaScript? </b></summary>
 <p>
 
 Modern JavaScript provides `let` and `const`, which fix many of the long-standing issues with `var`. While `var` still works, using it can easily lead to bugs and unexpected behavior.
@@ -852,7 +852,7 @@ Since ES6 (2015), almost all modern JS code uses let and const.
 ---
 
 <details>
-<summary><b>Q16. Difference between <code>shallow copy</code> and <code>deep copy</code> in js. </b></summary>
+<summary><b>Q5. Difference between <code>shallow copy</code> and <code>deep copy</code> in js. </b></summary>
 <p>
 
 ### 🟠 1. Shallow Copy — “Copied from the outside only”
@@ -906,7 +906,7 @@ console.log(original.details.city); // "Dhaka"
 ---
 
 <details>
-<summary><b>Q17. Difference between <code>reference types</code> and <code>primitive types</code> in js. </b></summary>
+<summary><b>Q6. Difference between <code>reference types</code> and <code>primitive types</code> in js. </b></summary>
 <p>
 
 ### 🟠 1. Definition
@@ -979,7 +979,7 @@ console.log(arr1 === arr2); // false (different memory reference)
 ---
 
 <details>
-<summary><b>Q18. Why are objects assigned by <code>reference</code> in JavaScript? </b></summary>
+<summary><b>Q7. Why are objects assigned by <code>reference</code> in JavaScript? </b></summary>
 <p>
 
 ### 🟠 1. Definition
@@ -1036,7 +1036,7 @@ There are **two main reasons:**
 ---
 
 <details>
-<summary><b>Q18.  What are global variables and why should you avoid them? </b></summary>
+<summary><b>Q8.  What are global variables and why should you avoid them? </b></summary>
 <p>
 
 ### 🟠 1. Definition
@@ -1124,7 +1124,7 @@ import { name } from "./file.js";
 ## 🟡 Functions 
 
 <details>
-<summary><b>Q19.  What are <code>function declarations</code> vs <code>function expressions?</code> </b></summary>
+<summary><b>Q1.  What are <code>function declarations</code> vs <code>function expressions?</code> </b></summary>
 <p>
 
 ### 🟡 Function Declaration: 
@@ -1191,7 +1191,7 @@ It’s a **type of function expression** — concise, not hoisted, and does not 
 ---
 
 <details>
-<summary><b>Q20.  What are <code>arrow functions</code> and how are they different? </b></summary>
+<summary><b>Q2.  What are <code>arrow functions</code> and how are they different? </b></summary>
 <p>
 
 An **arrow function** is a shorter, cleaner way to write a function expression in JavaScript. It uses the `=>` (arrow) syntax.
@@ -1268,7 +1268,7 @@ user.sayHi(); //  "Hi, I’m undefined"
 ---
 
 <details>
-<summary><b>Q21.  What are <code>higher-order</code> functions? </b></summary>
+<summary><b>Q3.  What are <code>higher-order</code> functions? </b></summary>
 <p>
 
 A **higher-order function** is a function that operates on other functions, either by **taking them as parameters** or **returning them**.
@@ -1338,7 +1338,7 @@ console.log(sum);     // 15
 
 
 <details>
-<summary><b>Q22.  What are <code>first-class functions</code>?</b></summary>
+<summary><b>Q4.  What are <code>first-class functions</code>?</b></summary>
 <p>
 
 In **JavaScript, functions are first-class citizens (or first-class functions)** — meaning **functions are treated like any other value** in the language.
@@ -1409,7 +1409,7 @@ actions[1](); // Output: Stop
 
 
 <details>
-<summary><b>Q24. Difference between <code>synchronous</code> and <code>asynchronous</code> callbacks.</b></summary>
+<summary><b>Q5. Difference between <code>synchronous</code> and <code>asynchronous</code> callbacks.</b></summary>
 <p>
 
 A **callback function is a function that is passed as an argument** to another function **and is executed later** (or “called back”) inside that other function. So, A **callback** is a function that gets **called back** after something happens.
@@ -1457,7 +1457,7 @@ processUserInput(function(name) {
 ---
 
 <details>
-<summary><b>Q25. What is <code>function currying</code>?</b></summary>
+<summary><b>Q6. What is <code>function currying</code>?</b></summary>
 <p>
 
 ### 🟡 Definition
@@ -1536,7 +1536,7 @@ Then you can reuse it for different names — `that’s the power of currying.`
 ---
 
 <details>
-<summary><b>Q26. What are <code>pure functions</code> in JavaScript?</b></summary>
+<summary><b>Q7. What are <code>pure functions</code> in JavaScript?</b></summary>
 <p>
 
 In **JavaScript**, a **pure function** is a function that follows **two main rules:**
@@ -1591,7 +1591,7 @@ function addToTotal(total, value) {
 
 
 <details>
-<summary><b>Q27. What is the difference between <code>call</code>, <code>apply</code>, and <code>bind</code>?</b></summary>
+<summary><b>Q8. What is the difference between <code>call</code>, <code>apply</code>, and <code>bind</code>?</b></summary>
 <p>
 
 ### 🟡 `call()` — Call immediately, pass arguments separately
@@ -1678,7 +1678,7 @@ Bob is from Rome, Italy.
 ---
 
 <details>
-<summary><b>Q28. How do you create <code>objects</code> in JavaScript?</b></summary>
+<summary><b>Q9. How do you create <code>objects</code> in JavaScript?</b></summary>
 <p>
 
 ### 🟡 Object Literal (Easiest and Most Common)
@@ -1787,7 +1787,7 @@ person1.greet(); // Output: Hi, I'm Diana
 
 
 <details>
-<summary><b>Q29. How do you create <code>objects</code> in JavaScript?</b></summary>
+<summary><b>Q1. How do you create <code>objects</code> in JavaScript?</b></summary>
 <p>
 
 ### 🟢 Object Literal (Easiest and Most Common)
@@ -1893,7 +1893,7 @@ person1.greet(); // Output: Hi, I'm Diana
 ---
 
 <details>
-<summary><b>Q29. What are <code>object prototypes</code> in JavaScript?</b></summary>
+<summary><b>Q2. What are <code>object prototypes</code> in JavaScript?</b></summary>
 <p>
 
 ### 🟢 Definition
@@ -1969,7 +1969,7 @@ Even though it looks like a class, under the hood, JavaScript is still using **p
 
 
 <details>
-<summary><b>Q30. What is <code>Prototype Chain</code> in JavaScript?</b></summary>
+<summary><b>Q3. What is <code>Prototype Chain</code> in JavaScript?</b></summary>
 <p>
 
 ### 🟢 Definition
@@ -2013,7 +2013,7 @@ child ---> parent ---> grandparent ---> Object.prototype ---> null
 ---
 
 <details>
-<summary><b>Q31. Difference between <code>Object.create()</code> and <code>class-based</code> inheritance.</b></summary>
+<summary><b>Q4. Difference between <code>Object.create()</code> and <code>class-based</code> inheritance.</b></summary>
 <p>
 
 ### 🟢 `Object.create()` — *Direct Prototypal Inheritance*
@@ -2089,7 +2089,7 @@ s.study(); // "Studying..."
 
 
 <details>
-<summary><b>Q32. How do you <code>merge</code> objects in JavaScript?</b></summary>
+<summary><b>Q5. How do you <code>merge</code> objects in JavaScript?</b></summary>
 <p>
 
 ### 🟢 Using `Object.assign()`
@@ -2173,7 +2173,7 @@ _.merge(obj1, obj2);
 
 
 <details>
-<summary><b>Q33. What is <code>object destructuring</code>?</b></summary>
+<summary><b>Q6. What is <code>object destructuring</code>?</b></summary>
 <p>
 
 ### 🟢 Definition
@@ -2243,7 +2243,7 @@ displayUser(user); // Name: Sara, Age: 22
 --- 
 
 <details>
-<summary><b>Q34. What is <code>object destructuring</code>?</b></summary>
+<summary><b>Q7. What is <code>object destructuring</code>?</b></summary>
 <p>
 
 ### 🟢 Definition
@@ -2314,7 +2314,7 @@ displayUser(user); // Name: Sara, Age: 22
 
 
 <details>
-<summary><b>Q35. What are object methods like <code>keys()</code>, <code>values()</code>, <code>entries()</code>?</b></summary>
+<summary><b>Q8. What are object methods like <code>keys()</code>, <code>values()</code>, <code>entries()</code>?</b></summary>
 <p>
 
 ### 🟢 Definition
@@ -2379,7 +2379,7 @@ city: Dhaka
 
 
 <details>
-<summary><b>Q36. How to <code>freeze</code> or <code>seal</code> an object? </b></summary>
+<summary><b>Q9. How to <code>freeze</code> or <code>seal</code> an object? </b></summary>
 <p>
 
 ### 🟢 Why We Use `Object.freeze()` or `Object.seal()`
@@ -2475,7 +2475,7 @@ Object.isFrozen(person); // true
 
 
 <details>
-<summary><b>Q37. Difference between shallow equality <code>(==)</code> and <code>deep equality</code> in objects. </b></summary>
+<summary><b>Q10. Difference between shallow equality <code>(==)</code> and <code>deep equality</code> in objects. </b></summary>
 <p>
 
 ### 🟢 Shallow Equality (`==` or `===`)
@@ -2530,7 +2530,7 @@ console.log(isDeepEqual(obj1, obj2)); //  true
 --- 
 
 <details>
-<summary><b>Q38. Difference between <code>for</code>, <code>for...in</code>, and <code>for...of</code>. </b></summary>
+<summary><b>Q11. Difference between <code>for</code>, <code>for...in</code>, and <code>for...of</code>. </b></summary>
 <p>
 
 ### 🟢 `for` loop
@@ -2634,7 +2634,7 @@ for (let value of arr) console.log(value); // a b c
 
 
 <details>
-<summary><b>Q39. Difference between <code>map</code>, <code>forEach</code>, and <code>filter</code>.</b></summary>
+<summary><b>Q12. Difference between <code>map</code>, <code>forEach</code>, and <code>filter</code>.</b></summary>
 <p>
 
 ### 🟢 map()
@@ -2717,7 +2717,7 @@ console.log(even); // [2, 4]
 --- 
 
 <details>
-<summary><b>Q40. Difference between <code>find</code> and <code>findIndex</code>.</b></summary>
+<summary><b>Q13. Difference between <code>find</code> and <code>findIndex</code>.</b></summary>
 <p>
 
 ### 🟢 Definiton
@@ -2777,7 +2777,7 @@ console.log(index); // 2
 
 
 <details>
-<summary><b>Q41. How does <code>reduce()</code> works in JS?</b></summary>
+<summary><b>Q14. How does <code>reduce()</code> works in JS?</b></summary>
 <p>
 
 `reduce()` is used to **reduce an array to a single value** by executing a function on each element of the array.
@@ -2852,7 +2852,7 @@ console.log(max); // Output: 20
 
 
 <details>
-<summary><b>Q42. Difference between <code>some()</code> and <code>every()</code>.</b></summary>
+<summary><b>Q15. Difference between <code>some()</code> and <code>every()</code>.</b></summary>
 <p>
 
 |     Method   |    Purpose    |    Returns    |
@@ -2903,7 +2903,7 @@ Explanation:
 
 
 <details>
-<summary><b>Q43. Difference between <code>push()</code>, <code>pop()</code>, <code>shift()</code> and <code>unshift()</code>.</b></summary>
+<summary><b>Q16. Difference between <code>push()</code>, <code>pop()</code>, <code>shift()</code> and <code>unshift()</code>.</b></summary>
 <p>
 
 |     Method   |    Works On    |    Description    |   Returns      |   Example    |
@@ -2941,7 +2941,7 @@ console.log(arr); // [1, 2, 3]
 
 
 <details>
-<summary><b>Q43. What is <code>array destructuring</code>? </b></summary>
+<summary><b>Q17. What is <code>array destructuring</code>? </b></summary>
 <p>
 
 ### 🟢 Definition: 
@@ -3015,7 +3015,7 @@ console.log(a, b); // 1 2
 
 
 <details>
-<summary><b>Q44. Difference between <code>spread operator</code><code>concat</code> </b></summary>
+<summary><b>Q18. Difference between <code>spread operator</code><code>concat</code> </b></summary>
 
 
 ### 🟢 Spread Operator (`...`)
@@ -3094,7 +3094,7 @@ const concatResult = a.concat(b, 5);  // [1, 2, 3, 4, 5]
 ---
 
 <details>
-<summary><b>Q45. How do you remove duplicates from an array? </b></summary>
+<summary><b>Q19. How do you remove duplicates from an array? </b></summary>
 
 
 ### 🟢 Using `Set` (Most Common & Easiest Way)
@@ -3178,7 +3178,7 @@ console.log(uniqueUsers);
 ## 🔵 Strings & Numbers
 
 <details>
-<summary><b>Q45. What are <code>template literals</code>? </b></summary>
+<summary><b>Q1. What are <code>template literals</code>? </b></summary>
 
 
 ### 🔵 Definition
@@ -3238,7 +3238,7 @@ console.log(result); // Output: Hello, ***WORLD***!
 ---
 
 <details>
-<summary><b>Q46. Difference between <code>single quotes</code>, <code>double quotes</code>, and <code>backticks</code>. </b></summary>
+<summary><b>Q2. Difference between <code>single quotes</code>, <code>double quotes</code>, and <code>backticks</code>. </b></summary>
 
 
 ### 🔵 Single Quotes (' ')
@@ -3288,7 +3288,7 @@ And so are you!`;
 ---
 
 <details>
-<summary><b>Q47. Difference between <code>slice</code>, <code>substr</code>, and <code>substring</code>. </b></summary>
+<summary><b>Q3. Difference between <code>slice</code>, <code>substr</code>, and <code>substring</code>. </b></summary>
 
 
 ### 🔵 `slice(start, end)`
@@ -3344,7 +3344,7 @@ console.log(text.substr(-6, 3));  // "Scr"
 ---
 
 <details>
-<summary><b>Q48. What is string immutability in JavaScript?</b></summary>
+<summary><b>Q4. What is string immutability in JavaScript?</b></summary>
 
 
 ### 🔵 Definition
@@ -3387,7 +3387,7 @@ Even `replace()` or `toUpperCase()` **return new strings** instead of changing t
 ---
 
 <details>
-<summary><b>Q49. Difference between <code>parseInt</code> and <code>Number()</code>.</b></summary>
+<summary><b>Q5. Difference between <code>parseInt</code> and <code>Number()</code>.</b></summary>
 
 
 ### 🔵 `parseInt()`
@@ -3431,7 +3431,7 @@ console.log(Number(null));      // 0
 ---
 
 <details>
-<summary><b>Q50. How does <code>toFixed()</code> work?</b></summary>
+<summary><b>Q6. How does <code>toFixed()</code> work?</b></summary>
 
 
 ### 🔵 Definition
@@ -3461,7 +3461,7 @@ console.log(n.toFixed(2)); // "2.68"
 ---
 
 <details>
-<summary><b>Q51.  Difference between <code>Math.floor()</code>, <code>Math.ceil()</code>, and <code>Math.round()</code>.</b></summary>
+<summary><b>Q7.  Difference between <code>Math.floor()</code>, <code>Math.ceil()</code>, and <code>Math.round()</code>.</b></summary>
 
 
 ### 🔵 Here’s the difference between `Math.floor()`, `Math.ceil()`, and `Math.round()` in JavaScript
@@ -3482,7 +3482,7 @@ console.log(n.toFixed(2)); // "2.68"
 ## 🟣 DOM Manipulation
 
 <details>
-<summary><b>Q53. What is the DOM in JavaScript?</b></summary>
+<summary><b>Q1. What is the DOM in JavaScript?</b></summary>
 
 
 ### 🟣 Definition
@@ -3506,7 +3506,7 @@ JavaScript can then **access, modify, add, or remove** these nodes dynamically �
 ---
 
 <details>
-<summary><b>Q54. Difference between <code>document.getElementById</code> and <code>querySelector</code>.</b></summary>
+<summary><b>Q2. Difference between <code>document.getElementById</code> and <code>querySelector</code>.</b></summary>
 
 
 ### 🟣 Using `getElementById()`:
@@ -3554,7 +3554,7 @@ But returns only the first match if there are multiple elements.
 ---
 
 <details>
-<summary><b>Q55. Difference between <code>innerHTML</code> , <code>innerText</code> and <code>textContent</code>.</b></summary>
+<summary><b>Q3. Difference between <code>innerHTML</code> , <code>innerText</code> and <code>textContent</code>.</b></summary>
 
 
 |Property|Returns|Includes HTML Tags?|Affects Hidden Text?|Faster?|Common Use| 
@@ -3630,7 +3630,7 @@ Hidden text
 
 
 <details>
-<summary><b>Q56. How do you create elements dynamically in JavaScript?</b></summary>
+<summary><b>Q4. How do you create elements dynamically in JavaScript?</b></summary>
 
 ### 🟣 Basic Steps to Create Elements Dynamically
 
@@ -3712,7 +3712,7 @@ The button will appear **inside the** `#container` **div**, not the body.
 ---
 
 <details>
-<summary><b>Q57. What is the difference between <code>append</code>, <code>appendChild</code>, and <code>insertBefore</code>?</b></summary>
+<summary><b>Q5. What is the difference between <code>append</code>, <code>appendChild</code>, and <code>insertBefore</code>?</b></summary>
 
 
 |Method|Used On|Can Add Multiple Nodes?|Can Add Text?|Returns|Browser Support|
@@ -3772,7 +3772,7 @@ list.insertBefore(newItem, firstItem);
 
 
 <details>
-<summary><b>Q58. What is the difference between <code>removeChild</code> and <code>remove</code>?</b></summary>
+<summary><b>Q6. What is the difference between <code>removeChild</code> and <code>remove</code>?</b></summary>
 
 
 |Feature|`removeChild()`|`remove()`|
@@ -3817,7 +3817,7 @@ item.remove();
 ---
 
 <details>
-<summary><b>Q59. What are data attributes in HTML/JS (data-*)? </b></summary>
+<summary><b>Q7. What are data attributes in HTML/JS (data-*)? </b></summary>
 
 **Data attributes** (written as `data-*`) in **HTML** are custom attributes that store extra information (metadata) directly on HTML elements.
 
@@ -3876,7 +3876,7 @@ user.setAttribute('data-role', 'viewer');
 ---
 
 <details>
-<summary><b>Q60. How does classList work? </b></summary>
+<summary><b>Q8. How does classList work? </b></summary>
 
 The `classList` property in JavaScript is a **convenient way to work with the classes of an HTML element**. It allows you to **read, add, remove, toggle, or check** CSS classes without manipulating the `className` string manually.
 
@@ -3966,7 +3966,7 @@ console.log(div.classList); // ["container", "visible"]
 
 
 <details>
-<summary><b>Q61. Difference between <code>setAttribute</code> and <code>direct property</code> assignment. </b></summary>
+<summary><b>Q9. Difference between <code>setAttribute</code> and <code>direct property</code> assignment. </b></summary>
 
 |   Aspect   |   `setAttribute(name, value)`     |   Direct Property Assignment   |
 |-------------|-------------------|------------|
@@ -4010,7 +4010,7 @@ console.log(input.getAttribute("value")); //  "new" (attribute didn’t change)
 ## 🟤 Events
 
 <details>
-<summary><b>Q62. What is event delegation in JavaScript? </b></summary>
+<summary><b>Q1. What is event delegation in JavaScript? </b></summary>
 
 **Event Delegation** in JavaScript is a technique that allows you to handle events more efficiently by using **event bubbling**.
 
@@ -4065,7 +4065,7 @@ Event delegation relies on **event bubbling**:
 
 
 <details>
-<summary><b>Q63. Difference between <code>onclick</code> and <code>addEventListener</code>. </b></summary>
+<summary><b>Q2. Difference between <code>onclick</code> and <code>addEventListener</code>. </b></summary>
 
 |Feature|`onclick`|`addEventListener()`|
 |-------|----------|--------------------|
@@ -4118,9 +4118,76 @@ Second handler
 </details>
 ---
 
+<details>
+<summary><b>Q3. What is <code>event propagation</code>? </b></summary>
+
+Event propagation in JavaScript is **the process by which an event moves through the DOM tree** when it occurs on an element. Basically, when you trigger an event (like a click), it doesn’t just affect the element you clicked — it can also trigger event handlers on its ancestors (parent elements) or descendants, depending on the phase.
+
+There are **two main phases** of event propagation:
+
+### 🟤 Capturing Phase (Event Capturing)
+
+- The event **starts from the top of the DOM tree** (`document`) and travels down to the target element.
+- Rarely used directly, but you can attach listeners for this phase by passing `true` as the third argument in `addEventListener`.
+
+```js
+parent.addEventListener("click", () => {
+  console.log("Parent clicked (capturing)");
+}, true); // true → capturing phase
+
+```
+
+### 🟤 Target Phase
+
+- The event **reaches the target element** (the element that was actually clicked).
+- Event listeners on the target element execute here (regardless of capturing or bubbling).
+
+```js
+child.addEventListener("click", () => {
+  console.log("Child clicked (target)");
+});
+
+```
+
+### 🟤 Bubbling Phase (Event Bubbling)
+
+- After reaching the target, the event **bubbles back up** the DOM tree from the target to the root.
+- Most event listeners by default are triggered in this phase.
+
+```js
+parent.addEventListener("click", () => {
+  console.log("Parent clicked (bubbling)");
+});
+```
+
+### 🟤 Example
+
+```js
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+
+<script>
+  const parent = document.getElementById("parent");
+  const child = document.getElementById("child");
+
+  parent.addEventListener("click", () => console.log("Parent clicked (bubbling)"));
+  child.addEventListener("click", () => console.log("Child clicked (target)"));
+</script>
+
+```
+
+**Clicking the button outputs:**
+```java
+Child clicked (target)
+Parent clicked (bubbling)
+```
+</details>
+---
+
 
 <details>
-<summary><b>Q64. What are <code>event bubbling</code> and <code>capturing</code> in js? </b></summary>
+<summary><b>Q4. What are <code>event bubbling</code> and <code>capturing</code> in js? </b></summary>
 
 In **JavaScript, event bubbling** and **event capturing** are **two ways that events propagate (travel)** through the **DOM tree** when an event occurs on an element that is nested inside other elements.
 
@@ -4172,5 +4239,161 @@ Button
 Div (bubbling)
 
 ```
+</details>
+---
+
+
+<details>
+<summary><b>Q5. How do you stop <code>event propagation</code>? </b></summary>
+
+In JavaScript, you can stop **event propagation** using the `event.stopPropagation()` or `event.stopImmediatePropagation()` methods.
+
+### 🟤 Event Propagation Overview
+
+This **stops the event from bubbling or capturing** any further up or down the DOM tree.
+
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+
+<script>
+  document.getElementById("parent").addEventListener("click", () => {
+    console.log("Parent clicked");
+  });
+
+  document.getElementById("child").addEventListener("click", (event) => {
+    console.log("Child clicked");
+    event.stopPropagation(); // stops event from reaching parent
+  });
+</script>
+```
+**Output when clicking the button:**
+
+```html
+Child clicked
+```
+The parent’s click event won’t fire because propagation was stopped.
+
+### 🟤 `event.stopImmediatePropagation()`
+
+This not only stops propagation but also **prevents other listeners on the same element** from running.
+
+```js
+button.addEventListener("click", (e) => {
+  console.log("First listener");
+  e.stopImmediatePropagation();
+});
+
+button.addEventListener("click", () => {
+  console.log("Second listener");
+});
+
+```
+Output when clicked:
+
+```css
+First listener
+```
+</details>
+---
+
+<details>
+<summary><b>Q6. Difference between <code>preventDefault()</code> and <code>stopPropagation()</code>. </b></summary>
+
+| Feature | `preventDefault()`  | `stopPropagation()`|
+|---------|----------------------|--------------------|
+|Purpose|Prevents the default browser behavior of an element|Stops the event from moving (propagating) through the DOM tree|
+|Affects|Only the element’s default action|Event flow to parent/ancestor elements or other listeners|
+|Example Use Case|Prevent a form from submitting, prevent a link from navigating|Stop a click on a child from triggering parent’s click handler|
+|Does It Stop Event Listeners?|No, the event still triggers other listeners|Yes, it stops the event from reaching other listeners (or other elements)|
+|Method Called On|`event.preventDefault()`|`event.stopPropagation()`|
+
+### 🟤 Example 1: `preventDefault()`
+
+```html
+<a href="https://google.com" id="link">Go to Google</a>
+
+<script>
+document.getElementById("link").addEventListener("click", function(event) {
+  event.preventDefault(); // stops the browser from navigating
+  console.log("Link clicked but default prevented!");
+});
+</script>
+
+```
+**Clicking the link:** logs the message but **does not go to Google**.
+
+### 🟤 Example 2: `stopPropagation()`
+
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+
+<script>
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+});
+
+document.getElementById("child").addEventListener("click", (event) => {
+  event.stopPropagation(); // stops event from bubbling to parent
+  console.log("Child clicked");
+});
+</script>
+
+```
+**Clicking the button:** logs only `"Child clicked"`. The parent’s click handler **does not run**.
+
+</details>
+---
+
+<details>
+<summary><b>Q7. Difference between <code>preventDefault()</code> and <code>stopPropagation()</code>. </b></summary>
+
+| Feature | `preventDefault()`  | `stopPropagation()`|
+|---------|----------------------|--------------------|
+|Purpose|Prevents the default browser behavior of an element|Stops the event from moving (propagating) through the DOM tree|
+|Affects|Only the element’s default action|Event flow to parent/ancestor elements or other listeners|
+|Example Use Case|Prevent a form from submitting, prevent a link from navigating|Stop a click on a child from triggering parent’s click handler|
+|Does It Stop Event Listeners?|No, the event still triggers other listeners|Yes, it stops the event from reaching other listeners (or other elements)|
+|Method Called On|`event.preventDefault()`|`event.stopPropagation()`|
+
+### 🟤 Example 1: `preventDefault()`
+
+```html
+<a href="https://google.com" id="link">Go to Google</a>
+
+<script>
+document.getElementById("link").addEventListener("click", function(event) {
+  event.preventDefault(); // stops the browser from navigating
+  console.log("Link clicked but default prevented!");
+});
+</script>
+
+```
+**Clicking the link:** logs the message but **does not go to Google**.
+
+### 🟤 Example 2: `stopPropagation()`
+
+```html
+<div id="parent">
+  <button id="child">Click Me</button>
+</div>
+
+<script>
+document.getElementById("parent").addEventListener("click", () => {
+  console.log("Parent clicked");
+});
+
+document.getElementById("child").addEventListener("click", (event) => {
+  event.stopPropagation(); // stops event from bubbling to parent
+  console.log("Child clicked");
+});
+</script>
+
+```
+**Clicking the button:** logs only `"Child clicked"`. The parent’s click handler **does not run**.
+
 </details>
 ---
