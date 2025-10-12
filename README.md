@@ -11,7 +11,7 @@ This repository contains categorized JavaScript questions with answers.
 | 🟢 Object & Arrays      | 20                  | [View](#-object--arrays) |
 | 🔵 Strings & Numbers      | 10                  | [View](#-strings--numbers) |
 | 🟣 DOM Manipulation   | 10                  | [View](#-dom-manipulation) |
-| 🟤 Events    | 10                  | [View](#-events-) |
+| 🟤 Events    | 10                  | [View](#-events) |
 | ⚫ ES6+ Features     | 10                  | [View](#-asynchronous-js) |
 | ⚪ Asynchronous JavaScript     | 10                  | [View](#-asynchronous-) |
 | 🟥 Advanced Concepts      | 10                  | [View](#-advanced) |
