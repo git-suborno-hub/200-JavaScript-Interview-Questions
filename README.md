@@ -4009,7 +4009,6 @@ console.log(input.getAttribute("value")); //  "new" (attribute didn’t change)
 
 ## 🟤 Events
 
-
 <details>
 <summary><b>Q62. What is event delegation in JavaScript? </b></summary>
 
