@@ -4120,7 +4120,7 @@ Second handler
 
 
 <details>
-<summary><b>Q63. What are <code>event bubbling</code> and <code>capturing</code> in js? </b></summary>
+<summary><b>Q64. What are <code>event bubbling</code> and <code>capturing</code> in js? </b></summary>
 
 In **JavaScript, event bubbling** and **event capturing** are **two ways that events propagate (travel)** through the **DOM tree** when an event occurs on an element that is nested inside other elements.
 
