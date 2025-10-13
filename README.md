@@ -4349,51 +4349,156 @@ document.getElementById("child").addEventListener("click", (event) => {
 ---
 
 <details>
-<summary><b>Q7. Difference between <code>preventDefault()</code> and <code>stopPropagation()</code>. </b></summary>
+<summary><b>Q7. What is <code>passive event listener</code> ? </b></summary>
 
-| Feature | `preventDefault()`  | `stopPropagation()`|
-|---------|----------------------|--------------------|
-|Purpose|Prevents the default browser behavior of an element|Stops the event from moving (propagating) through the DOM tree|
-|Affects|Only the element’s default action|Event flow to parent/ancestor elements or other listeners|
-|Example Use Case|Prevent a form from submitting, prevent a link from navigating|Stop a click on a child from triggering parent’s click handler|
-|Does It Stop Event Listeners?|No, the event still triggers other listeners|Yes, it stops the event from reaching other listeners (or other elements)|
-|Method Called On|`event.preventDefault()`|`event.stopPropagation()`|
+In **JavaScript**, a **passive event listener** is a special kind of event listener that **never calls** `preventDefault()` on the event.
 
-### 🟤 Example 1: `preventDefault()`
+It is mainly used to **improve performance**, especially for **scrolling and touch events**.
 
-```html
-<a href="https://google.com" id="link">Go to Google</a>
+### 🟤 Syntax
 
-<script>
-document.getElementById("link").addEventListener("click", function(event) {
-  event.preventDefault(); // stops the browser from navigating
-  console.log("Link clicked but default prevented!");
-});
-</script>
+```js
+element.addEventListener('scroll', handler, { passive: true });
 
 ```
-**Clicking the link:** logs the message but **does not go to Google**.
+Here, the third argument is an **options object**, and `{ passive: true }` marks the listener as passive.
 
-### 🟤 Example 2: `stopPropagation()`
+### 🟤 Why Passive Listeners Exist
 
+Normally, when you attach a scroll or touch event listener (like `touchstart`, `touchmove`, or `wheel`), the browser has to wait to see if your code calls `event.preventDefault()` before it can proceed with scrolling.
+This waiting can `delay rendering` and make scrolling feel laggy on mobile devices.
+
+If you mark the listener as passive, it tells the browser:
+
+    “Don’t worry, I will not call `preventDefault()` — go ahead and scroll immediately.”
+
+So the browser can start scrolling right away → resulting in smoother performance.
+
+### 🟤 Example
+
+```js
+document.addEventListener('touchmove', (event) => {
+  console.log('Touch moving...');
+}, { passive: true });
+```
+This will allow the browser to scroll immediately when the user moves their finger, because the listener won’t block the scroll.
+
+If you try to call `preventDefault()` inside a **passive listener**, the browser will **ignore it** and show a **warning in the console**:
+
+```js
+document.addEventListener('touchmove', (e) => {
+  e.preventDefault(); // ❌ Ignored if passive: true
+}, { passive: true });
+```
+
+</details>
+---
+
+<details>
+<summary><b>Q8. Difference between <code>input</code> and <code>change</code> events.</b></summary>
+
+|Feature|`input` Event | `change` Event|
+|--------|--------------|---------------|
+|When it fires| Fires **immediately** when the value of an input changes (on every keystroke)|Fires **when the element loses focus** after its value is changed|
+|Applies to| Mostly for text-based inputs (`<input>`, `<textarea>`, etc.)|Works with all form elements (`<input>`, `<select>`, `<textarea>`, etc.)|
+|Frequency| Fires continuously as user types or modifies value |Fires **once** when user finishes editing|
+|Example use| Live search, character counters, instant validation |Submitting or reacting only after final value chosen|
+|Event bubbling| Bubbles |Bubbles|
+
+
+### 🟤 Example
+
+**Using `input`**
 ```html
-<div id="parent">
-  <button id="child">Click Me</button>
-</div>
+<input type="text" id="username" placeholder="Type something...">
 
 <script>
-document.getElementById("parent").addEventListener("click", () => {
-  console.log("Parent clicked");
-});
-
-document.getElementById("child").addEventListener("click", (event) => {
-  event.stopPropagation(); // stops event from bubbling to parent
-  console.log("Child clicked");
+document.getElementById('username').addEventListener('input', () => {
+  console.log('Input event fired!');
 });
 </script>
+```
+Logs message **every time** you type or delete a character.
+
+**Using `change`**
+```html
+<input type="text" id="username" placeholder="Type something...">
+
+<script>
+document.getElementById('username').addEventListener('change', () => {
+  console.log('Change event fired!');
+});
+</script>
+```
+Logs message **only when you leave the field** (blur) after changing its value.
+
+`input` reacts to every modification in real time, while `change` reacts only once when the user finalizes the change (usually after focus leaves the element).
+</details>
+---
+
+<details>
+<summary><b>Q9. Difference between <code>throttling</code> and <code>debouncing</code>. </b></summary>
+
+|Concept|Description |
+|--------|--------------|
+|Debouncing| Ensures that a function runs **only after** a certain time has passed **since the last event**.|
+|Throttling| Ensures that a function runs **at most once every fixed interval**, no matter how many times the event fires.|
+
+### 🟤 Real-world Example
+
+Imagine you’re typing in a search box that makes an API call on every keystroke:
+
+- **Without control**: The function runs for every letter → too many calls
+
+- **Debouncing**: Waits until you **stop typing for a bit**, then runs the function once 
+
+- **Throttling**: Runs the function every **X milliseconds** while you’re typing — limiting the rate 
+
+### 🟤 Example 1: Debounce
+```js
+function debounce(func, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+// Usage:
+window.addEventListener('resize', debounce(() => {
+  console.log('Resized after user stopped resizing');
+}, 500));
 
 ```
-**Clicking the button:** logs only `"Child clicked"`. The parent’s click handler **does not run**.
+Function runs **only after** the user stops resizing for 500ms.
+
+### 🟤 Example 2: Throttle
+```js
+function throttle(func, interval) {
+  let lastTime = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastTime >= interval) {
+      func.apply(this, args);
+      lastTime = now;
+    }
+  };
+}
+
+// Usage:
+window.addEventListener('scroll', throttle(() => {
+  console.log('Scroll event fired at controlled rate');
+}, 300));
+
+```
+Function runs **at most once every 300ms**, no matter how fast the user scrolls.
+
+|Feature|Debounce|Throttle|
+|--------|---------|-----------|
+|When function runs|After user stops performing the action for a specified time|At fixed intervals during continuous activity|
+|Goal|Group multiple rapid events into a single one|Limit how often a function executes|
+|Common use cases|Search input, resize events, form validation|Scroll events, window resizing, mouse move tracking|
+|Example analogy|“Wait until you’re done talking, then I’ll respond.”|“I’ll respond every 1 second, no matter how much you talk.”|
 
 </details>
 ---
