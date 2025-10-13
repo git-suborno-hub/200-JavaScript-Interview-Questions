@@ -12,7 +12,7 @@ This repository contains categorized JavaScript questions with answers.
 | 🔵 Strings & Numbers      | 10                  | [View](#-strings--numbers) |
 | 🟣 DOM Manipulation   | 10                  | [View](#-dom-manipulation) |
 | 🟤 Events    | 10                  | [View](#-events) |
-| ⚫ ES6+ Features     | 10                  | [View](#-asynchronous-js) |
+| ⚫ ES6+ Features     | 10                  | [View](#-features-js) |
 | ⚪ Asynchronous JavaScript     | 10                  | [View](#-asynchronous-) |
 | 🟥 Advanced Concepts      | 10                  | [View](#-advanced) |
 | 🟧 Object-Oriented JavaScript       | 10                  | [View](#-object-oriented-) |
@@ -4607,5 +4607,105 @@ When you press `A`:
 
 If you press `ArrowLeft`, only the **KeyboardEvent** fires — no value changed, so **InputEvent** doesn’t trigger.
 
+</details>
+---
+
+<details>
+<summary><b>Q12. How does delegation improve performance? </b></summary>
+
+### 🟤 What delegation is:
+
+Instead of attaching an event listener to **each individual child element**, you attach **one listener to a parent element**. When an event occurs, it bubbles up from the child to the parent, and the parent handles it.
+
+
+Example in JavaScript:
+```js
+// Instead of adding click listeners to every button
+document.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    console.log('Button clicked');
+  });
+});
+
+// Use delegation
+document.getElementById('button-container').addEventListener('click', (e) => {
+  if(e.target.tagName === 'BUTTON') {
+    console.log('Button clicked');
+  }
+});
+```
+
+### 🟤 Why delegation improves performance:
+
+1. **Fewer event listeners** → less memory usage.
+
+  - Adding hundreds or thousands of listeners can consume a lot of memory and slow down page load.
+
+   - Delegation uses just one listener on the parent, no matter how many child elements exist.
+
+2. **Dynamic content support**
+
+  - If new child elements are added later (e.g., via innerHTML or appendChild), they automatically inherit the event handling without adding new listeners.
+
+  - Without delegation, you would need to attach listeners manually for each new element.
+
+3. **Better CPU efficiency**
+
+  - The browser doesn’t have to loop through many listeners on every event — only the parent handles it and checks the target.
+</details>
+---
+
+## ⚫ ES6+ Features
+
+<details>
+<summary><b>Q1. What are <code>default parameters</code> in functions? </b></summary>
+
+**Default parameters** in functions are **values that a function parameter takes if no argument** (or `undefined`) **is passed for that parameter** when the function is called.
+
+This is very useful because it allows you to write functions that have optional parameters without having to check manually if the argument exists.
+
+### ⚫ Syntax:
+```js
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}!`);
+}
+```
+Here, `name` has a **default value** of "Guest".
+
+
+### ⚫ Examples:
+
+```js
+greet("Alice"); // Output: Hello, Alice!
+greet();        // Output: Hello, Guest!
+
+```
+- In the first call, `"Alice"` is passed → default is ignored.
+- In the second call, no argument is passed → default `"Guest"` is used.
+
+**Multiple Default Parameters**
+
+```js
+function multiply(a = 1, b = 1) {
+  return a * b;
+}
+
+console.log(multiply(5, 2)); // 10
+console.log(multiply(5));    // 5  (b defaults to 1)
+console.log(multiply());     // 1  (both a and b default to 1)
+
+```
+**Key points:**
+
+  - Defaults are **used only if the argument is** `undefined`. Passing `null` or `0` **does not trigger the default**.
+
+   - They make functions **cleaner and safer** by avoiding manual checks like:
+
+```js
+function greet(name) {
+  name = name || "Guest"; // old way
+  console.log(`Hello, ${name}!`);
+}
+```
 </details>
 ---
