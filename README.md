@@ -26,7 +26,7 @@ This repository contains categorized JavaScript questions with answers.
 | 📗 Practical/Scenario-based        | 10                  | [View](#-practical-scenario-) |
 
 <details>
-<summary><h2>🔴 Basics</h2></summary>
+<summary><h4>🔴 Basics</h4></summary>
 
 <details>
 <summary><b>Q1. What is JavaScript and how is it different from Java?</b></summary> 
@@ -562,7 +562,7 @@ const pi = 3.14;
 
 
 <details>
-<summary><h2>🟠 Variables & Scope</h2></summary>
+<summary><h4>🟠 Variables & Scope</h4></summary>
 
 
 <details>
@@ -1128,7 +1128,7 @@ import { name } from "./file.js";
 </details>
 
 <details>
-<summary></summary>## 🟡 Functions 
+<summary><h4>🟡 Functions</h4></summary>🟡 Functions 
 
 <details>
 <summary><b>Q1.  What are <code>function declarations</code> vs <code>function expressions?</code> </b></summary>
@@ -1790,8 +1790,10 @@ person1.greet(); // Output: Hi, I'm Diana
 </details>
 ---
 
-## 🟢 Object & Arrays
+</details>
 
+<details>
+<summary><h4>🟢 Object & Arrays</h4></summary>
 
 <details>
 <summary><b>Q1. How do you create <code>objects</code> in JavaScript?</b></summary>
@@ -3181,8 +3183,10 @@ console.log(uniqueUsers);
 
 </details>
 ---
+</details>
 
-## 🔵 Strings & Numbers
+<details>
+<summary><h4>🔵 Strings & Numbers</h4></summary>
 
 <details>
 <summary><b>Q1. What are <code>template literals</code>? </b></summary>
@@ -3485,8 +3489,10 @@ console.log(n.toFixed(2)); // "2.68"
 
 </details>
 ---
+</details>
 
-## 🟣 DOM Manipulation
+<details> 
+<summary><h4>🟣 DOM Manipulation</h4></summary>
 
 <details>
 <summary><b>Q1. What is the DOM in JavaScript?</b></summary>
@@ -4013,8 +4019,10 @@ console.log(input.getAttribute("value")); //  "new" (attribute didn’t change)
 - `input.value = ...` changes the **current input field’s value** (what the user sees).
 </details>
 ---
+</details>
 
-## 🟤 Events
+<details>
+<summary><h4>🟤 Events</h4></summary>
 
 <details>
 <summary><b>Q1. What is event delegation in JavaScript? </b></summary>
@@ -4661,8 +4669,10 @@ document.getElementById('button-container').addEventListener('click', (e) => {
   - The browser doesn’t have to loop through many listeners on every event — only the parent handles it and checks the target.
 </details>
 ---
+</details>
 
-## ⚫ ES6+ Features
+<details>
+<summary><h4>⚫ ES6+ Features</h4></summary>
 
 <details>
 <summary><b>Q1. What are <code>default parameters</code> in functions? </b></summary>
@@ -4717,5 +4727,57 @@ function greet(name) {
 </details>
 ---
 
+<details>
+<summary><b>Q2. What are <code>default parameters</code> in functions? </b></summary>
 
-## ⚪ Asynchronous JavaScript
+**Default parameters** in functions are **values that a function parameter takes if no argument** (or `undefined`) **is passed for that parameter** when the function is called.
+
+This is very useful because it allows you to write functions that have optional parameters without having to check manually if the argument exists.
+
+### ⚫ Syntax:
+```js
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}!`);
+}
+```
+Here, `name` has a **default value** of "Guest".
+
+
+### ⚫ Examples:
+
+```js
+greet("Alice"); // Output: Hello, Alice!
+greet();        // Output: Hello, Guest!
+
+```
+- In the first call, `"Alice"` is passed → default is ignored.
+- In the second call, no argument is passed → default `"Guest"` is used.
+
+**Multiple Default Parameters**
+
+```js
+function multiply(a = 1, b = 1) {
+  return a * b;
+}
+
+console.log(multiply(5, 2)); // 10
+console.log(multiply(5));    // 5  (b defaults to 1)
+console.log(multiply());     // 1  (both a and b default to 1)
+
+```
+**Key points:**
+
+  - Defaults are **used only if the argument is** `undefined`. Passing `null` or `0` **does not trigger the default**.
+
+   - They make functions **cleaner and safer** by avoiding manual checks like:
+
+```js
+function greet(name) {
+  name = name || "Guest"; // old way
+  console.log(`Hello, ${name}!`);
+}
+```
+</details>
+---
+
+</details>
