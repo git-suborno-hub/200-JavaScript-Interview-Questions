@@ -12,7 +12,7 @@ This repository contains categorized JavaScript questions with answers.
 | 🔵 Strings & Numbers      | 10                  | [View](#-strings--numbers) |
 | 🟣 DOM Manipulation   | 10                  | [View](#-dom-manipulation) |
 | 🟤 Events    | 10                  | [View](#-events) |
-| ⚫ ES6+ Features     | 10                  | [View](#-es-features) |
+| ⚫ ES6 Plus Features     | 10                  | [View](#-es6plus-features) |
 | ⚪ Asynchronous JavaScript     | 10                  | [View](#-asynchronous-) |
 | 🟥 Advanced Concepts      | 10                  | [View](#-advanced) |
 | 🟧 Object-Oriented JavaScript       | 10                  | [View](#-object-oriented-) |
