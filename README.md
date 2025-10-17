@@ -25,6 +25,7 @@ This repository contains categorized JavaScript questions with answers.
 | 📙 Tricky & Real-world Questions        | 10                  | [View](#-tricky-real-) |
 | 📗 Practical/Scenario-based        | 10                  | [View](#-practical-scenario-) |
 
+<details>
 ## 🔴 Basics
 
 <details>
@@ -557,7 +558,7 @@ const pi = 3.14;
 </details>
 
 ---
-
+</details>
 
 ## 🟠 variables & scope
 
