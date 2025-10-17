@@ -4387,7 +4387,7 @@ If you try to call `preventDefault()` inside a **passive listener**, the browser
 
 ```js
 document.addEventListener('touchmove', (e) => {
-  e.preventDefault(); // ❌ Ignored if passive: true
+  e.preventDefault(); //  Ignored if passive: true
 }, { passive: true });
 ```
 
@@ -4655,7 +4655,7 @@ document.getElementById('button-container').addEventListener('click', (e) => {
 </details>
 ---
 
-## ⚫ ES6+ Features {#es6-features}
+## ⚫ ES6+ Features
 
 <details>
 <summary><b>Q1. What are <code>default parameters</code> in functions? </b></summary>
