@@ -4655,7 +4655,7 @@ document.getElementById('button-container').addEventListener('click', (e) => {
 </details>
 ---
 
-## ⚫ ES6+ Features
+## ⚫ ES6+ Features {#es6-features}
 
 <details>
 <summary><b>Q1. What are <code>default parameters</code> in functions? </b></summary>
