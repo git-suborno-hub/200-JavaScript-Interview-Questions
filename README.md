@@ -26,7 +26,7 @@ This repository contains categorized JavaScript questions with answers.
 | 📗 Practical/Scenario-based        | 10                  | [View](#-practical-scenario-) |
 
 <details>
-## 🔴 Basics
+<summary><h2>🔴 Basics</h2></summary>
 
 <details>
 <summary><b>Q1. What is JavaScript and how is it different from Java?</b></summary> 
@@ -560,7 +560,10 @@ const pi = 3.14;
 ---
 </details>
 
-## 🟠 variables & scope
+
+<details>
+<summary><h2>🟠 Variables & Scope</h2></summary>
+
 
 <details>
 <summary><b>Q1. What is Scope in JavaScript?</b></summary>
@@ -1122,7 +1125,10 @@ import { name } from "./file.js";
 </details>
 ---
 
-## 🟡 Functions 
+</details>
+
+<details>
+<summary></summary>## 🟡 Functions 
 
 <details>
 <summary><b>Q1.  What are <code>function declarations</code> vs <code>function expressions?</code> </b></summary>
